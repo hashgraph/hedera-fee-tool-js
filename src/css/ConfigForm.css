@@ -1,0 +1,647 @@
+/*-
+ * ‌
+ * Hedera Fee Tool
+ * ​
+ * Copyright (C) 2019 - 2020 Hedera Hashgraph, LLC
+ * ​
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ‍
+ */
+
+.title-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.title-row p {
+    font-size: 11px; /* not sure what standard on the main site is */
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin-top: 2px;
+}
+
+.title-breadcrumb {
+    font-size: 26px;
+    padding-top: 27px;
+    color: white;
+    letter-spacing: -1px;
+    font-weight: 300;
+    padding-left: 10px;
+}
+
+.forceShow {
+    display: block !important;
+    opacity: 1 !important;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  margin: 0;
+}
+
+@media (max-width: 1500px) {
+    .title-breadcrumb {
+        font-size: 20px;
+        padding-top: 34px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .title-breadcrumb {
+        font-size: 16px;
+        padding-top: 39px;
+    }
+}
+
+@media (max-width: 1240px) {
+    .title-breadcrumb {
+        padding-top: 26px;
+    }
+}
+
+@media (max-width: 1123px) {
+    .title-breadcrumb {
+        padding-top: 21px;
+    }
+}
+
+.title-breadcrumb-label {
+    text-transform: capitalize;
+}
+
+.title-breadcrumb-arrow-divider {
+    text-decoration: none;
+    margin: 0 5px;
+    background-image: url('../img/HH-Fees-Calc-Arrow-Right.png');
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    width: 7px;
+    height: 12px;
+    display: inline-block;
+    transform: translateY(2px);
+}
+
+.content-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.content-row p {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 24px;
+    letter-spacing: 1.2px;
+    margin-bottom: 48px;
+}
+
+.disabledField {
+    color: rgb(240, 236, 23);
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.parameter-title {
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    text-align: left;
+    border-bottom: 1px solid white;
+    padding: 0 0 11px;
+    margin: 0 0 15px;
+}
+
+.parameter-title .title-down-arrow {
+    margin-left: 25px;
+    background-image: url('../img/HH-Fees-Calc-Arrow-Down.png');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 12px;
+    height: 8px;
+    display: inline-block;
+    transform: translateY(-4px);
+}
+
+.parameter-title.hideParameters .title-down-arrow {
+    transform: translateY(-4px) rotate(-90deg);
+}
+
+.parameter-title-2 {
+    margin-top: 35px;
+    cursor: pointer;
+}
+
+span.hideParameters {
+    display: none;
+}
+
+span.showParameters {
+    display: block;
+    position: relative;
+}
+
+
+.finePrint {
+    font-size: 10px;
+    font-style: italic;
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: center;
+    height: auto;
+    position: relative;
+    margin: 0;
+    padding: 35px 0 0;
+}
+
+.price-container::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 35px;
+    background: linear-gradient(135deg, rgba(45,132,235,0.2) 0%, rgba(130,89,239,0.2) 100%);
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.price-container::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(160deg, #2d84eb, #8259ef);
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.price-container .priceValueContainer {
+    width: 100%;
+    text-align: right;
+}
+.price-container .priceValueContainer,
+.price-container .priceValueHbar {
+    flex: 1;
+    font-size: 16px;
+    background: linear-gradient(135deg, rgba(45,132,235,0.2) 0%, rgba(130,89,239,0.2) 100%);
+    transform: none;
+    width: 100%;
+    text-align: right;
+}
+.price-container .priceValueContainer h4 {
+    font-size: 20px;
+    display: inline;
+    position: relative;
+    line-height: 1;
+    margin: 0 70px 0 0;
+    padding: 0;
+    letter-spacing: -1px;
+}
+
+.price-container .priceValueHbar {
+    padding: 0 65px 35px;
+}
+
+.price-container .priceValueHbar::after {
+    content: "ℏ";
+    display: inline;
+    position: relative;
+    padding-left: 5px;
+    font-size: 16px;
+}
+
+.transaction-details .price-container {
+    position: absolute;
+    display: block;
+    width: 100%;
+    transform: translateY(100%);
+    bottom: 174px;
+}
+
+
+/* YOUR TOTAL ESTIMATE :: BOTTOM SECTION */
+.priceCartTable {
+    font-size: 22px;
+    table-layout: fixed;
+}
+.priceValueContainer.estimate-total {
+    font-size: 26px;
+    background: transparent;
+    flex: 1 1 auto;
+    padding: 0;
+    table-layout: fixed;
+}
+.priceValueContainer.estimate-total td {
+    padding-bottom: 0;
+    padding-top: 0;
+    vertical-align: middle;
+}
+.priceCartTable th:nth-child(1),
+.priceCartTable td:nth-child(1) {
+    width: 31%;
+}
+.priceCartTable th:nth-child(2),
+.priceCartTable td:nth-child(2) {
+    width: 12%;
+}
+.priceCartTable th:nth-child(3),
+.priceCartTable td:nth-child(3) {
+    width: 15%;
+}
+.priceCartTable th:nth-child(4),
+.priceCartTable td:nth-child(4) {
+    width: 16%;
+}
+.priceCartTable th:nth-child(5),
+.priceCartTable td:nth-child(5) {
+    width: 4%;
+}
+.priceCartTable th:nth-child(6),
+.priceCartTable td:nth-child(6) {
+    width: 17%;
+}
+.priceCartTable th:nth-child(7),
+.priceCartTable td:nth-child(7) {
+    width: 2%;
+}
+.priceCartTable th:nth-child(8),
+.priceCartTable td:nth-child(8) {
+    width: 3%;
+}
+
+.priceCartTable td:nth-child(2),
+.priceCartTable td:nth-child(3),
+.priceCartTable td:nth-child(4),
+.priceCartTable td:nth-child(6) {
+    font-family: monospace;
+}
+
+
+
+.priceValueContainer.estimate-total h4 {
+    float: left;
+    margin-bottom: 0;
+    font-size: 28px;
+    display: block;
+}
+.priceValueContainer.estimate-total .priceValue {
+    width: 100%;
+    font-size: 22px;
+    padding: 0;
+    display: block;
+    position: relative;
+    font-family: monospace;
+}
+.priceValueContainer.estimate-total .priceValue::after {
+    font-size: 18px;
+    font-weight: 300;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateX(100%) translateY(-50%);
+    line-height: 1;
+    font-family: "Styrene A Web", system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif;
+}
+.price-container .priceValueHbar.estimate-total {
+    padding: 0;
+}
+.price-container .priceValueHbar.estimate-total::after {
+    font-size: 18px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateX(100%) translateY(-50%);
+    line-height: 1;
+    font-family: "Styrene A Web", system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", sans-serif;
+}
+.priceValueHbar.estimate-total {
+    /*padding: 0 115px 0 0;*/
+    font-size: 22px;
+    background: transparent;
+    width: auto;
+    position: relative;
+}
+.priceCartTable .form-control {
+    height: 30px;
+    font-size: 19px;
+    letter-spacing: -1px;
+    text-align: right;
+    padding: 0 15px;
+    float: right;
+}
+.price-container .priceValue {
+    display: inline;
+    position: relative;
+    transform: none;
+    width: 100%;
+    text-align: right;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.priceCartDivRow .price-container {
+    padding: 0;
+    margin-top: -2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 95px;
+    background: linear-gradient(135deg, rgba(45,132,235,0.2) 0%, rgba(130,89,239,0.2) 100%);
+}
+
+.priceCartDivRow .price-container::before {
+    background: none;
+    display: none;
+}
+
+
+
+.price-details {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    font-size: 14px !important;
+    width: auto;
+}
+
+.price-cta {
+    flex: 1;
+}
+
+.addToCartDiv {
+    width: 100%;
+    padding: 22px 0 0;
+    margin: 0;
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+}
+
+.addToCartButton {
+    font-size: 10px;
+    color: black;
+    background: white;
+    border: 1px solid white;
+    font-weight: 500;
+    line-height: 1;
+    height: auto;
+    padding: 11px 25px;
+    letter-spacing: 0.2em;
+    outline: none;
+}
+
+.addToCartButton:hover {
+    background: #111;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.5);
+
+}
+.addToCartButton:focus {
+    outline: none;
+}
+
+.form-row {
+    margin: 0;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    height: auto;
+    padding-bottom: 15px;
+    padding-left: 3px;
+    margin: 0;
+    display: block;
+}
+
+.form-label::first-letter {
+    text-transform: uppercase;
+}
+
+.form-row > .col,
+.form-row > [class*="col"] {
+    padding: 0;
+    margin: 0 0 15px;
+}
+
+.form-control {
+    background: transparent;
+    color: white;
+    text-align: center;
+    height: 42px;
+    border-radius: 21px;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.form-control:focus {
+    color: white;
+    background-color: #222;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: none;
+}
+
+select.form-control {
+    border: none;
+    z-index: 1;
+    width: calc(100% - 26px);
+    margin: 5px 0 0 10px;
+    padding: 0 0 0 10px;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    height: 37px;
+    border-radius: 14%;
+    transform: translateY(-3px);
+    color: white;
+    text-align: left;
+}
+
+select option {
+    color: black !important;
+}
+
+select.form-control:focus {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.select-bg {
+    padding: 0 12px;
+    z-index: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 42px;
+    display: block;
+    position: absolute;
+    bottom: 21px;
+}
+
+.select-bg::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 9px;
+    height: 6px;
+    top: 50%;
+    right: 20px;
+    z-index: 0;
+    background-image: url('../img/HH-Fees-Calc-Arrow-Down.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+    transform: translateY(-50%);
+}
+
+.select-bg::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 42px;
+    bottom: 0;
+    left: 0;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 21px;
+    z-index: 0;
+}
+
+.transaction-ops .panel-body .form-row {
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.transaction-ops .panel-body .form-row .col {
+    flex: 0 1 22%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.popover-header,
+.popover-body {
+    background: transparent;
+    color: #464646;
+    font-weight: 300;
+    font-size: 12px;
+    padding: 0;
+}
+.popover-header {
+    font-weight: 500;
+    border: none;
+    padding-bottom: 10px;
+}
+
+.popover .arrow {
+    display: none;
+}
+
+.popover {
+    background: white;
+    border-radius: 0;
+    width: 235px;
+    padding: 16px 16px 19px;
+    line-height: 1.2;
+    border: none;
+    text-align: left;
+    top: 10px !important;
+    left: 30px !important;
+}
+
+.popover::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(160deg, #2d84eb, #8259ef);
+  bottom: 0;
+  left: 0;
+}
+
+/*<div class="fade show popover bs-popover-right-start" id="div_megamenu_tooltip_id_Crypto_CryptoCreate"
+style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(539px, 477px, 0px);">
+    <div class="arrow" style="top: 15px;"></div>
+    <div class="popover-header h3">CryptoCreate</div>
+    <div class="popover-body">Creates a new account.</div>
+</div>*/
+
+
+@media (max-width: 1400px) {
+
+    .transaction-details .price-container {
+        bottom: 127px;
+    }
+}
+@media (max-width: 1240px) {
+
+    .transaction-details .price-container {
+        bottom: 139px;
+    }
+}
+
+@media (max-width: 1187px) {
+
+    .transaction-details .price-container {
+        bottom: 124px;
+    }
+}
+
+@media (max-width: 1140px) {
+
+    .transaction-details .price-container {
+        bottom: 157px;
+    }
+}
+
+
+@media (max-width: 1123px) {
+  .parameter-title {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 1110px) {
+
+    .transaction-details .price-container {
+        bottom: 150px;
+    }
+}
+
+

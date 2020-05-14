@@ -1,0 +1,429 @@
+/*-
+ * ‌
+ * Hedera Fee Tool
+ * ​
+ * Copyright (C) 2019 - 2020 Hedera Hashgraph, LLC
+ * ​
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ‍
+ */
+
+body {
+  background: #222;
+}
+
+.App {
+  text-align: center;
+}
+
+.AppContainer {
+  width: 100%;
+}
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.subUsageTitle {
+  font-size: 15px;
+  font-family: "Styrene A Web", system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", sans-serif;
+  align-content: left;
+  padding: 5px;
+}
+.subUsageTable {
+  font-size: 15px;
+  font-family: "Styrene A Web", system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", sans-serif;
+  align-content: left;
+  padding: 5px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.subUsageTable td,
+th {
+  padding: 5px;
+  /* border: 1px solid black; */
+}
+
+
+.relavancyTable {
+    font-size: 15px;
+    font-family: "Styrene A Web", system-ui, -apple-system, "Segoe UI", Roboto,
+      Ubuntu, Cantarell, "Noto Sans", sans-serif;
+    align-content: left;
+    padding: 5px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    color: white;
+
+}
+
+.priceLabel {
+  font-size: 30px;
+}
+.priceValue {
+  font-size: 28px;
+  color: white;
+  font-family: "Styrene A Web", system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", sans-serif;
+  transform: scaleY(1.3);
+}
+.priceValue::after {
+  content: "USD";
+  padding-left: 5px;
+}
+.priceValueHbar {
+  color: white;
+}
+
+.priceDisclaimers {
+  margin-top: 30px;
+  font-size: 9px;
+  text-align: left;
+}
+.col {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.topRow {
+  /* background: #EEEEEE; */
+  font-family: "Styrene A Web", system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", sans-serif;
+  color: black;
+  border: 1px solid grey;
+  align-content: center;
+}
+
+.logoImage {
+  margin: 10px;
+  height: 50px;
+  width: 50px;
+}
+
+.headerTitle {
+  margin: 10px;
+  text-align: left;
+  font-family: "Styrene A Web", system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", sans-serif;
+  size: 1.5em;
+  color: white;
+}
+
+.fillerRow {
+  height: 10px;
+  /* background: #EEEEEE; */
+}
+
+.selectOpRow {
+  font-family: "Styrene A Web", system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", sans-serif;
+  height: 70px;
+  border: 1px solid grey;
+  border-bottom: 0;
+  vertical-align: middle;
+}
+
+.middleRow {
+  font-family: "Styrene A Web", system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", sans-serif;
+  height: 450px;
+  border: 1px solid grey;
+  border-top: 0;
+  color: white;
+}
+
+.configInputTableLabel {
+  color: red;
+  font-size: 100px;
+  background: blue;
+}
+
+.configFormFormGroup {
+  text-align: left;
+  font-size: 20px;
+}
+
+.configFormFormGroup .form-label .last-word {
+  display: inline-block;
+  position: relative;
+  text-transform: none;
+}
+
+.configFormFormGroup .form-label .last-word::after {
+  content:"";
+  display: inline-block;
+  position: relative;
+  margin: 0 0 0 7px;
+  width: 15px;
+  height: 15px;
+  background-image: url('../img/HH-Fees-Calc-Tool-Tip-Icon.png');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  transform: translateY(2px);
+}
+
+.label-caption {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1;
+  width: 100%;
+  height: 14px;
+  display: block;
+  position: relative;
+  text-align: center;
+  margin: 7px 0 0;
+  color: #8C8C8C;
+}
+
+.stayOnTop {
+  z-index: 999;
+}
+
+.usageBreakdownRow {
+  background: #e1e8f0;
+}
+
+#selectedOperationLabel {
+  font-size: 25px;
+  color: white;
+  margin-top: 15px;
+}
+
+#feeSchedulesOutputDiv {
+  text-align: left;
+  color: white;
+}
+
+.feeSchedulesCode pre {
+    color: white;
+}
+
+.addToCartDiv {
+  margin: 30px;
+  color: white;
+}
+
+.addToCartButton {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  padding: 14px 40px;
+  font: inherit;
+  margin: 0;
+
+  background-color: white;
+  color: black;
+  border-radius: 40px;
+}
+
+.addToCartButton:hover {
+  background-color: #e0e0e0;
+}
+.priceCartContainer {
+  width: 100%;
+}
+.priceCartContainer:after {
+  content: "";
+  height: 2px;
+  background: linear-gradient(160deg, #2d84eb, #8259ef);
+  width: 100%;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.priceCartDivRow {
+  margin-top: 40px;
+  margin-right: 0;
+  margin-left: 0;
+  color: white;
+  flex-direction: column;
+}
+.priceCartDivRow:before {
+  content: "";
+  height: 2px;
+  background: linear-gradient(160deg, #2d84eb, #8259ef);
+  width: 100%;
+  margin-bottom: 43px;
+}
+.priceElements {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.priceElements.div {
+  padding: 22px;
+}
+.priceCartItemInput {
+  width: 100px;
+}
+
+.priceCartTable {
+  color: white;
+  margin: 0;
+}
+.priceCartTable thead th {
+  font-size: 18px;
+  letter-spacing: -1px;
+  line-height: 1.15;
+  padding: 0 20px 15px 0;
+  font-weight: 300;
+  border-bottom: 1px solid #dee2e6;
+  text-align: right;
+}
+
+.priceCartTable td {
+  text-align: right;
+  border-top: none;
+}
+
+.priceCartTable thead th:first-child,
+.priceCartTable td:first-child {
+  text-align: left;
+}
+
+.priceCartTable thead th {
+  padding: 0 15px 15px 0;
+}
+.priceCartTable td {
+  padding: 2px 15px 2px 0;
+}
+.priceCartTable thead th:first-child,
+.priceCartTable td:first-child {
+  padding-left: 20px;
+}
+
+.priceCartTable th:last-child,
+.priceCartTable td:last-child {
+  padding-right: 15px;
+  text-align: right;
+}
+
+.priceCartTable thead th:first-child {
+  font-size: 19px;
+}
+.priceCartTable td:first-child {
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: -1px;
+  text-transform: capitalize;
+}
+
+.priceCartTable tbody tr:first-child td {
+  padding-top: 30px;
+}
+
+.priceCartTable tbody tr:last-child td {
+  padding-bottom: 40px;
+}
+
+.priceCartFormItemRowPrice {
+  font-weight: 500;
+}
+
+.priceCartTableHeader {
+  font-size: 25px;
+  margin: 10px;
+}
+
+.priceCartTableDiv {
+  text-align: left;
+}
+
+#selectOperationDiv {
+  padding: 0;
+  width: 100%;
+}
+
+.emptyMessageDiv {
+}
+
+.emptyMessageDivMinor {
+  font-size: 15px;
+}
+
+.configFormCardOuter {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}
+
+.dropdownSelectMessage {
+  margin: 30px 0 25px;
+  font-size: 15px;
+  line-height: 1.3;
+  /*background-color: white;*/
+  /*color: #101010;*/
+  /*box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 0px 6px;*/
+  color: white;
+  /*border-radius: 5px;*/
+  box-sizing: border-box;
+  /*word-break: break-word;*/
+  padding: 0 10px 0 0;
+}
+.dropdownSelectMessage .msgHead {
+  font-size: 23px;
+  margin: 0 0 10px;
+  font-weight: bold;
+  font-weight: 500;
+  text-align: left;
+}
+.dropdownSelectMessage .msgBody {
+  font-size: 18px;
+  text-align: left;
+  line-height: 1.3;
+}
+
+.highImpactTitle {
+  /* font-weight: bold; */
+}
+.lowImpactTitle {
+  font-style: italic;
+  color: rgb(185, 185, 185);
+}
+
+@media (max-width: 1100px) {
+  .App {
+    display: none;
+  }
+}

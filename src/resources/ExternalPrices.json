@@ -1,0 +1,51 @@
+{
+    "Crypto": {
+        "CryptoCreate": 0.01,
+        "CryptoAccountAutoRenew": 0.00022,
+        "CryptoUpdate": 0.00022,
+        "CryptoTransfer": 0.0001,
+        "CryptoDelete": 0.005,
+        "CryptoAddLiveHash": 0.1,
+        "CryptoDeleteLiveHash": 0.005,
+        "CryptoGetLiveHash": 0.0001,
+        "CryptoGetAccountRecords": 0.0001,
+        "CryptoGetAccountBalance": 0,
+        "CryptoGetInfo": 0.0001,
+        "CryptoGetStakers": 0.0001
+    },
+    "Smart Contracts": {
+        "ContractCreate": 1.0,
+        "ContractUpdate": 0.026,
+        "ContractDelete": 0.007,
+        "ContractCall": 0.05,
+        "ContractCallLocal": 0.001,
+        "ContractGetBytecode": 0.05,
+        "GetBySolidityID": 0.0001,
+        "ContractGetInfo": 0.0001,
+        "ContractGetRecords": 0.0001,
+        "ContractAutoRenew": 0.026
+    },
+    "Files": {
+        "FileCreate": 0.05,
+        "FileUpdate": 0.05,
+        "FileDelete": 0.007,
+        "FileAppend": 0.05,
+        "FileGetContents": 0.0001,
+        "FileGetInfo": 0.0001
+    },
+    "Consensus": {
+        "ConsensusCreateTopic": 0.01,
+        "ConsensusUpdateTopic": 0.00022,
+        "ConsensusDeleteTopic": 0.005,
+        "ConsensusSubmitMessage": 0.0001,
+        "ConsensusGetTopicInfo": 0.0001
+    },
+    "Miscellaneous": {
+        "GetVersionInfo": 0.001,
+        "GetByKey": 0.0001,
+        "TransactionGetReceipt": 0.0000,
+        "TransactionGetRecord": 0.0001,
+        "SystemDelete": 0,
+        "SystemUndelete": 0
+    }
+}

@@ -1,0 +1,384 @@
+/*-
+ * ‌
+ * Hedera Fee Tool
+ * ​
+ * Copyright (C) 2019 - 2020 Hedera Hashgraph, LLC
+ * ​
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ‍
+ */
+
+.mm-navbar {
+  position: relative;
+  overflow: hidden;
+  font-family: "Styrene A Web", system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", sans-serif;
+  }
+
+/*.mm-navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}*/
+
+.mm-dropdown {
+  overflow: hidden;
+}
+
+.mm-dropdown .mm-dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  padding: 14px 40px;
+  font: inherit;
+  margin: 0;
+  color: black;
+  border-radius: 40px;
+  display: none;
+}
+
+.mm-navbar a:hover,
+.mm-dropdown:hover .mm-dropbtn {
+  background-color: #e0e0e0;
+}
+
+.mm-dropdown-content {
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.mm-dropdown-content .header {
+  background: rgb(137, 139, 143); /* updated */
+  padding: 16px;
+  color: white;
+}
+
+.mm-row {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Create three equal columns that floats next to each other */
+.mm-column {
+  float: left;
+  width: auto;
+  position: relative;
+}
+
+.mm-column a {
+  float: none;
+  color: black;
+  padding: 6px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.mm-column a:hover {
+  background-color: #ddd;
+}
+
+/* Clear floats after the columns */
+.mm-row:after {
+  content: "";
+  display: table;
+  clear: both;
+  height: auto;
+}
+
+.react-tabs__tab .mm-column .mm-column-header {
+  padding: 0 0 0 80px;
+  margin-right: 20px;
+  width: auto;
+  color: white;
+  height: auto;
+  min-height: 68px;
+  font-size: 18px;
+  font-weight: normal;
+  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.react-tabs__tab .mm-column::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: url('../img/HH-Fees-Calc-Service-Icon-1.png') no-repeat center center;
+  background-size: 100% auto;
+  width: 61px;
+  height: 100%;
+  opacity: 0.6;
+}
+
+.react-tabs__tab:hover .mm-column::before,
+.react-tabs__tab.react-tabs__tab--selected .mm-column::before {
+  opacity: 1;
+}
+
+.react-tabs__tab:nth-child(2) .mm-column::before {
+  background-image: url('../img/HH-Fees-Calc-Service-Icon-2.png') ;
+}
+
+.react-tabs__tab:nth-child(3) .mm-column::before {
+  background-image: url('../img/HH-Fees-Calc-Service-Icon-3.png') ;
+}
+
+.react-tabs__tab:nth-child(4) .mm-column::before {
+  background-image: url('../img/HH-Fees-Calc-Service-Icon-4.png') ;
+}
+
+.react-tabs__tab:nth-child(5) .mm-column::before {
+  background-image: url('../img/HH-Fees-Calc-Service-Icon-5.png') ;
+}
+
+.react-tabs__tab .mm-column::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: url('../img/HH-Fees-Calc-Arrow-Right.png') no-repeat center right;
+  background-size: 6px auto;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+}
+
+.react-tabs__tab:hover .mm-column::after,
+.react-tabs__tab--selected .mm-column::after {
+  opacity: 1;
+}
+
+.operationTooltip {
+  background-color: rgba(200, 200, 200, 0.85);
+  padding: 2px 10px;
+  color: black;
+  border-radius: 3;
+  z-index: 9000;
+  margin-top: 10px;
+  font-size: 20px;
+  white-space: pre;
+}
+
+.apiOperationButtonDiv {
+  height: 100%;
+  width: 100%;
+  text-align: left;
+}
+
+.apiOperationButton::after {
+  content:"";
+  display: inline-block;
+  position: relative;
+  margin: 0 0 0 7px;
+  width: 17px;
+  height: 17px;
+  background-image: url('../img/HH-Fees-Calc-Tool-Tip-Icon.png');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  transform: translateY(3px);
+}
+.panel-item--selected .apiOperationButton::after {
+  opacity: 1;
+}
+
+.apiOperationButton {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  font-size: 15px;
+  letter-spacing: 0;
+  opacity: 0.6;
+  color: white;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  overflow: hidden;
+  outline: none;
+  font-family: "Styrene A Web", system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", sans-serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 40px;
+}
+
+.apiOperationButton:focus {
+  outline: none;
+}
+
+.priceCartContainer {
+  padding: 0;
+  margin: 0;
+}
+
+.two-line-title {
+    text-align: left;
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 43px;
+    padding-left: 20px;
+}
+
+.two-line-title span {
+    display: block;
+    position: relative;
+    font-weight: 300;
+}
+
+.btn-delete {
+  text-indent: -30px;
+  overflow: hidden;
+  border: none;
+  padding: 0 10px;
+  background-color: transparent;
+  background-image: url('../img/HH-Fees-Calc-Total-Icon-Close.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px auto;
+  transition: none;
+  border-radius: 50%;
+  width: 24px;
+}
+.btn-delete:active,
+.btn-delete:focus,
+.btn-delete:hover {
+  background-color: transparent !important;
+}
+/*
+.react-tabs__tab:nth-child(4) {
+  pointer-events: none;
+}
+*/
+
+.react-tabs__tab:nth-child(4) .mm-column .mm-column-header::after {
+  /*content: "(coming soon)";*/
+  display: block;
+  position: relative;
+  width: auto;
+  height: auto;
+  text-transform: none;
+  line-height: 1.3;
+}
+
+/*@media (min-width: 1700px) {
+  .react-tabs__tab:nth-child(4) .mm-column .mm-column-header {
+    padding-right: 52px;
+  }
+}
+
+@media (min-width: 1810px) {
+  .react-tabs__tab:nth-child(4) .mm-column .mm-column-header {
+    padding-right: 100px;
+  }
+}*/
+
+
+@media (max-width: 1699px) {
+  .react-tabs__tab .mm-column .mm-column-header {
+    font-size: 16px;
+  }
+  /*.react-tabs__tab:nth-child(4) .mm-column .mm-column-header {
+    padding-right: 53px;
+  }*/
+}
+
+@media (max-width: 1600px) {
+  .react-tabs__tab .mm-column .mm-column-header {
+    padding: 15px 0 15px 80px;
+  }
+}
+
+
+@media (max-width: 1580px) {
+  .react-tabs__tab .mm-column .mm-column-header {
+    font-size: 14px;
+    padding: 15px 0 15px 60px;
+  }
+  .react-tabs__tab .mm-column::before {
+    width: 41px;
+  }
+  /*.react-tabs__tab:nth-child(4) .mm-column .mm-column-header {
+    padding-right: 72px;
+  }*/
+}
+
+@media (max-width: 1400px) {
+  .react-tabs__tab .mm-column .mm-column-header {
+    padding: 10px 0 0;
+    font-size: 14px;
+    min-height: auto;
+
+  }
+  .react-tabs__tab .mm-column::before {
+    position: relative;
+    height: 41px;
+    background-size: contain;
+    transform: none;
+    top: 0;
+  }
+  /*.react-tabs__tab:nth-child(4) .mm-column .mm-column-header {
+    padding-right: 95px;
+  }*/
+}
+
+/*@media (max-width: 1300px) {
+  .react-tabs__tab:nth-child(4) .mm-column .mm-column-header {
+    padding-right: 55px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .react-tabs__tab:nth-child(4) .mm-column .mm-column-header {
+    padding-right: 15px;
+  }
+}*/
+
+@media (max-width: 1171px) {
+  .react-tabs__tab .mm-column .mm-column-header {
+    font-size: 11px;
+  }
+}
+
+/*@media (max-width: 1115px) {
+  .react-tabs__tab:nth-child(4) .mm-column .mm-column-header {
+    padding-right: 0;
+  }
+}*/
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .mm-column {
+    width: 100%;
+    height: auto;
+  }
+}
+

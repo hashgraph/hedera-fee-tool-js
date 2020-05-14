@@ -1,0 +1,926 @@
+{
+	"Crypto": {
+		"CryptoCreate": {
+			"type": "transaction",
+			"info": "Creates a new account. ",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"numKeys": 1,
+				"expirationHours": 2160,
+				"numThresholdsDefined": 0,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + BASE_CRYPTOCREATE_SIZE + memoSize + (numKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + (numThresholdsDefined * THRESHOLD_SIZE)",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + BASE_CRYPTOCREATE_SIZE + memoSize + (numKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + (numThresholdsDefined * THRESHOLD_SIZE)",
+					"vpt": "numSigsTotal",
+					"rbh": "(BASE_RECEIPT_SIZE + ACCOUNT_ID_SIZE) * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "((BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE + numThresholdsDefined * THRESHOLD_SIZE) * expirationHours)"
+				}
+			}
+		},
+
+		"CryptoAccountAutoRenew": {
+			"type": "transaction",
+			"info": "Virtual transaction to autorenew a crypto account.  Please note that there is no HAPI call for this transaction.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numKeys": 1,
+				"numThresholdsDefined": 0,
+				"expirationHours": 2160,
+				"memoSize": 0
+			},
+			"formulae": {
+				"service": {
+					"rbh": "((BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE + numThresholdsDefined * THRESHOLD_SIZE) * expirationHours)"
+				}
+			}
+		},
+
+		"CryptoUpdate": {
+			"type": "transaction",
+			"info": "Updates an existing account. ",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"numKeys": 1,
+				"numLivehashes": 1,
+				"expirationHours": 2160,
+				"numThresholdsDefined": 0,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE +  memoSize + (numKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + (numThresholdsDefined * THRESHOLD_SIZE)",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE  + memoSize + (numKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + (numThresholdsDefined * THRESHOLD_SIZE)",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(((BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE + numLivehashes * LIVEHASH_SIZE + numThresholdsDefined * THRESHOLD_SIZE) * expirationHours))"
+				}
+			}
+		},
+
+		"CryptoTransfer": {
+			"type": "transaction",
+			"info": "Initiates a transfer of hbars from one account to another. ",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"numAccountsOnTransfer": 2,
+				"memoSize": 0,
+				"is25HourRecordCreated": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + memoSize) * (MINUTES_3 + is25HourRecordCreated * HOURS_25) / HOURS_1"
+				}
+			}
+		},
+
+		"CryptoDelete": {
+			"type": "transaction",
+			"info": "Deletes an account and transfers the balance to another account. ",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE+2*ACCOUNT_ID_SIZE + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE+2*ACCOUNT_ID_SIZE + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+				}
+			}
+		},
+
+		"CryptoAddLiveHash": {
+			"type": "transaction",
+			"info": "Adds a livehash to an account. ",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 2,
+				"numKeys": 2,
+				"expirationHours": 2160,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + LIVEHASH_SIZE  + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + LIVEHASH_SIZE  + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(LIVEHASH_SIZE + (numKeys * KEY_SIZE)) * expirationHours"
+				}
+			}
+		},
+
+		"CryptoDeleteLiveHash": {
+			"type": "transaction",
+			"info": "Deletes a livehash from an account. ",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + (1 * ACCOUNT_ID_SIZE) + HASH_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + (1 * ACCOUNT_ID_SIZE) + HASH_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+				}
+			}
+		},
+
+		"CryptoGetLiveHash": {
+			"type": "query",
+			"info": "Retrieves a livehash from an account.",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numKeys": 2,
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + ACCOUNT_ID_SIZE + HASH_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + (isStateProofRequested * STATE_PROOF_SIZE) + (numKeys * KEY_SIZE) + LIVEHASH_SIZE"
+				}
+			}
+		},
+
+		"CryptoGetAccountRecords": {
+			"type": "query",
+			"info": "Retrieves all records created in the past 24 hours for an account.",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numRecordsReturned": 10,
+				"numAccountsOnTransfer": 2,
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + ACCOUNT_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + numRecordsReturned*(BASE_RECORD_SIZE + (numAccountsOnTransfer * TRANSFER_LIST_SIZE)) + (isStateProofRequested * STATE_PROOF_SIZE)"
+				}
+			}
+		},
+
+		"CryptoGetAccountBalance": {
+			"type": "query",
+			"info": "Retrieves the hbar balance of an account.",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + ACCOUNT_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + BALANCE_RESPONSE_SIZE + (isStateProofRequested * STATE_PROOF_SIZE)"
+				}
+			}
+		},
+
+		"CryptoGetInfo": {
+			"type": "query",
+			"info": "Retrieves an account's information.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numKeys": 1,
+				"numThresholdsDefined": 0,
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + ACCOUNT_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + BASE_ACCOUNT_SIZE + numKeys * KEY_SIZE + (numThresholdsDefined * THRESHOLD_SIZE) + (isStateProofRequested * STATE_PROOF_SIZE)"
+				}
+			}
+		},
+
+		"CryptoGetStakers": {
+			"type": "query",
+			"info": "Retrieves the list of proxy stakers for a node.",
+			"status": "incomplete",
+			"isImportant": false,
+			"usage": {
+				"numProxyAccounts": 100,
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + ACCOUNT_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + ACCOUNT_ID_SIZE + numProxyAccounts * PROXYACCOUNT_SIZE + (isStateProofRequested * STATE_PROOF_SIZE)"
+				}
+			}
+		}
+	},
+
+	"Smart Contracts": {
+		"ContractCreate": {
+			"type": "transaction",
+			"info": "Creates and initializes a smart contract by referencing an existing bytecode file.",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"numKeys": 1,
+				"expirationHours": 2160,
+				"contractConstructorCallParamsSize": 1000,
+				"contractFunctionReturnSize": 400,
+				"gas": 500000,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE+FILE_ID_SIZE+BASE_CRYPTOCREATE_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE+FILE_ID_SIZE+BASE_CRYPTOCREATE_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + memoSize) * ( MINUTES_3 + HOURS_25) / HOURS_1",
+					"sbh": "(memoSize + numKeys * KEY_SIZE + BASE_CONTRACTINFO_SIZE ) * expirationHours",
+					"gas": "gas"
+				}
+			}
+		},
+
+		"ContractUpdate": {
+			"type": "transaction",
+			"info": "Updates (but does not run) an existing smart contract.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"numKeys": 1,
+				"expirationHours": 2160,
+				"contractFunctionReturnSize": 400,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE+FILE_ID_SIZE + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE+FILE_ID_SIZE + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + memoSize) * ( MINUTES_3 ) / HOURS_1",
+					"sbh": "(memoSize + numKeys * KEY_SIZE + BASE_CONTRACTINFO_SIZE) * expirationHours"
+				}
+			}
+		},
+
+		"ContractDelete": {
+			"type": "transaction",
+			"info": "Deletes an existing contract.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+				}
+			}
+		},
+
+		"ContractCall": {
+			"type": "transaction",
+			"info": "Calls a method of the specified smart contract. ",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"expirationHours": 2160,
+				"contractConstructorCallParamsSize": 1000,
+				"contractFunctionReturnSize": 400,
+				"gas": 100000,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE+CONTRACT_ID_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE+CONTRACT_ID_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + memoSize) * ( MINUTES_3 + HOURS_25) / HOURS_1",
+					"gas": "gas"
+				}
+			}
+		},
+
+		"ContractGetInfo": {
+			"type": "query",
+			"info": "Retrieves a smart contract's information.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numKeys": 1,
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + CONTRACT_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + (isStateProofRequested * STATE_PROOF_SIZE)",
+					"sbpr": "BASE_CONTRACTINFO_SIZE+ numKeys*KEY_SIZE"
+				}
+			}
+		},
+
+		"ContractCallLocal": {
+			"type": "query",
+			"info": "Calls a function of the stipulated smart contract to be run on a single node. The results of the function are returned. This does not impact state.",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numSigsTotal": 1,
+				"contractConstructorCallParamsSize": 1000,
+				"contractFunctionReturnSize": 400,
+				"gas": 50000,
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE+CONTRACT_ID_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) ",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + (isStateProofRequested * STATE_PROOF_SIZE)",
+					"sbpr": "contractFunctionReturnSize ",
+					"gas": "gas"
+				}
+			}
+		},
+
+		"ContractGetBytecode": {
+			"type": "query",
+			"info": "Retrieves the bytecode of a smart contract.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"fileSize": 20000,
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + CONTRACT_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + (isStateProofRequested * STATE_PROOF_SIZE)",
+					"sbpr": "fileSize"
+				}
+			}
+		},
+
+		"GetBySolidityID": {
+			"type": "query",
+			"info": "Converts between identifiers in the format used by Solidity to the format used by transactions.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + CONTRACT_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + CONTRACT_ID_SIZE + (isStateProofRequested * STATE_PROOF_SIZE)"
+				}
+			}
+		},
+
+
+		"ContractGetRecords": {
+			"type": "query",
+			"info": "Retrieves all records created in the past 24 hours for a smart contract.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numRecordsReturned": 10,
+				"contractFunctionReturnSize": 400,
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + CONTRACT_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + numRecordsReturned*(BASE_RECORD_SIZE + contractFunctionReturnSize) + (isStateProofRequested * STATE_PROOF_SIZE)"
+				}
+			}
+		},
+
+		"ContractAutoRenew": {
+			"type": "transaction",
+			"info": "Virtual transaction to autorenew a smart contract.  Please note that there is no HAPI call for this transaction.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numKeys": 1,
+				"expirationHours": 2160,
+				"fileSize": 20000
+			},
+			"formulae": {
+				"service": {
+					"sbh": "((numKeys * KEY_SIZE + fileSize + BASE_CONTRACTINFO_SIZE) * expirationHours)"
+				}
+			}
+		}
+	},
+
+	"Files": {
+		"FileCreate": {
+			"type": "transaction",
+			"info": "Creates a file with the provided content. ",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"numKeys": 1,
+				"expirationHours": 2160,
+				"fileSize": 1000,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + BASE_FILECREATE_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + BASE_FILECREATE_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1",
+					"sbh": "((numKeys * KEY_SIZE + fileSize + BASE_FILEINFO_SIZE) * expirationHours)"
+				}
+			}
+		},
+
+		"FileUpdate": {
+			"type": "transaction",
+			"info": "Updates a file's information or contents.",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"numKeys": 1,
+				"expirationHours": 2160,
+				"fileSize": 1000,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1",
+					"sbh": "((numKeys * KEY_SIZE + fileSize + BASE_FILEINFO_SIZE) * expirationHours)"
+				}
+			}
+		},
+
+		"FileDelete": {
+			"type": "transaction",
+			"info": "Deletes an existing file.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+				}
+			}
+		},
+
+		"FileAppend": {
+			"type": "transaction",
+			"info": "Appends the given content to the designated file. ",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"numKeys": 1,
+				"expirationHours": 2160,
+				"fileSize": 1000,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + BASE_FILECREATE_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + BASE_FILECREATE_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1",
+					"sbh": "((numKeys * KEY_SIZE + fileSize + BASE_FILEINFO_SIZE) * expirationHours)"
+				}
+			}
+		},
+
+		"FileGetContents": {
+			"type": "query",
+			"info": "Retrieves the contents of a file.",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"fileSize": 1000,
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + FILE_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + (isStateProofRequested * STATE_PROOF_SIZE)",
+					"sbpr": "fileSize"
+				}
+			}
+		},
+
+		"FileGetInfo": {
+			"type": "query",
+			"info": "Retrieves a file's information.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numKeys": 1,
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + ACCOUNT_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE  + (isStateProofRequested * STATE_PROOF_SIZE)",
+					"sbpr": "BASE_FILEINFO_SIZE + numKeys * KEY_SIZE"
+				}
+			}
+		}
+	},
+
+	"Consensus": {
+		"ConsensusCreateTopic": {
+			"type": "transaction",
+			"info": "Creates a topic for consensus service. ",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"numKeys": 0,
+				"expirationHours": 2160,
+				"memoSize": 0,
+				"topicMemoSize": 0,
+				"isAutoRenewAccountSet": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + topicMemoSize + (numKeys * KEY_SIZE) + DURATION_SIZE + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + topicMemoSize + (numKeys * KEY_SIZE) + DURATION_SIZE + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+					"vpt": "numSigsTotal",
+					"rbh": "(BASE_RECEIPT_SIZE + TOPIC_ID_SIZE) * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1 + ((BASE_TOPIC_SIZE + topicMemoSize + (numKeys * KEY_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)) * expirationHours)"				}
+			}
+		},
+
+		"ConsensusUpdateTopic": {
+			"type": "transaction",
+			"info": "Update a topic for consensus service. ",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"numKeys": 0,
+				"expirationHours": 2160,
+				"memoSize": 0,
+				"topicMemoSize": 0,
+				"isAutoRenewAccountSet": false,
+				"isAutoRenewPeriodSet": false,
+				"isExpirationTimeSet": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE + topicMemoSize + (isExpirationTimeSet * TIMESTAMP_SIZE) + (numKeys * KEY_SIZE) + (isAutoRenewPeriodSet * DURATION_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE + topicMemoSize + (isExpirationTimeSet * TIMESTAMP_SIZE) + (numKeys * KEY_SIZE) + (isAutoRenewPeriodSet * DURATION_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1 + ((BASE_TOPIC_SIZE + topicMemoSize + (numKeys * KEY_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)) * expirationHours)"				}
+			}
+		},
+
+		"ConsensusDeleteTopic": {
+			"type": "transaction",
+			"info": "Deletes an existing topic used by Consensus service.",
+			"status": "complete",
+			"isImportant": false,
+
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+				}
+			}
+		},
+
+		"ConsensusSubmitMessage": {
+			"type": "transaction",
+			"info": "Submit a message (message, encrypted message, or a hash) to the consensus service. ",
+			"status": "complete",
+			"isImportant": true,
+
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"memoSize": 0,
+				"topicMessageSize": 100
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE + topicMessageSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE + topicMessageSize",
+					"vpt": "numSigsTotal",
+					"rbh": "(BASE_RECEIPT_SIZE + RUNNING_HASH_SIZE + SEQUENCE_NUMBER_SIZE) * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "((BASE_RECORD_SIZE + memoSize) * MINUTES_3) / HOURS_1"
+				}
+			}
+
+		},
+
+		"ConsensusGetTopicInfo": {
+			"type": "query",
+			"info": "Retrieves the information for a specified topic.",
+			"status": "complete",
+			"isImportant": true,
+
+			"usage": {
+				"isStateProofRequested": false,
+				"numKeys": 0,
+				"topicMemoSize": 0,
+				"isAutoRenewAccountSet": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + TOPIC_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + BASE_TOPIC_SIZE + (numKeys * KEY_SIZE) + topicMemoSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE) + (isStateProofRequested * STATE_PROOF_SIZE)"
+				}
+			}
+		}
+	},
+
+	"Miscellaneous": {
+		"GetVersionInfo": {
+			"type": "query",
+			"info": "Retrieve the current version of the network.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE ",
+					"bpr": "BASE_QUERYRESPONSE_SIZE  + 10 + (isStateProofRequested * STATE_PROOF_SIZE)"
+				}
+			}
+		},
+
+		"GetByKey": {
+			"type": "query",
+			"info": "Get entities by key.",
+			"status": "incomplete",
+			"isImportant": false,
+			"usage": {}
+		},
+
+		"TransactionGetReceipt": {
+			"type": "query",
+			"info": "Retrieve a single transaction receipt.",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + TRANSACTION_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE + BASE_RECEIPT_SIZE"
+				}
+			}
+		},
+
+	"SystemDelete": {
+			"type": "transaction",
+			"info": "System delete an existing file.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+				}
+			}
+		},
+
+			"SystemUndelete": {
+			"type": "transaction",
+			"info": "System undelete a deleted file.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"memoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+				}
+			}
+		},
+
+		"TransactionGetRecord": {
+			"type": "query",
+			"info": "Retrieve the record for a single transaction.",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"isStateProofRequested": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_QUERYHEADER_SIZE + TRANSACTION_ID_SIZE",
+					"bpr": "BASE_QUERYRESPONSE_SIZE  + 2 * BASE_RECORD_SIZE + (isStateProofRequested * STATE_PROOF_SIZE)"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,275 @@
+/*-
+ * ‌
+ * Hedera Fee Tool
+ * ​
+ * Copyright (C) 2019 - 2020 Hedera Hashgraph, LLC
+ * ​
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ‍
+ */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Styrene A Web", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -1px;
+}
+
+button {
+  letter-spacing: -1px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.content {
+  background: none;
+  background-color: #222;
+  color: white;
+  /*padding: 115px 6.25% 185px;*/
+  padding: 0 6.25%;
+}
+
+/* overwrite bootstrap */
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
+/* overwrite bootstrap */
+.col {
+  margin-top: 0;
+}
+
+.hero {
+  margin-bottom: 45px;
+}
+
+.hero-title {
+  position: relative;
+  margin-bottom: 45px;
+}
+
+.hero-title h2 {
+  font-weight: 300;
+  margin: 0;
+}
+
+.hero-description {
+  max-width: 530px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero-description p {
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 2;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.middleRow {
+  height: auto;
+  margin-top: 1000px;
+}
+
+.main-content {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.transaction-types {
+  flex: 1 1 55%;
+}
+
+.transaction-types .row {
+  margin: 0;
+}
+
+.transaction-types .col {
+  padding: 0;
+  margin: 0;
+}
+
+.transaction-details {
+  flex: 0 0 45%;
+}
+
+.transaction-ops {
+  min-height: 724px;
+  padding: 0 0 174px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.table th {
+  border: 0;
+  border-top: 0;
+}
+
+/*****/
+
+.react-tabs {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+}
+
+/* STEP 1 - 3 */
+.react-tabs > div {
+}
+
+.react-tabs > div:first-child {
+  width: calc(100% - 356px);
+}
+
+.react-tabs .tab-panels {
+  width: 356px;
+}
+
+.step-1-title,
+.step-2-title,
+.step-3-title {
+  width: 100%;
+  display: block;
+  padding: 0 0 10px;
+  margin-bottom: 15px;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 26px;
+  font-weight: 300;
+  color: #2D84EB;
+}
+
+.step-1-title,
+.step-2-title {
+  width: calc(100% - 35px);
+}
+.dropdown-btn {
+  width: calc(100% - 35px);
+  text-align: left;
+}
+
+.panel-title::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(160deg, #2d84eb, #8259ef);
+  bottom: 0;
+  left: 0;
+}
+
+.panel-title-col {
+  width: auto;
+  display: block;
+  position: relative;
+  float: left;
+  text-align: left;
+}
+
+.panel-title-col-1 {
+  width: calc(100% - 356px);
+}
+
+
+.panel-title-col-2 {
+  min-width: 356px;
+}
+
+.panel-title-col-3 {
+  width: 100%;
+}
+
+
+.transaction-ops h2.select-info {
+  margin-bottom: 25px;
+}
+
+.transaction-ops .panel-body {
+  clear: both;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 1500px) {
+  .panel-title-col-1,
+  .panel-title-col-2,
+  .react-tabs > div:first-child,
+  .react-tabs .tab-panels {
+    width: 50%;
+  }
+}
+
+@media (max-width: 1240px) {
+  h2.select-info {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1123px) {
+  h2.select-info {
+    font-size: 18px;
+  }
+}
+
+/* MOBILE PAGE */
+.mobile-page{
+   display: none;
+}
+
+@media (max-width: 1100px) {
+  .App {
+    display: none;
+  }
+
+  .mobile-page {
+    background-color: #222;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .mobile-container  {
+    max-width: 100vw;
+    padding: 12.5%;
+  }
+
+  .mobile-image {
+    max-height: 300px;
+    width: 100%;
+  }
+
+  .mobile-image img {
+    margin: auto;
+    width: 100%;
+  }
+}

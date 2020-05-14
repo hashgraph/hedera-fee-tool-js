@@ -1,0 +1,212 @@
+/*-
+ * ‌
+ * Hedera Fee Tool
+ * ​
+ * Copyright (C) 2019 - 2020 Hedera Hashgraph, LLC
+ * ​
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ‍
+ */
+
+.react-tabs > div {
+  position: relative;
+  padding-bottom: 27px;
+}
+.transaction-types {
+  position: relative;
+  padding-bottom: 174px;
+  min-height: 840px;
+}
+
+/*.react-tabs > div::after {*/
+.transaction-types::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: calc(50% - 35px);
+    height: 2px;
+    background: linear-gradient(160deg, #2d84eb, #8259ef);
+    bottom: 172px;
+    left: 0;
+}
+.transaction-types::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: calc(50% - 35px);
+    /*min-width: 265px;*/
+    min-width: 311px;
+    height: 2px;
+    background: linear-gradient(160deg, #2d84eb, #8259ef);
+    bottom: 172px;
+    right: 35px;
+}
+
+@media (max-width: 1372px) {
+  .transaction-types::before {
+      /*width: calc(100% - 335px);*/
+      width: calc(100% - 382px);
+  }
+}
+
+.react-tabs__tab-list {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: calc(100% - 35px);
+}
+
+.react-tabs__tab {
+  width: 100%;
+  text-align: left;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 30px;
+}
+
+.react-tabs__tab .mm-column {
+  width: 100%;
+  margin: 0;
+}
+
+.react-tabs__tab .mm-column-header {
+  color: white;
+  margin: 0;
+  font-size: 18px;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  padding: 15px 55px 15px 0;
+  overflow: hidden;
+  opacity: 0.6;
+}
+
+.react-tabs__tab:hover .mm-column-header,
+.react-tabs__tab--selected .mm-column-header {
+  opacity: 1;
+}
+
+.panel-title {
+  text-align: left;
+  font-weight: 300;
+}
+
+.panel-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 356px;
+}
+
+.panel-item {
+  width: calc(100% - 35px);
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  padding: 0;
+}
+
+.panel-item::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: url('../img/HH-Fees-Calc-Arrow-Right.png') no-repeat center right;
+  background-size: 6px auto;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+}
+
+.panel-item:hover::after,
+.panel-item--selected::after {
+  opacity: 1;
+}
+
+.panel-item:hover .apiOperationButton,
+.panel-item--selected .apiOperationButton {
+  opacity: 1;
+}
+
+.tab-list {
+  display: block;
+  position: relative;
+  clear: both;
+  padding: 0;
+  width: 100%;
+}
+
+.tab-panels .mm-column {
+  margin: 0;
+  padding: 0;
+}
+
+.tab-panels .mm-column:focus {
+  outline: none;
+}
+
+
+.dropdown-btn {
+  padding: 0 0 25px;
+  width: 100%;
+  color: white;
+  position: relative;
+  font-weight: 100;
+  text-align: left;
+  background: transparent;
+  border: none;
+}
+
+.dropdown-btn i {
+  border: 1px solid white;
+  height: 18px;
+  width: 18px;
+  display: block;
+}
+
+.dropdown-btn:focus {
+  outline: none;
+}
+
+
+h2.select-info {
+  font-size: 26px;
+  font-weight: 500;
+  color: white;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+h2.select-info span {
+  font-weight: 100;
+  display: inline-block;
+}
+
+h2.select-info span:first-child {
+  display: block;
+}
