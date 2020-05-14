@@ -189,9 +189,10 @@ class App extends Component {
       </Row>
     );
 
-    const feeScheduleRow = (
-      <FeeSchedules feeSchedules={this.price.feeSchedules} apis={this.state.apis}/>
-    );
+    let feeScheduleRow;
+    if (process.env.REACT_APP_SHOW_FEE_SCHEDULE === "true") {
+      feeScheduleRow = <FeeSchedules feeSchedules={this.price.feeSchedules} apis={this.state.apis}/>;
+    }
 
     const normalViewRows = (
       <div>
@@ -239,7 +240,7 @@ class App extends Component {
 
   /* fetch current exchange rate when component mounts */
   componentDidMount() {
-    axios.get(process.env.PRICING_API_ENDPOINT)
+    axios.get(process.env.REACT_APP_PRICING_API_ENDPOINT)
       .then(response => {
         let hbars = response.data[0]["CurrentRate"]["hbarEquiv"];
         let cents = response.data[0]["CurrentRate"]["centEquiv"];

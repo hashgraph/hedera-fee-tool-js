@@ -11,7 +11,8 @@ Tool to calculate price of transactions on Hedera network. A version of this too
 Set up your .env file with the following schema. 
 
 ```
-PRICING_API_ENDPOINT=your-pricing-api-url <-- empty will default hbar price to ~$0.12
+REACT_APP_PRICING_API_ENDPOINT=your-pricing-api-url # Empty will default hbar price to ~$0.12
+REACT_APP_SHOW_FEE_SCHEDULE=true # Default is false
 ```
 
 Install dependencies. 
