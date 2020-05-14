@@ -93,7 +93,6 @@ class FeeSchedules extends React.Component {
           </>
         </Col>
       </Row>
-
     );
   }
 }
