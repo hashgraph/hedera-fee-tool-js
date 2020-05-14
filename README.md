@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/25a99fc3-8423-499d-a300-c0a2c7be8efa/deploy-status)](https://app.netlify.com/sites/hedera-fee-tool-master/deploys)
 [![GitHub](https://img.shields.io/github/license/hashgraph/hedera-fee-tool-js)](LICENSE)
 [![Discord](https://img.shields.io/badge/discord-join%20chat-blue.svg)](https://hedera.com/discord)
 # Hedera Fee Tool
