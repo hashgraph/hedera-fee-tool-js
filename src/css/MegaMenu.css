@@ -1,23 +1,3 @@
-/*-
- * ‌
- * Hedera Fee Tool
- * ​
- * Copyright (C) 2019 - 2020 Hedera Hashgraph, LLC
- * ​
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ‍
- */
-
 .mm-navbar {
   position: relative;
   overflow: hidden;
@@ -69,7 +49,7 @@
   color: white;
 }
 
-.mm-row {
+.mm-row { 
   display: flex;
   flex-direction: column;
 }
@@ -281,7 +261,7 @@
 */
 
 .react-tabs__tab:nth-child(4) .mm-column .mm-column-header::after {
-  /*content: "(coming soon)";*/
+  content: "";
   display: block;
   position: relative;
   width: auto;
@@ -313,7 +293,7 @@
 }
 
 @media (max-width: 1600px) {
-  .react-tabs__tab .mm-column .mm-column-header {
+  .react-tabs__tab .mm-column .mm-column-header { 
     padding: 15px 0 15px 80px;
   }
 }
@@ -333,7 +313,7 @@
 }
 
 @media (max-width: 1400px) {
-  .react-tabs__tab .mm-column .mm-column-header {
+  .react-tabs__tab .mm-column .mm-column-header { 
     padding: 10px 0 0;
     font-size: 14px;
     min-height: auto;

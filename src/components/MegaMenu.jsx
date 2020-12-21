@@ -31,9 +31,11 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 class MegaMenu extends React.Component {
   serviceLabels = {
     "Crypto": ["Cryptocurrency", <br/>, "service"],
+	"Tokens": ["Token", <br/>, "service"],
     "Smart Contracts": ["Smart Contract", <br/>, "service"],
     "Files": ["File", <br/>, "service"],
     "Consensus": ["Consensus", <br/>, "service"],
+
     "Miscellaneous": ["Miscellaneous"],
   };
 

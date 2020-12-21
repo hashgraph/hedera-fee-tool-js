@@ -1,23 +1,3 @@
-/*-
- * ‌
- * Hedera Fee Tool
- * ​
- * Copyright (C) 2019 - 2020 Hedera Hashgraph, LLC
- * ​
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ‍
- */
-
 body {
   margin: 0;
   padding: 0;
@@ -36,7 +16,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-.content {
+.authPortal .row {
+  margin: 0;
+}
+
+.content { 
   background: none;
   background-color: #222;
   color: white;
@@ -45,17 +29,17 @@ code {
 }
 
 /* overwrite bootstrap */
-.container-fluid {
+.container-fluid { 
   margin: 0;
   padding: 0;
 }
 
 /* overwrite bootstrap */
-.col {
+.col { 
   margin-top: 0;
 }
 
-.hero {
+.hero { 
   margin-bottom: 45px;
 }
 
@@ -69,7 +53,7 @@ code {
   margin: 0;
 }
 
-.hero-description {
+.hero-description { 
   max-width: 530px;
   margin: 0 auto;
   position: relative;
@@ -83,7 +67,7 @@ code {
   margin: 0;
 }
 
-.middleRow {
+.middleRow { 
   height: auto;
   margin-top: 1000px;
 }
@@ -95,7 +79,7 @@ code {
   flex-direction: row;
 }
 
-.transaction-types {
+.transaction-types { 
   flex: 1 1 55%;
 }
 
@@ -108,11 +92,11 @@ code {
   margin: 0;
 }
 
-.transaction-details {
+.transaction-details { 
   flex: 0 0 45%;
 }
 
-.transaction-ops {
+.transaction-ops { 
   min-height: 724px;
   padding: 0 0 174px;
   display: flex;
@@ -121,7 +105,7 @@ code {
   position: relative;
 }
 
-.center-content {
+.center-content { 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -180,7 +164,7 @@ code {
   content: "";
   display: block;
   position: absolute;
-  width: 100%;
+  width: 100%; 
   height: 2px;
   background: linear-gradient(160deg, #2d84eb, #8259ef);
   bottom: 0;
@@ -244,12 +228,12 @@ code {
    display: none;
 }
 
-@media (max-width: 1100px) {
-  .App {
+@media (max-width: 1100px) { 
+  .App { 
     display: none;
   }
 
-  .mobile-page {
+  .mobile-page {  
     background-color: #222;
     color: #fff;
     display: flex;
@@ -258,17 +242,17 @@ code {
     min-height: 100vh;
   }
 
-  .mobile-container  {
+  .mobile-container  { 
     max-width: 100vw;
     padding: 12.5%;
   }
 
-  .mobile-image {
+  .mobile-image {  
     max-height: 300px;
     width: 100%;
   }
-
-  .mobile-image img {
+  
+  .mobile-image img { 
     margin: auto;
     width: 100%;
   }

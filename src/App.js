@@ -53,8 +53,8 @@ class App extends Component {
     this.state = {
       nameFormState: "",
       exchangeRate: '',
-      usageBreakdownDivOpen: false,
-      isAuthenticated: false,
+      usageBreakdownDivOpen: true,
+      isAuthenticated: true,
       estimatorCart: new EstimatorCart(),
       selectedApi: null,
       services: hapiApis,

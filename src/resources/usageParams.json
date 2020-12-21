@@ -14,11 +14,71 @@
     "tip":"Number of public keys attached to created/updated object",
     "min": 1, "max": 10
   },
+  "numAdminKeysIncrease": {
+    "label":"# admin keys added (relative to existing # admin keys)",
+    "tip":"Number of public keys added to the admin Hedera key",
+    "min": 1, "max": 10
+  },
+  "numKycKeysIncrease": {
+    "label":"# KYC keys added (relative to existing # KYC keys)",
+    "tip":"Number of public keys added to the KYC Hedera key",
+    "min": 1, "max": 10
+  },
+  "numWipeKeysIncrease": {
+    "label":"# wipe keys added (relative to existing # wipe keys)",
+    "tip":"Number of public keys added to the wipe Hedera key",
+    "min": 1, "max": 10
+  },
+  "numSupplyKeysIncrease": {
+    "label":"# supply keys added (relative to existing # supply keys)",
+    "tip":"Number of public keys added to the supply Hedera key",
+    "min": 1, "max": 10
+  },
+  "numFreezeKeysIncrease": {
+    "label":"# freeze keys added (relative to existing # freeze keys)",
+    "tip":"Number of public keys added to the freeze Hedera key",
+    "min": 1, "max": 10
+  },
+  "numAdminKeys": {
+    "label":"# admin keys",
+    "tip":"Number of public keys in the admin Hedera key",
+    "min": 1, "max": 10
+  },
+  "numKycKeys": {
+    "label":"# KYC keys",
+    "tip":"Number of public keys in the KYC Hedera key",
+    "min": 1, "max": 10
+  },
+  "numWipeKeys": {
+    "label":"# wipe keys",
+    "tip":"Number of public keys in the wipe Hedera key",
+    "min": 1, "max": 10
+  },
+  "numSupplyKeys": {
+    "label":"# supply keys",
+    "tip":"Number of public keys in the supply Hedera key",
+    "min": 1, "max": 10
+  },
+  "numFreezeKeys": {
+    "label":"# freeze keys",
+    "tip":"Number of public keys in the freeze Hedera key",
+    "min": 1, "max": 10
+  },
   "expirationHours": {
     "label":"Expiration",
     "caption": "hours",
     "tip":"Storage duration for objects created in state. This parameter is currently fixed to 2160 hours (3 months) while the network is in beta",
     "min": 1, "max": 10000
+  },
+  "numTokensInvolved": {
+    "label":"# tokens involved in the transaction",
+    "tip":"A single transaction can involve multiple tokens",
+    "min": 1, "max": 10
+  },
+  "numTokenBalanceAdjustments": {
+    "label":"# token balances adjusted",
+    "tip":"A single transaction can adjust the balances of multiple tokens, for multiple accounts",
+    "min": 1, "max": 10
   },
   "numAccountsOnTransfer": {
     "label":"# accounts on transfer",
@@ -35,6 +95,16 @@
     "tip":"How many accounts proxy stake to this node account",
     "min": 1, "max": 10000
   },
+  "numTokensAssociated": {
+    "label":"# tokens associated",
+    "tip":"How many tokens are being associated to the account",
+    "min": 1, "max": 250
+  },
+  "numTokensDissociated": {
+    "label":"# tokens dissociated",
+    "tip":"How many tokens are being dissociated from the account",
+    "min": 1, "max": 250
+  },
   "numThresholdsDefined": {
     "label":"# thresholds defined",
     "tip":"How many thresholds for record generation does the account have",
@@ -44,6 +114,30 @@
     "label":"memo size",
     "caption": "bytes",
     "tip":"How large is any memo specified for the transaction",
+    "min": 1, "max": 100
+  },
+  "tokenNameSizeIncrease": {
+    "label":"increase in token name size",
+    "caption": "bytes",
+    "tip":"How much larger is the designated token name",
+    "min": 1, "max": 100
+  },
+  "tokenSymbolSizeIncrease": {
+    "label":"increase in token symbol size",
+    "caption": "bytes",
+    "tip":"How much larger is the designated token symbol",
+    "min": 1, "max": 100
+  },
+  "tokenNameSize": {
+    "label":"token name size",
+    "caption": "bytes",
+    "tip":"How large is the designated token name",
+    "min": 1, "max": 100
+  },
+  "tokenSymbolSize": {
+    "label":"token symbol size",
+    "caption": "bytes",
+    "tip":"How large is the designated token symbol",
     "min": 1, "max": 100
   },
   "is25HourRecordCreated": {
@@ -125,6 +219,11 @@
   "isAutoRenewAccountSet": {
     "label":"auto renew account?",
     "tip":"Is autoRenewAccount is specified?",
+    "min": false, "max": true
+  },
+  "isAutoRenewAccountNewlyAdded": {
+    "label":"auto renew account is added?",
+    "tip":"A token without an autoRenewAccount is being given one?",
     "min": false, "max": true
   },
   "isAutoRenewPeriodSet": {

@@ -1,23 +1,3 @@
-/*-
- * ‌
- * Hedera Fee Tool
- * ​
- * Copyright (C) 2019 - 2020 Hedera Hashgraph, LLC
- * ​
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ‍
- */
-
 .react-tabs > div {
   position: relative;
   padding-bottom: 27px;
@@ -59,7 +39,7 @@
   }
 }
 
-.react-tabs__tab-list {
+.react-tabs__tab-list { 
   color: white;
   display: flex;
   flex-direction: column;
@@ -68,11 +48,11 @@
   width: calc(100% - 35px);
 }
 
-.react-tabs__tab {
+.react-tabs__tab { 
   width: 100%;
   text-align: left;
   list-style: none;
-  display: flex;
+  display: flex; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -82,12 +62,12 @@
   margin-bottom: 30px;
 }
 
-.react-tabs__tab .mm-column {
+.react-tabs__tab .mm-column { 
   width: 100%;
   margin: 0;
 }
 
-.react-tabs__tab .mm-column-header {
+.react-tabs__tab .mm-column-header { 
   color: white;
   margin: 0;
   font-size: 18px;
@@ -105,12 +85,12 @@
   opacity: 1;
 }
 
-.panel-title {
+.panel-title { 
   text-align: left;
   font-weight: 300;
 }
 
-.panel-container {
+.panel-container { 
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -119,13 +99,20 @@
 
 .panel-item {
   width: calc(100% - 35px);
-  min-height: 40px;
+  min-height: 40px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   position: relative;
   padding: 0;
+}
+
+#authPassword {
+  border: 1px solid #333;
+  margin: 40px auto;
+  width: 80%;
+  max-width: 800px;
 }
 
 .panel-item::after {
@@ -160,17 +147,17 @@
   width: 100%;
 }
 
-.tab-panels .mm-column {
+.tab-panels .mm-column { 
   margin: 0;
   padding: 0;
 }
 
-.tab-panels .mm-column:focus {
+.tab-panels .mm-column:focus { 
   outline: none;
 }
 
 
-.dropdown-btn {
+.dropdown-btn { 
   padding: 0 0 25px;
   width: 100%;
   color: white;
@@ -182,18 +169,18 @@
 }
 
 .dropdown-btn i {
-  border: 1px solid white;
+  border: 1px solid white; 
   height: 18px;
   width: 18px;
   display: block;
 }
 
-.dropdown-btn:focus {
+.dropdown-btn:focus { 
   outline: none;
 }
 
 
-h2.select-info {
+h2.select-info { 
   font-size: 26px;
   font-weight: 500;
   color: white;
