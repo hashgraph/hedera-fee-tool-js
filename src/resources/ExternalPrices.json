@@ -21,6 +21,7 @@
         "ConsensusGetTopicInfo": 0.0001
     },	
     "Tokens": {
+	"TokenTransferUsingCryptoTransfer": 0.001,    
         "TokenCreate": 1.00,
         "TokenDelete": 0.001,
 		"TokenUpdate": 0.001,
