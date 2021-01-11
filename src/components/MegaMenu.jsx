@@ -30,11 +30,11 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 class MegaMenu extends React.Component {
   serviceLabels = {
-    "Crypto": ["Cryptocurrency", <br/>, "service"],
-    "Smart Contracts": ["Smart Contract", <br/>, "service"],
-    "Files": ["File", <br/>, "service"],
-    "Consensus": ["Consensus", <br/>, "service"],
-    "Miscellaneous": ["Miscellaneous"],
+    "Crypto": ["Cryptocurrency", "service"],
+    "Smart Contracts": ["Smart Contract", "service"],
+    "Files": ["File", "service"],
+    "Consensus": ["Consensus", "service"],
+    "Miscellaneous": ["Miscellaneous", ""],
   };
 
   constructor(props) {
@@ -51,7 +51,7 @@ class MegaMenu extends React.Component {
       tabsArr.push(
         <Tab key={service}>
           <div className="mm-column" key={"div_megamenu_service_" + service}>
-              <div className="mm-column-header">{this.serviceLabels[service]}</div>
+              <div className="mm-column-header">{this.serviceLabels[service][0]}<br/>{this.serviceLabels[service][1]}</div>
           </div>
         </Tab>
       );

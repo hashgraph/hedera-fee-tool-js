@@ -23,6 +23,7 @@ import { Form, Col, OverlayTrigger, Popover } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import usageParamProperties from "../resources/usageParams.json";
 import { isNull } from "util";
+import parse from 'html-react-parser';
 
 import "../css/ConfigForm.css";
 
@@ -107,7 +108,7 @@ class ConfigForm extends React.Component {
       labelTextLastWord = labelText;
       labelText = '';
     }
-    return [labelText, <span className="last-word">{labelTextLastWord}</span>];
+    return labelText + '<span class="last-word">'+labelTextLastWord+'</span>';
   }
 
   render() {
@@ -185,7 +186,7 @@ class ConfigForm extends React.Component {
             }
           >
             <Form.Label style={{ textAlign: "left" }}>
-              {this.formatParamLabel(usageParamProperties[key].label)}
+              {parse(this.formatParamLabel(usageParamProperties[key].label))}
             </Form.Label>
           </OverlayTrigger>
           {dropDownBg}
@@ -212,7 +213,7 @@ class ConfigForm extends React.Component {
 
       if (colsArr.length === 0) {
         formElements.push(
-          <Form.Row>
+          <Form.Row key={Math.random()}>
             None
           </Form.Row>
         );

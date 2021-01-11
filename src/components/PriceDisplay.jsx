@@ -109,7 +109,7 @@ class PriceDisplay extends React.Component {
         key={"priceElementsPriceValueHbar" + this.props.totalPriceDivId}
         className={classNames}
       >
-        {this.formatPrice(this.props.priceValue, "h")}
+        {String(this.formatPrice(this.props.priceValue, "h"))}
       </div>
     );
   }
