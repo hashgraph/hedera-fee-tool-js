@@ -80,6 +80,20 @@ class App extends Component {
       selectedApi: selectedApi,
       usageParams: usageParams
     });
+
+
+    let usageAndPrice;
+    if (this.state.selectedApi !== null) {
+      let api = this.state.selectedApi;
+      let apiParams = this.state.apis[api];
+      usageAndPrice = this.price.calculatePrice(api, apiParams, this.state.usageParams);
+      this.setState({
+        totalUsage: usageAndPrice.usage,
+        totalPrice: usageAndPrice.price
+      });
+    } else {
+      console.log("Didnt find selectedApi!!!! State: ", this.state);
+    }
   }
 
   addToEstimatorButtonClickHandler() {
@@ -94,8 +108,6 @@ class App extends Component {
   }
 
   render() {
-
-    //const { usageBreakdownDivOpen } = this.state.usageBreakdownDivOpen;
 
     const selectOpRow = (
       <div className="main-content">
@@ -152,32 +164,6 @@ class App extends Component {
         />
       </Row>
     );
-
-    // const usageBreakdownRow = (
-    //   <Row className="usageBreakdownRow">
-    //     <Col>
-    //       <>
-    //         <Button
-    //           onClick={() => {
-    //             this.state.usageBreakdownDivOpen = !this.state
-    //               .usageBreakdownDivOpen;
-    //             this.setState(this.state);
-    //           }}
-    //           aria-controls="detailedPriceDiv"
-    //           aria-expanded={usageBreakdownDivOpen}
-    //           variant="outline-secondary"
-    //         >
-    //           Usage Breakdown
-    //         </Button>
-    //         <Collapse in={this.state.usageBreakdownDivOpen}>
-    //           <div id="detailedPriceDiv">
-    //             <PriceDetails usage={this.state.totalUsage} />
-    //           </div>
-    //         </Collapse>
-    //       </>
-    //     </Col>
-    //   </Row>
-    // );
 
     let feeScheduleRow;
     if (process.env.REACT_APP_SHOW_FEE_SCHEDULE === "true") {
