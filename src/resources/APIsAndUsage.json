@@ -421,20 +421,17 @@
 
 	"Tokens" : {
 
-		"TokenTransferUsingCryptoTransfer": {
+		"Send tokens via CryptoTransfer": {
 			"type": "transaction",
-			"info": "Transfers tokens (See CryptoTransfer call for details).",
+			"info": "Send tokens (See CryptoTransfer for details).",
 			"status": "complete",
 			"isImportant": true,
 
 			"usage": {
-				"isStateProofRequested": false,
-				"numKeys": 0,
-				"topicMemoSize": 0,
-				"isAutoRenewAccountSet": false
+
 			},
 			"formulae": {
-
+			
 			}
 		},
 		"TokenCreate": {
