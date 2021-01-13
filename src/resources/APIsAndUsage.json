@@ -420,6 +420,23 @@
 	},	
 
 	"Tokens" : {
+
+		"TokenTransferUsingCryptoTransfer": {
+			"type": "transaction",
+			"info": "Transfers tokens (See CryptoTransfer call for details).",
+			"status": "complete",
+			"isImportant": true,
+
+			"usage": {
+				"isStateProofRequested": false,
+				"numKeys": 0,
+				"topicMemoSize": 0,
+				"isAutoRenewAccountSet": false
+			},
+			"formulae": {
+
+			}
+		},
 		"TokenCreate": {
 			"type": "transaction",
 			"info": "Creates a token type. ",
