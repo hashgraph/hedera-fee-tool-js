@@ -53,8 +53,8 @@ class App extends Component {
     this.state = {
       nameFormState: "",
       exchangeRate: '',
-      usageBreakdownDivOpen: false,
-      isAuthenticated: false,
+      usageBreakdownDivOpen: true,
+      isAuthenticated: true,
       estimatorCart: new EstimatorCart(),
       selectedApi: null,
       services: hapiApis,
@@ -233,6 +233,19 @@ class App extends Component {
           exchangeRate: 12
         });
       })
+
+      let usageAndPrice;
+      if (this.state.selectedApi !== null) {
+        let api = this.state.selectedApi;
+        let apiParams = this.state.apis[api];
+        usageAndPrice = this.price.calculatePrice(api, apiParams, this.state.usageParams);
+        this.setState({
+          totalUsage: usageAndPrice.usage,
+          totalPrice: usageAndPrice.price
+        });
+      } else {
+        console.log("Didnt find selectedApi!!!! State: ", this.state);
+      }
   }
 }
 
