@@ -51,7 +51,7 @@ class EstimatorCartDisplay extends React.Component {
     this.props.context.setState(this.props.context.state);
   }
 
-  handlePriceCartDelete(e) {
+  handlePriceCartDelete = (e) => {
     var buttonIndex = e.target.id.replace("priceCartFormDeleteButton_", "");
     this.props.estimatorCart.removeEstimate(buttonIndex);
     this.props.context.setState(this.props.context.state);

@@ -19,7 +19,7 @@
  */
 
 import React, { Component } from "react";
-import { Container, Row, Col, Button, Collapse, Form } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { Helmet } from "react-helmet";
 import "bootstrap/dist/css/bootstrap.css";
 import "./css/Font.css";
@@ -30,7 +30,7 @@ import './index.css';
 
 import Price from "./calculator/Price";
 import ConfigForm from "./components/ConfigForm.jsx";
-import PriceDetails from "./components/PriceDetails.jsx";
+//import PriceDetails from "./components/PriceDetails.jsx";
 import FeeSchedules from "./components/FeeSchedules.jsx";
 import EstimatorCartDisplay from "./components/EstimatorCartDisplay.jsx";
 import EstimatorCart from "./components/EstimatorCart.jsx";
@@ -94,18 +94,8 @@ class App extends Component {
   }
 
   render() {
-    let usageAndPrice;
-    if (this.state.selectedApi !== null) {
-      let api = this.state.selectedApi;
-      let apiParams = this.state.apis[api];
-      usageAndPrice = this.price.calculatePrice(api, apiParams, this.state.usageParams);
-      this.state.totalUsage = usageAndPrice.usage;
-      this.state.totalPrice = usageAndPrice.price;
-    } else {
-      console.log("Didnt find selectedApi!!!! State: ", this.state);
-    }
 
-    const { usageBreakdownDivOpen } = this.state.usageBreakdownDivOpen;
+    //const { usageBreakdownDivOpen } = this.state.usageBreakdownDivOpen;
 
     const selectOpRow = (
       <div className="main-content">
@@ -163,31 +153,31 @@ class App extends Component {
       </Row>
     );
 
-    const usageBreakdownRow = (
-      <Row className="usageBreakdownRow">
-        <Col>
-          <>
-            <Button
-              onClick={() => {
-                this.state.usageBreakdownDivOpen = !this.state
-                  .usageBreakdownDivOpen;
-                this.setState(this.state);
-              }}
-              aria-controls="detailedPriceDiv"
-              aria-expanded={usageBreakdownDivOpen}
-              variant="outline-secondary"
-            >
-              Usage Breakdown
-            </Button>
-            <Collapse in={this.state.usageBreakdownDivOpen}>
-              <div id="detailedPriceDiv">
-                <PriceDetails usage={this.state.totalUsage} />
-              </div>
-            </Collapse>
-          </>
-        </Col>
-      </Row>
-    );
+    // const usageBreakdownRow = (
+    //   <Row className="usageBreakdownRow">
+    //     <Col>
+    //       <>
+    //         <Button
+    //           onClick={() => {
+    //             this.state.usageBreakdownDivOpen = !this.state
+    //               .usageBreakdownDivOpen;
+    //             this.setState(this.state);
+    //           }}
+    //           aria-controls="detailedPriceDiv"
+    //           aria-expanded={usageBreakdownDivOpen}
+    //           variant="outline-secondary"
+    //         >
+    //           Usage Breakdown
+    //         </Button>
+    //         <Collapse in={this.state.usageBreakdownDivOpen}>
+    //           <div id="detailedPriceDiv">
+    //             <PriceDetails usage={this.state.totalUsage} />
+    //           </div>
+    //         </Collapse>
+    //       </>
+    //     </Col>
+    //   </Row>
+    // );
 
     let feeScheduleRow;
     if (process.env.REACT_APP_SHOW_FEE_SCHEDULE === "true") {
@@ -230,7 +220,7 @@ class App extends Component {
               on a laptop or desktop sized device to estimate costs for your Hedera-powered decentralized application.
             </p>
              <div className="mobile-image">
-              <img src="https://s3.amazonaws.com/hedera-hashgraph/Hedera-fee-estimator-icon-full-size.png"/>
+              <img src="https://s3.amazonaws.com/hedera-hashgraph/Hedera-fee-estimator-icon-full-size.png" alt="" />
             </div>
           </div>
         </div>
@@ -246,15 +236,30 @@ class App extends Component {
         let cents = response.data[0]["CurrentRate"]["centEquiv"];
         let rateOfHbarInCents = cents / hbars;
         console.log('rate in cents = ', rateOfHbarInCents);
-        this.state.exchangeRate = rateOfHbarInCents;
-        this.setState(this.state);
+        this.setState({
+          exchangeRate: rateOfHbarInCents
+        });
       })
       .catch(error => {
         console.log('exchange API error = ', error);
         console.log("Setting exchange rate to 12");
-        this.state.exchangeRate = 12;
-        this.setState(this.state);
+        this.setState({
+          exchangeRate: 12
+        });
       })
+
+      let usageAndPrice;
+      if (this.state.selectedApi !== null) {
+        let api = this.state.selectedApi;
+        let apiParams = this.state.apis[api];
+        usageAndPrice = this.price.calculatePrice(api, apiParams, this.state.usageParams);
+        this.setState({
+          totalUsage: usageAndPrice.usage,
+          totalPrice: usageAndPrice.price
+        });
+      } else {
+        console.log("Didnt find selectedApi!!!! State: ", this.state);
+      }
   }
 }
 
