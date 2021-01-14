@@ -93,7 +93,7 @@ class ConfigForm extends React.Component {
     if (this.props.context.state.selectedApi !== null) {
       let api = this.props.context.state.selectedApi;
       let apiParams = this.props.context.state.apis[api];
-      usageAndPrice = this.props.context.price.calculatePrice(api, apiParams, this.props.context.state.usageParams);
+      usageAndPrice = this.props.context.price.calculatePrice(api, apiParams, usageParams);
       this.props.context.setState({
         totalUsage: usageAndPrice.usage,
         totalPrice: usageAndPrice.price
