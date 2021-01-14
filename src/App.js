@@ -83,10 +83,10 @@ class App extends Component {
 
 
     let usageAndPrice;
-    if (this.state.selectedApi !== null) {
-      let api = this.state.selectedApi;
+    if (selectedApi !== null) {
+      let api = selectedApi;
       let apiParams = this.state.apis[api];
-      usageAndPrice = this.price.calculatePrice(api, apiParams, this.state.usageParams);
+      usageAndPrice = this.price.calculatePrice(api, apiParams, usageParams);
       this.setState({
         totalUsage: usageAndPrice.usage,
         totalPrice: usageAndPrice.price
