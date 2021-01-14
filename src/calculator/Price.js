@@ -23,7 +23,7 @@ import * as math from 'mathjs';
 import externalPrices from '../resources/ExternalPrices.json';
 import Coefficients from './Coefficients';
 const constants = require('../resources/Constants.json');
-const usageParamProperties = require('../resources/usageParams');
+const usageParamProperties = require('../resources/usageParams.json');
 
 class Price {
     generatedPriceList = {};

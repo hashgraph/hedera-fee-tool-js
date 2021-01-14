@@ -93,7 +93,7 @@ class ConfigForm extends React.Component {
     if (this.props.context.state.selectedApi !== null) {
       let api = this.props.context.state.selectedApi;
       let apiParams = this.props.context.state.apis[api];
-      usageAndPrice = this.props.context.price.calculatePrice(api, apiParams, this.props.context.state.usageParams);
+      usageAndPrice = this.props.context.price.calculatePrice(api, apiParams, usageParams);
       this.props.context.setState({
         totalUsage: usageAndPrice.usage,
         totalPrice: usageAndPrice.price
@@ -254,9 +254,9 @@ class ConfigForm extends React.Component {
         <Form>
           {formElementsHighImpact}
           <h3 className={'parameter-title parameter-title-2 ' + this.state.parametersToggleClass} onClick={this.handleParametersToggle.bind(this)}>Parameters with minimal influence on price<span className="title-down-arrow"></span></h3>
-          <span className={this.state.parametersToggleClass}>
+ 
           {formElementsLowImpact}
-          </span>
+  
         </Form>
       </div>
     );
