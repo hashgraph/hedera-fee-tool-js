@@ -426,9 +426,8 @@
 			"info": "Send tokens (See CryptoTransfer for details).",
 			"status": "complete",
 			"isImportant": true,
-
 			"usage": {
-
+				"memoSize": 0
 			},
 			"formulae": {
 			
