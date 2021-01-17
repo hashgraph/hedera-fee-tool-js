@@ -262,7 +262,7 @@
 		"CryptoGetStakers": {
 			"type": "query",
 			"info": "Retrieves the list of proxy stakers for a node.",
-			"status": "incomplete",
+			"status": "complete",
 			"isImportant": false,
 			"usage": {
 				"numProxyAccounts": 100,
@@ -1226,9 +1226,10 @@
 		"GetByKey": {
 			"type": "query",
 			"info": "Get entities by key.",
-			"status": "incomplete",
+			"status": "complete",
 			"isImportant": false,
-			"usage": {}
+			"usage": {},
+			"formulae": {}
 		},
 
 		"TransactionGetReceipt": {
