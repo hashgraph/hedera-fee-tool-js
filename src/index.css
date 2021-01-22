@@ -97,8 +97,8 @@ code {
 }
 
 .transaction-ops {
-  min-height: 724px;
-  padding: 0 0 174px;
+  min-height: 988px;
+  padding: 0 0 56px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -1,3 +1,11 @@
+#configDiv {
+    min-height: 767px;
+}
+
+#configDiv .panel-body {
+    margin-bottom: 0;
+}
+
 .title-row {
     display: flex;
     flex-direction: row;
@@ -215,11 +223,9 @@ span.showParameters {
 }
 
 .transaction-details .price-container {
-    position: absolute;
+    position: relative;
     display: block;
     width: 100%;
-    transform: translateY(100%);
-    bottom: 174px;
 }
 
 
@@ -583,7 +589,7 @@ style="position: absolute; will-change: transform; top: 0px; left: 0px; transfor
 </div>*/
 
 
-@media (max-width: 1400px) {
+/* @media (max-width: 1400px) {
 
     .transaction-details .price-container {
         bottom: 127px;
@@ -608,7 +614,7 @@ style="position: absolute; will-change: transform; top: 0px; left: 0px; transfor
     .transaction-details .price-container {
         bottom: 157px;
     }
-}
+} */
 
 
 @media (max-width: 1123px) {
@@ -617,11 +623,11 @@ style="position: absolute; will-change: transform; top: 0px; left: 0px; transfor
   }
 }
 
-@media (max-width: 1110px) {
+/* @media (max-width: 1110px) {
 
     .transaction-details .price-container {
         bottom: 150px;
     }
-}
+} */
 
 
