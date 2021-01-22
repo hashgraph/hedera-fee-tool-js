@@ -253,7 +253,7 @@ class ConfigForm extends React.Component {
         </div>
         <Form>
           {formElementsHighImpact}
-          <h3 className={'parameter-title parameter-title-2 ' + this.state.parametersToggleClass} onClick={this.handleParametersToggle.bind(this)}>Parameters with minimal influence on price<span className="title-down-arrow"></span></h3>
+          <h3 className={'parameter-title parameter-title-2 '}>Parameters with minimal influence on price</h3>
  
           {formElementsLowImpact}
   
