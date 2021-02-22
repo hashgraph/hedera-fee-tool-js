@@ -4,9 +4,19 @@
     "tip":"Number of signatures authorizing the transfer of the payment",
     "min": 1, "max": 10
   },
+  "numSigsScheduled": {
+    "label":"# scheduled txn sigs",
+    "tip":"Number of signatures provided for the pending transaction being scheduled",
+    "min": 1, "max": 10
+  },
   "numSigsTotal": {
     "label":"# total sigs",
     "tip":"Total number of signatures on transaction – includes payer signatures and others",
+    "min": 1, "max": 10
+  },
+  "numAdminKeys": {
+    "label":"# admin keys",
+    "tip":"Number of Ed25519 keys used in an admin key",
     "min": 1, "max": 10
   },
   "numKeys": {
@@ -110,10 +120,16 @@
     "tip":"How many thresholds for record generation does the account have",
     "min": 1, "max": 2
   },
+  "scheduledTransactionBytesSize": {
+    "label":"scheduled transaction byte size",
+    "caption": "bytes",
+    "tip":"The number of bytes in the serialized form of a scheduled transaction",
+    "min": 100, "max": 6000
+  },
   "memoSize": {
     "label":"memo size",
     "caption": "bytes",
-    "tip":"How large is any memo specified for the transaction",
+    "tip":"How large is any memo specified for a transaction or entity",
     "min": 1, "max": 100
   },
   "tokenNameSizeIncrease": {
@@ -215,6 +231,11 @@
     "caption": "bytes",
     "tip":"Size of created/updated topic's memo",
     "min": 0, "max": 100
+  },
+  "isScheduledPayerDifferent": {
+    "label":"non-scheduling payer?",
+    "tip":"Is the payer for the scheduled transaction different than the scheduling payer?",
+    "min": false, "max": true
   },
   "isAutoRenewAccountSet": {
     "label":"auto renew account?",

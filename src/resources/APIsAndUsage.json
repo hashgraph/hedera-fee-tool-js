@@ -808,8 +808,6 @@
 		}		
 	},	
 
-
-
 	"Smart Contracts": {
 		"ContractCreate": {
 			"type": "transaction",
@@ -1204,7 +1202,39 @@
 		}
 	},
 
-
+	"Scheduling": {
+		"ScheduleCreate": {
+			"type": "transaction",
+			"info": "Creates a scheduled transaction.",
+			"status": "complete",
+			"isImportant": true,
+			"usage": {
+				"numSigsPayer": 1,
+				"memoSize": 0,
+				"numAdminKeys": 1,
+				"scheduledTransactionBytesSize": 182,
+				"numSigsScheduled": 1,
+				"expirationHours": 1,
+				"memoSize": 0,
+                                "isScheduledPayerDifferent": false
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + BASE_SCHEDULECREATE_SIZE + scheduledTransactionBytesSize + ((numSigsPayer + numSigsScheduled) * SIG_SIZE) + (numAdminKeys * KEY_SIZE) + memoSize + (isScheduledPayerDifferent * ACCOUNT_ID_SIZE)",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + BASE_SCHEDULECREATE_SIZE + scheduledTransactionBytesSize + ((numSigsPayer + numSigsScheduled) * SIG_SIZE) + (numAdminKeys * KEY_SIZE) + memoSize + (isScheduledPayerDifferent * ACCOUNT_ID_SIZE)",
+					"vpt": "numSigsPayer + numSigsScheduled",
+					"rbh": "(BASE_RECEIPT_SIZE + ACCOUNT_ID_SIZE) * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_SCHEDULE_SIZE + memoSize + scheduledTransactionBytesSize + numAdminKeys * KEY_SIZE + numSigsScheduled * SIG_SIZE + (isScheduledPayerDifferent * ACCOUNT_ID_SIZE)) * expirationHours"
+				}
+			}
+		}
+	},
 	
 	"Miscellaneous": {
 		"GetVersionInfo": {
