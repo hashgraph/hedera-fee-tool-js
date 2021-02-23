@@ -57,7 +57,10 @@
         "FileGetInfo": 0.0001
     },
     "Scheduling": {
-        "ScheduleCreate": 0.01
+        "ScheduleCreate": 0.01,
+        "ScheduleSign": 0.01,
+        "ScheduleDelete": 0.005,
+        "ScheduleGetInfo": 0.0001
     },
     "Miscellaneous": {
         "GetVersionInfo": 0.001,

@@ -4,14 +4,19 @@
     "tip":"Number of signatures authorizing the transfer of the payment",
     "min": 1, "max": 10
   },
-  "numSigsScheduled": {
+  "numScheduledSigs": {
     "label":"# scheduled txn sigs",
-    "tip":"Number of signatures provided for the pending transaction being scheduled",
+    "tip":"Number of signatures on the pending transaction being scheduled",
     "min": 1, "max": 10
   },
   "numSigsTotal": {
     "label":"# total sigs",
     "tip":"Total number of signatures on transaction – includes payer signatures and others",
+    "min": 1, "max": 10
+  },
+  "numVerifiedSigningKeys": {
+    "label":"# keys signed so far",
+    "tip":"Number of Ed25519 keys already verified to sign the pending transaction",
     "min": 1, "max": 10
   },
   "numAdminKeys": {
@@ -123,7 +128,7 @@
   "scheduledTransactionBytesSize": {
     "label":"scheduled transaction byte size",
     "caption": "bytes",
-    "tip":"The number of bytes in the serialized form of a scheduled transaction",
+    "tip":"The number of bytes in the serialized form of the scheduled transaction",
     "min": 100, "max": 6000
   },
   "memoSize": {
