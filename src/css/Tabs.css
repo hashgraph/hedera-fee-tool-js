@@ -5,7 +5,8 @@
 .transaction-types {
   position: relative;
   padding-bottom: 174px;
-  min-height: 840px;
+  min-height: 990px;
+  height: 990px;
 }
 
 /*.react-tabs > div::after {*/
