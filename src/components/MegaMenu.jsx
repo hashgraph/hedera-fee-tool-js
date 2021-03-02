@@ -32,10 +32,11 @@ class MegaMenu extends React.Component {
   serviceLabels = {
     "Crypto": ["Cryptocurrency", "service"],
     "Tokens": ["Token", "service"],
+	"Scheduling": ["Scheduling", "service"],
     "Smart Contracts": ["Smart Contract", "service"],
     "Files": ["File", "service"],
     "Consensus": ["Consensus", "service"],
-    "Scheduling": ["Scheduling", "service"],
+
     "Miscellaneous": ["Miscellaneous", ""],
   };
 
