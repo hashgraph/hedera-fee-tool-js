@@ -208,7 +208,7 @@ class Price {
             (this.model.FEE_SCHEDULE_MULTIPLIER * this.model.USD_TO_TINYCENTS)
         );
         // For queries, add the price of cryptotransfer back to the normalized price
-        if (customApiParams.type === 'query' && api !== 'CryptoGetAccountBalance') {
+        if (customApiParams.type === 'query' && api !== 'CryptoGetAccountBalance' && api !== 'TransactionGetReceipt') {
             this.normalizedPrice += this.desiredPriceList['CryptoTransfer'];
         }
         // console.log("Query-adjusted Normalized Price: " + this.normalizedPrice);
