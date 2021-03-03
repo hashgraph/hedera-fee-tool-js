@@ -2,6 +2,12 @@
     min-height: 849px;
 }
 
+@media (max-width: 1400px) {
+    #configDiv {
+        min-height: 925px;
+    }
+}
+
 #configDiv .panel-body {
     margin-bottom: 0;
 }
