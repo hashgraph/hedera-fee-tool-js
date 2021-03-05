@@ -100,6 +100,23 @@
   overflow: hidden;
 }
 
+@media (max-width: 1400px) {
+
+  .react-tabs__tab .mm-column .mm-column-header {
+    height: 40px;
+    justify-content: start;
+  }
+
+}
+
+@media (max-width: 1171px) {
+
+  .react-tabs__tab .mm-column .mm-column-header {
+    height: 34px;
+  }
+
+}
+
 .react-tabs__tab .mm-column::before {
   content: "";
   display: block;
