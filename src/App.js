@@ -63,8 +63,7 @@ class App extends Component {
       totalUsage: null,
     };
     const NUM_NODES = 13;
-    const CONSTANT_TERM_WEIGHT = 0.2;
-    this.price = new Price(NUM_NODES, CONSTANT_TERM_WEIGHT, apis);
+    this.price = new Price(NUM_NODES, apis);
     this.apiSelectHandler = this.apiSelectHandler.bind(this);
     this.addToEstimatorButtonClickHandler = this.addToEstimatorButtonClickHandler.bind(this);
   }
