@@ -54,6 +54,7 @@ class Coefficients {
     Object.entries(apiConstantWeights).forEach(([api, constWeight]) => {
       Object.entries(this.coefficients).forEach(([provider, terms]) => {
         let sum = 0.0;
+        this.coefficients[provider]["constant"] = 0;
         Object.entries(terms).forEach(([term, value]) => {
           sum += value;
         });
@@ -65,7 +66,7 @@ class Coefficients {
   }
 
   getCoefficients(api) {
-    return {
+    let apiCoefficients = {
       node: {
         ...this.coefficients["node"],
         constant: this.apiProviderConstants["node"][api]
@@ -79,6 +80,7 @@ class Coefficients {
         constant: this.apiProviderConstants["service"][api]
       }
     };
+    return apiCoefficients;
   }
 }
 
