@@ -120,23 +120,23 @@
 }
 
 .react-tabs__tab:nth-child(2) .mm-column::before {
-  background-image: url('../img/HH-Fees-Calc-Service-Icon-2.png') ;
-}
-
-.react-tabs__tab:nth-child(3) .mm-column::before {
-  background-image: url('../img/HH-Fees-Calc-Service-Icon-3.png') ;
-}
-
-.react-tabs__tab:nth-child(4) .mm-column::before {
   background-image: url('../img/HH-Fees-Calc-Service-Icon-4.png') ;
 }
 
+.react-tabs__tab:nth-child(3) .mm-column::before {
+  background-image: url('../img/HH-Fees-Calc-Service-Icon-6.png') ;
+}
+
+.react-tabs__tab:nth-child(4) .mm-column::before {
+  background-image: url('../img/HH-Fees-Calc-Service-Icon-2.png') ;
+}
+
 .react-tabs__tab:nth-child(5) .mm-column::before {
-  background-image: url('../img/HH-Fees-Calc-Service-Icon-5.png') ;
+  background-image: url('../img/HH-Fees-Calc-Service-Icon-3.png') ;
 }
 
 .react-tabs__tab:nth-child(6) .mm-column::before {
-  background-image: url('../img/HH-Fees-Calc-Service-Icon-3.png') ;
+  background-image: url('../img/HH-Fees-Calc-Service-Icon-5.png') ;
 }
 
 .react-tabs__tab .mm-column::after {
