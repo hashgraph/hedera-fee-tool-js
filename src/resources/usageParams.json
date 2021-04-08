@@ -131,10 +131,10 @@
     "tip":"The number of bytes in the serialized form of the scheduled transaction",
     "min": 100, "max": 6000
   },
-  "memoSize": {
-    "label":"memo size",
+  "txMemoSize": {
+    "label":"transaction memo size",
     "caption": "bytes",
-    "tip":"How large is any memo specified for a transaction or entity",
+    "tip":"The size of the memo on the transaction",
     "min": 1, "max": 100
   },
   "tokenNameSizeIncrease": {
@@ -255,10 +255,10 @@
     "tip":"Size of the message",
     "min": 0, "max": 5000
   },
-  "topicMemoSize": {
-    "label":"topic memo size",
+  "entityMemoSize": {
+    "label":"entity memo size",
     "caption": "bytes",
-    "tip":"Size of created/updated topic's memo",
+    "tip":"Size of created/updated entity's memo",
     "min": 0, "max": 100
   },
   "isScheduledPayerDifferent": {
