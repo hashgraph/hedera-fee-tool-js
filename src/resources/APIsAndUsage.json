@@ -10,21 +10,22 @@
 				"numSigsTotal": 1,
 				"numKeys": 1,
 				"expirationHours": 2160,
-				"memoSize": 0
+				"entityMemoSize": 0,
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + BASE_CRYPTOCREATE_SIZE + memoSize + (numKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) ",
+					"bpt": "BASE_TX_SIZE + BASE_CRYPTOCREATE_SIZE + txMemoSize + entityMemoSize + (numKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) ",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + BASE_CRYPTOCREATE_SIZE + memoSize + (numKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) ",
+					"bpt": "BASE_TX_SIZE + BASE_CRYPTOCREATE_SIZE + txMemoSize + entityMemoSize + (numKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) ",
 					"vpt": "numSigsTotal",
 					"rbh": "(BASE_RECEIPT_SIZE + ACCOUNT_ID_SIZE) * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE) * expirationHours"
+					"rbh": "(BASE_ACCOUNT_SIZE + entityMemoSize + (numKeys * KEY_SIZE)) * expirationHours"
 				}
 			}
 		},
@@ -37,11 +38,11 @@
 			"usage": {
 				"numKeys": 1,
 				"expirationHours": 2160,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"service": {
-					"rbh": "(BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE) * expirationHours"
+					"rbh": "(BASE_ACCOUNT_SIZE + txMemoSize + numKeys * KEY_SIZE) * expirationHours"
 				}
 			}
 		},
@@ -57,21 +58,22 @@
 				"numKeys": 1,
 				"numLivehashes": 1,
 				"expirationHours": 2160,
-				"memoSize": 0
+				"entityMemoSize":0,
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE +  memoSize + (numKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE)",
+					"bpt": "BASE_TX_SIZE +  txMemoSize + (numKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE)",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE  + memoSize + (numKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE)",
+					"bpt": "BASE_TX_SIZE  + txMemoSize + (numKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE)",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE + numLivehashes * LIVEHASH_SIZE) * expirationHours"
+					"rbh": "(BASE_ACCOUNT_SIZE + entityMemoSize + numKeys * KEY_SIZE + numLivehashes * LIVEHASH_SIZE) * expirationHours"
 				}
 			}
 		},
@@ -87,21 +89,21 @@
 				"numAccountsOnTransfer": 2,
                 "numTokensInvolved": 0,
                 "numTokenBalanceAdjustments": 0,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER *(numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER *(numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + txMemoSize) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},
@@ -114,21 +116,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE+2*ACCOUNT_ID_SIZE + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE+2*ACCOUNT_ID_SIZE + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE+2*ACCOUNT_ID_SIZE + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE+2*ACCOUNT_ID_SIZE + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},
@@ -143,16 +145,16 @@
 				"numSigsTotal": 2,
 				"numKeys": 2,
 				"expirationHours": 2160,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + LIVEHASH_SIZE  + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + LIVEHASH_SIZE  + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + LIVEHASH_SIZE  + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + LIVEHASH_SIZE  + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
@@ -170,21 +172,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + (1 * ACCOUNT_ID_SIZE) + HASH_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + (1 * ACCOUNT_ID_SIZE) + HASH_SIZE  + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + (1 * ACCOUNT_ID_SIZE) + HASH_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + (1 * ACCOUNT_ID_SIZE) + HASH_SIZE  + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},
@@ -249,12 +251,13 @@
 			"usage": {
 				"numKeys": 1,
 				"numTokensAssociated": 0,
+				"entityMemoSize":0,
 				"isStateProofRequested": false
 			},
 			"formulae": {
 				"node": {
 					"bpt": "BASE_QUERYHEADER_SIZE + ACCOUNT_ID_SIZE",
-					"bpr": "BASE_QUERYRESPONSE_SIZE + BASE_ACCOUNT_SIZE + numKeys * KEY_SIZE  + (isStateProofRequested * STATE_PROOF_SIZE) + numTokensAssociated * (TOKEN_BALANCE_SIZE + TOKEN_KYC_STATUS_SIZE + TOKEN_FREEZE_STATUS_SIZE)"
+					"bpr": "BASE_QUERYRESPONSE_SIZE + BASE_ACCOUNT_SIZE + entityMemoSize + numKeys * KEY_SIZE  + (isStateProofRequested * STATE_PROOF_SIZE) + numTokensAssociated * (TOKEN_BALANCE_SIZE + TOKEN_KYC_STATUS_SIZE + TOKEN_FREEZE_STATUS_SIZE)"
 				}
 			}
 		},
@@ -288,23 +291,24 @@
 				"numSigsTotal": 1,
 				"numKeys": 0,
 				"expirationHours": 2160,
-				"memoSize": 0,
-				"topicMemoSize": 0,
+				"txMemoSize": 0,
+				"entityMemoSize": 0,
 				"isAutoRenewAccountSet": false
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + topicMemoSize + (numKeys * KEY_SIZE) + DURATION_SIZE + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + (numSigsTotal * SIG_SIZE) + entityMemoSize + (numKeys * KEY_SIZE) + DURATION_SIZE + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + topicMemoSize + (numKeys * KEY_SIZE) + DURATION_SIZE + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + (numSigsTotal * SIG_SIZE) + entityMemoSize + (numKeys * KEY_SIZE) + DURATION_SIZE + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
 					"vpt": "numSigsTotal",
 					"rbh": "(BASE_RECEIPT_SIZE + TOPIC_ID_SIZE) * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1 + ((BASE_TOPIC_SIZE + topicMemoSize + (numKeys * KEY_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)) * expirationHours)"				}
+					"rbh": "((BASE_TOPIC_SIZE + entityMemoSize + (numKeys * KEY_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)) * expirationHours)"
+				}
 			}
 		},
 
@@ -318,52 +322,53 @@
 				"numSigsTotal": 1,
 				"numKeys": 0,
 				"expirationHours": 2160,
-				"memoSize": 0,
-				"topicMemoSize": 0,
+				"txMemoSize": 0,
+				"entityMemoSize": 0,
 				"isAutoRenewAccountSet": false,
 				"isAutoRenewPeriodSet": false,
 				"isExpirationTimeSet": false
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE + topicMemoSize + (isExpirationTimeSet * TIMESTAMP_SIZE) + (numKeys * KEY_SIZE) + (isAutoRenewPeriodSet * DURATION_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE + entityMemoSize + (isExpirationTimeSet * TIMESTAMP_SIZE) + (numKeys * KEY_SIZE) + (isAutoRenewPeriodSet * DURATION_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE + topicMemoSize + (isExpirationTimeSet * TIMESTAMP_SIZE) + (numKeys * KEY_SIZE) + (isAutoRenewPeriodSet * DURATION_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE + entityMemoSize + (isExpirationTimeSet * TIMESTAMP_SIZE) + (numKeys * KEY_SIZE) + (isAutoRenewPeriodSet * DURATION_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1 + ((BASE_TOPIC_SIZE + topicMemoSize + (numKeys * KEY_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)) * expirationHours)"				}
+					"rbh": "((BASE_TOPIC_SIZE + entityMemoSize + (numKeys * KEY_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)) * expirationHours)"			
+				}
 			}
 		},
 
 		"ConsensusDeleteTopic": {
 			"type": "transaction",
-			"info": "Deletes an existing topic used by Consensus service.",
+			"info": "Deletes an existing topic.",
 			"status": "complete",
 			"isImportant": false,
 
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE",
+					"bpt": "BASE_TX_SIZE + txMemoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE",
+					"bpt": "BASE_TX_SIZE + txMemoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},
@@ -377,22 +382,22 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0,
+				"txMemoSize": 0,
 				"topicMessageSize": 100
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE + topicMessageSize",
+					"bpt": "BASE_TX_SIZE + txMemoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE + topicMessageSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + memoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE + topicMessageSize",
+					"bpt": "BASE_TX_SIZE + txMemoSize + (numSigsTotal * SIG_SIZE) + TOPIC_ID_SIZE + topicMessageSize",
 					"vpt": "numSigsTotal",
 					"rbh": "(BASE_RECEIPT_SIZE + RUNNING_HASH_SIZE + SEQUENCE_NUMBER_SIZE) * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "((BASE_RECORD_SIZE + memoSize) * MINUTES_3) / HOURS_1"
+					"rbh": "((BASE_RECORD_SIZE + txMemoSize) * MINUTES_3) / HOURS_1"
 				}
 			}
 
@@ -407,13 +412,13 @@
 			"usage": {
 				"isStateProofRequested": false,
 				"numKeys": 0,
-				"topicMemoSize": 0,
+				"entityMemoSize": 0,
 				"isAutoRenewAccountSet": false
 			},
 			"formulae": {
 				"node": {
 					"bpt": "BASE_QUERYHEADER_SIZE + TOPIC_ID_SIZE",
-					"bpr": "BASE_QUERYRESPONSE_SIZE + BASE_TOPIC_SIZE + (numKeys * KEY_SIZE) + topicMemoSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE) + (isStateProofRequested * STATE_PROOF_SIZE)"
+					"bpr": "BASE_QUERYRESPONSE_SIZE + BASE_TOPIC_SIZE + (numKeys * KEY_SIZE) + entityMemoSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE) + (isStateProofRequested * STATE_PROOF_SIZE)"
 				}
 			}
 		}
@@ -427,7 +432,7 @@
 			"status": "complete",
 			"isImportant": true,
 			"usage": {
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 			
@@ -449,22 +454,23 @@
 				"expirationHours": 2160,
                 "tokenNameSize": 12,
                 "tokenSymbolSize": 4,
-				"memoSize": 0,
+				"txMemoSize": 0,
+				"entityMemoSize":0,
                 "isAutoRenewAccountSet": true
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + memoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+					"bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + txMemoSize + entityMemoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + memoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+					"bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + txMemoSize + entityMemoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
 					"vpt": "numSigsTotal",
 					"rbh": "(BASE_RECEIPT_SIZE + TOKEN_ID_SIZE) * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "((BASE_TOKEN_SIZE + tokenNameSize + tokenSymbolSize + (numAdminKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numFreezeKeys * KEY_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)) * expirationHours)"
+					"rbh": "((BASE_TOKEN_SIZE + entityMemoSize + tokenNameSize + tokenSymbolSize + (numAdminKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numFreezeKeys * KEY_SIZE) + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)) * expirationHours)"
 				}
 			}
         },
@@ -479,21 +485,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + TOKEN_ID_SIZE + ACCOUNT_ID_SIZE + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + TOKEN_ID_SIZE + ACCOUNT_ID_SIZE + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},
@@ -516,27 +522,28 @@
 				"numSupplyKeysIncrease": 0,
 				"numFreezeKeysIncrease": 0,
 				"expirationHours": 2160,
-                                "tokenNameSize": 0,
-                                "tokenSymbolSize": 0,
-                                "tokenNameSizeIncrease": 0,
-                                "tokenSymbolSizeIncrease": 0,
-				"memoSize": 0,
-                                "isAutoRenewAccountSet": false,
-                                "isAutoRenewAccountNewlyAdded": false
+                "tokenNameSize": 0,
+                "tokenSymbolSize": 0,
+                "tokenNameSizeIncrease": 0,
+                "tokenSymbolSizeIncrease": 0,
+				"txMemoSize": 0,
+				"entityMemoSize":0,
+                "isAutoRenewAccountSet": false,
+                "isAutoRenewAccountNewlyAdded": false
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + memoSize + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + memoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+					"bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + txMemoSize + entityMemoSize + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + txMemoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + memoSize + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + memoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+					"bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + txMemoSize + entityMemoSize + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + txMemoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(tokenNameSizeIncrease + tokenSymbolSizeIncrease + (numAdminKeysIncrease * KEY_SIZE) + (numKycKeysIncrease * KEY_SIZE) + (numWipeKeysIncrease * KEY_SIZE) + (numSupplyKeysIncrease * KEY_SIZE) + (numFreezeKeysIncrease * KEY_SIZE) + (isAutoRenewAccountNewlyAdded * ACCOUNT_ID_SIZE)) * expirationHours"
+					"rbh": "(entityMemoSize + tokenNameSizeIncrease + tokenSymbolSizeIncrease + (numAdminKeysIncrease * KEY_SIZE) + (numKycKeysIncrease * KEY_SIZE) + (numWipeKeysIncrease * KEY_SIZE) + (numSupplyKeysIncrease * KEY_SIZE) + (numFreezeKeysIncrease * KEY_SIZE) + (isAutoRenewAccountNewlyAdded * ACCOUNT_ID_SIZE)) * expirationHours"
 				}
 			}
         },
@@ -549,21 +556,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE + memoSize",
+					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE  + memoSize",
+					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE  + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + TOKEN_ID_SIZE * TRANSFER_LIST_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + TOKEN_ID_SIZE * TRANSFER_LIST_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},
@@ -575,21 +582,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE + memoSize",
+					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE + memoSize",
+					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + TOKEN_ID_SIZE * TRANSFER_LIST_SIZE + memoSize) * MINUTES_3 / HOURS_1"				}
+					"rbh": "(BASE_RECORD_SIZE + TOKEN_ID_SIZE * TRANSFER_LIST_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"				}
 			}
         },
 
@@ -603,16 +610,16 @@
 				"numSigsTotal": 1,
 				"numTokensAssociated": 1,
 				"expirationHours": 2160,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + memoSize + ACCOUNT_ID_SIZE + (numTokensAssociated * TOKEN_ID_SIZE) + (numSigsTotal * SIG_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + ACCOUNT_ID_SIZE + (numTokensAssociated * TOKEN_ID_SIZE) + (numSigsTotal * SIG_SIZE)",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + memoSize + (numTokensAssociated * TOKEN_ID_SIZE) + (numSigsTotal * SIG_SIZE)",
+					"bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + txMemoSize + (numTokensAssociated * TOKEN_ID_SIZE) + (numSigsTotal * SIG_SIZE)",
 					"vpt": "numSigsTotal",
 					"rbh": "(BASE_RECEIPT_SIZE + ACCOUNT_ID_SIZE) * MINUTES_3 / HOURS_1"
 				},
@@ -631,21 +638,21 @@
                 "numSigsPayer": 1,
                 "numSigsTotal": 1,
                 "numTokensDissociated": 1,
-                "memoSize": 0
+                "txMemoSize": 0
             },
             "formulae": {
                 "node": {
-                    "bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + (numTokensDissociated * TOKEN_ID_SIZE) + (numSigsTotal * SIG_SIZE) + memoSize",
+                    "bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + (numTokensDissociated * TOKEN_ID_SIZE) + (numSigsTotal * SIG_SIZE) + txMemoSize",
                     "vpt": "numSigsPayer",
                     "bpr": "BASE_TXRESPONSE_SIZE"
                 },
                 "network": {
-                    "bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + (numTokensDissociated * TOKEN_ID_SIZE) + (numSigsTotal * SIG_SIZE) + memoSize",
+                    "bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + (numTokensDissociated * TOKEN_ID_SIZE) + (numSigsTotal * SIG_SIZE) + txMemoSize",
                     "vpt": "numSigsTotal",
                     "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
                 },
                 "service": {
-                    "rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+                    "rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
                 }
             }
         },
@@ -657,21 +664,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + memoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + memoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE) * MINUTES_3 / HOURS_1"
 				}
 			}
         },
@@ -683,21 +690,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + memoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + memoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},	
@@ -710,21 +717,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + memoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + memoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE) * MINUTES_3 / HOURS_1"
 				}
 			}
         },
@@ -736,21 +743,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + memoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + memoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
+					"bpt": "BASE_TX_SIZE + txMemoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE)",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},		
@@ -763,21 +770,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE + memoSize",
+					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE + memoSize",
+					"bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + TOKEN_ID_SIZE * TRANSFER_LIST_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + TOKEN_ID_SIZE * TRANSFER_LIST_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},
@@ -794,19 +801,21 @@
 				"numWipeKeys": 0,
 				"numSupplyKeys": 0,
 				"numFreezeKeys": 0,
-                                "tokenNameSize": 12,
-                                "tokenSymbolSize": 4,
-                                "isAutoRenewAccountSet": true,
+                "tokenNameSize": 12,
+                "tokenSymbolSize": 4,
+                "isAutoRenewAccountSet": true,
+				"entityMemoSize":0,
 				"isStateProofRequested": false
 			},
 			"formulae": {
 				"node": {
 					"bpt": "BASE_QUERYHEADER_SIZE + TOKEN_ID_SIZE",
-					"bpr": "BASE_QUERYRESPONSE_SIZE + BASE_TOKEN_SIZE + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE)  + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)"
+					"bpr": "BASE_QUERYRESPONSE_SIZE + BASE_TOKEN_SIZE + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE)  + entityMemoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)"
 				}
 			}
 		}		
 	},	
+	
 
 	"Smart Contracts": {
 		"ContractCreate": {
@@ -822,22 +831,23 @@
 				"contractConstructorCallParamsSize": 1000,
 				"contractFunctionReturnSize": 400,
 				"gas": 500000,
-				"memoSize": 0
+				"entityMemoSize":0,
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE+FILE_ID_SIZE+BASE_CRYPTOCREATE_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE+FILE_ID_SIZE+BASE_CRYPTOCREATE_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + txMemoSize + entityMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE+FILE_ID_SIZE+BASE_CRYPTOCREATE_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE+FILE_ID_SIZE+BASE_CRYPTOCREATE_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + txMemoSize + entityMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + memoSize) * ( MINUTES_3 ) / HOURS_1",
-					"sbh": "(memoSize + numKeys * KEY_SIZE + BASE_CONTRACTINFO_SIZE ) * expirationHours",
+					"rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + txMemoSize) * ( MINUTES_3 ) / HOURS_1",
+					"sbh": "(txMemoSize + entityMemoSize + numKeys * KEY_SIZE + BASE_CONTRACTINFO_SIZE ) * expirationHours",
 					"gas": "gas"
 				}
 			}
@@ -854,22 +864,23 @@
 				"numKeys": 1,
 				"expirationHours": 2160,
 				"contractFunctionReturnSize": 400,
-				"memoSize": 0
+				"entityMemoSize":0,
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE+FILE_ID_SIZE + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE+FILE_ID_SIZE + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + txMemoSize + entityMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE+FILE_ID_SIZE + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE+FILE_ID_SIZE + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + txMemoSize + entityMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + memoSize) * ( MINUTES_3 ) / HOURS_1",
-					"sbh": "(memoSize + numKeys * KEY_SIZE + BASE_CONTRACTINFO_SIZE) * expirationHours"
+					"rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + txMemoSize) * ( MINUTES_3 ) / HOURS_1",
+					"sbh": "(txMemoSize + entityMemoSize + numKeys * KEY_SIZE + BASE_CONTRACTINFO_SIZE) * expirationHours"
 				}
 			}
 		},
@@ -882,21 +893,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},
@@ -913,21 +924,21 @@
 				"contractConstructorCallParamsSize": 1000,
 				"contractFunctionReturnSize": 400,
 				"gas": 100000,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE+CONTRACT_ID_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE+CONTRACT_ID_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE+CONTRACT_ID_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE+CONTRACT_ID_SIZE+GASPARAM_SIZE + contractConstructorCallParamsSize + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + memoSize) * ( MINUTES_3 ) / HOURS_1",
+					"rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + txMemoSize) * ( MINUTES_3 ) / HOURS_1",
 					"gas": "gas"
 				}
 			}
@@ -940,13 +951,14 @@
 			"isImportant": false,
 			"usage": {
 				"numKeys": 1,
+				"entityMemoSize":0,
 				"isStateProofRequested": false
 			},
 			"formulae": {
 				"node": {
 					"bpt": "BASE_QUERYHEADER_SIZE + CONTRACT_ID_SIZE",
 					"bpr": "BASE_QUERYRESPONSE_SIZE + (isStateProofRequested * STATE_PROOF_SIZE)",
-					"sbpr": "BASE_CONTRACTINFO_SIZE+ numKeys*KEY_SIZE"
+					"sbpr": "BASE_CONTRACTINFO_SIZE + entityMemoSize + numKeys * KEY_SIZE"
 				}
 			}
 		},
@@ -1056,22 +1068,23 @@
 				"numKeys": 1,
 				"expirationHours": 2160,
 				"fileSize": 1000,
-				"memoSize": 0
+				"entityMemoSize":0,
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + BASE_FILECREATE_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + BASE_FILECREATE_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + txMemoSize + entityMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + BASE_FILECREATE_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + BASE_FILECREATE_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + txMemoSize + entityMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1",
-					"sbh": "((numKeys * KEY_SIZE + fileSize + BASE_FILEINFO_SIZE) * expirationHours)"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1",
+					"sbh": "(entityMemoSize + numKeys * KEY_SIZE + fileSize + BASE_FILEINFO_SIZE) * expirationHours"
 				}
 			}
 		},
@@ -1087,22 +1100,23 @@
 				"numKeys": 1,
 				"expirationHours": 2160,
 				"fileSize": 1000,
-				"memoSize": 0
+				"entityMemoSize":0,
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + txMemoSize + entityMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + (numKeys * KEY_SIZE) + txMemoSize + entityMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1",
-					"sbh": "((numKeys * KEY_SIZE + fileSize + BASE_FILEINFO_SIZE) * expirationHours)"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1",
+					"sbh": "(entityMemoSize + numKeys * KEY_SIZE + fileSize + BASE_FILEINFO_SIZE) * expirationHours"
 				}
 			}
 		},
@@ -1115,21 +1129,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},
@@ -1145,21 +1159,21 @@
 				"numKeys": 1,
 				"expirationHours": 2160,
 				"fileSize": 1000,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + BASE_FILECREATE_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + BASE_FILECREATE_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + BASE_FILECREATE_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + BASE_FILECREATE_SIZE + fileSize + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1",
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1",
 					"sbh": "((numKeys * KEY_SIZE + fileSize + BASE_FILEINFO_SIZE) * expirationHours)"
 				}
 			}
@@ -1190,19 +1204,23 @@
 			"isImportant": false,
 			"usage": {
 				"numKeys": 1,
+				"entityMemoSize":0,
 				"isStateProofRequested": false
 			},
 			"formulae": {
 				"node": {
 					"bpt": "BASE_QUERYHEADER_SIZE + ACCOUNT_ID_SIZE",
 					"bpr": "BASE_QUERYRESPONSE_SIZE  + (isStateProofRequested * STATE_PROOF_SIZE)",
-					"sbpr": "BASE_FILEINFO_SIZE + numKeys * KEY_SIZE"
+					"sbpr": "BASE_FILEINFO_SIZE + numKeys * KEY_SIZE + entityMemoSize"
 				}
 			}
 		}
 	},
 
-	"Scheduling": {
+
+	
+	"Miscellaneous": {
+
 		"ScheduleCreate": {
 			"type": "transaction",
 			"info": "Creates a scheduled transaction.",
@@ -1303,10 +1321,8 @@
 					"bpr": "BASE_QUERYRESPONSE_SIZE + BASE_SCHEDULE_SIZE + (numAdminKeys + numVerifiedSigningKeys) * KEY_SIZE  + (isStateProofRequested * STATE_PROOF_SIZE) + scheduledTransactionBytesSize"
 				}
 			}
-		}
-	},
+		},
 	
-	"Miscellaneous": {
 		"GetVersionInfo": {
 			"type": "query",
 			"info": "Retrieve the current version of the network.",
@@ -1354,21 +1370,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},
@@ -1381,21 +1397,21 @@
 			"usage": {
 				"numSigsPayer": 1,
 				"numSigsTotal": 1,
-				"memoSize": 0
+				"txMemoSize": 0
 			},
 			"formulae": {
 				"node": {
-					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsPayer",
 					"bpr": "BASE_TXRESPONSE_SIZE"
 				},
 				"network": {
-					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + memoSize",
+					"bpt": "BASE_TX_SIZE + FILE_ID_SIZE  + (numSigsTotal * SIG_SIZE) + txMemoSize",
 					"vpt": "numSigsTotal",
 					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
 				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
 				}
 			}
 		},
