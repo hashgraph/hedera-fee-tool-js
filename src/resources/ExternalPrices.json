@@ -1,6 +1,6 @@
 {
     "Crypto": {
-        "CryptoCreate": 0.01,
+        "CryptoCreate": 0.05,
         "CryptoAccountAutoRenew": 0.00022,
         "CryptoUpdate": 0.00022,
         "CryptoTransfer": 0.0001,
