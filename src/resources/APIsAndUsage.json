@@ -1220,8 +1220,8 @@
 
 	
 	"Miscellaneous": {
-
-		"ScheduleCreate": {
+		
+				"ScheduleCreate": {
 			"type": "transaction",
 			"info": "Creates a scheduled transaction.",
 			"status": "complete",
@@ -1309,7 +1309,6 @@
 			"status": "complete",
 			"isImportant": false,
 			"usage": {
-				"memoSize": 0,
 				"numAdminKeys": 1,
 				"numVerifiedSigningKeys": 1,
 				"scheduledTransactionBytesSize": 182,
@@ -1321,8 +1320,7 @@
 					"bpr": "BASE_QUERYRESPONSE_SIZE + BASE_SCHEDULE_SIZE + (numAdminKeys + numVerifiedSigningKeys) * KEY_SIZE  + (isStateProofRequested * STATE_PROOF_SIZE) + scheduledTransactionBytesSize"
 				}
 			}
-		},
-	
+		},	
 		"GetVersionInfo": {
 			"type": "query",
 			"info": "Retrieve the current version of the network.",
