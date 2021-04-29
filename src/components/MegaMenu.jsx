@@ -35,7 +35,6 @@ class MegaMenu extends React.Component {
     "Smart Contracts": ["Smart Contract", "service"],
     "Files": ["File", "service"],
     "Consensus": ["Consensus", "service"],
-
     "Miscellaneous": ["Miscellaneous", ""],
   };
 

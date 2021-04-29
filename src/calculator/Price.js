@@ -29,12 +29,10 @@ class Price {
     generatedPriceList = {};
     desiredPriceList = {};
 
-    constructor(numNodes, constantTermWeight, apis) {
+    constructor(numNodes, apis) {
         this.numNodes = numNodes;
-        this.constantTermWeight = constantTermWeight;
         this.model = {
             NUM_NODES: numNodes,
-            CONST_TERM_WEIGHT: constantTermWeight,
             PRICE_PRECISION: 5,
             FEE_SCHEDULE_MULTIPLIER: 1000,
             USD_TO_TINYCENTS: 10000000000
@@ -223,8 +221,7 @@ class Price {
         this.feeSchedules = {};
 
         // Initialize the Unnormalized Coefficients
-        let unnormalizedCoefficients = new Coefficients(
-            this.numNodes, this.constantTermWeight).getCoefficients();
+        let unnormalizedCoefficients = new Coefficients(this.numNodes);
 
         // Now calculate the fee schedules for each API
         Object.entries(apis).forEach(([api, apiParams]) => {
@@ -238,7 +235,8 @@ class Price {
             }
             let expectedUsage = this.calculateUsage(apiParams);
             console.log("Expected usage ", expectedUsage);
-            let unnormalizedPrice = this.sumProduct(unnormalizedCoefficients, expectedUsage);
+            let coeffs = unnormalizedCoefficients.getCoefficients(api);
+            let unnormalizedPrice = this.sumProduct(coeffs, expectedUsage);
             //console.log("Unnormalized Price: " + unnormalizedPrice);
             if (isNaN(unnormalizedPrice)) {
                 this.feeSchedules[api] = this.newFeeData();
@@ -248,7 +246,7 @@ class Price {
             console.log(this.desiredPriceList[api]);
             // Calculate the fee schedule (i.e. Normalized Coefficients)
             this.feeSchedules[api] = {};
-            Object.entries(unnormalizedCoefficients).forEach(([key, val]) => {
+            Object.entries(coeffs).forEach(([key, val]) => {
                 this.feeSchedules[api][key] = {};
                 Object.entries(val).forEach(([subKey, subVal]) => {
                     this.feeSchedules[api][key][subKey] = Math.round(

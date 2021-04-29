@@ -62,19 +62,16 @@ class FeeSchedules extends React.Component {
     }];
   }
 
-  setFeeSchedule() {
-    this.setState({
-      feeScheduleDivOpen: !this.state.feeScheduleDivOpen
-    });
-  }
-
   render() {
     return (
       <Row className="feeScheduleRow">
         <Col>
           <>
             <Button
-              onClick={this.setFeeSchedule}
+              onClick={() => {
+                this.state.feeScheduleDivOpen = !this.state.feeScheduleDivOpen;
+                this.setState(this.state);
+              }}
               aria-controls="feeScheduleDiv"
               aria-expanded={this.state.feeScheduleDivOpen}
               variant="outline-secondary"

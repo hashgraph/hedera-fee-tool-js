@@ -20,37 +20,67 @@
 
 import * as math from "mathjs";
 import capacities from "../resources/Capacities.json";
+import constWeights from '../resources/ConstantWeights.json';
 
 class Coefficients {
-  constructor(numNodes, constantTermWeight) {
+  constructor(numNodes) {
     this.capacities = capacities;
     this.coefficients = {
       node: {},
       network: {},
       service: {}
     };
-
+    // Compute the generic coefficients
     Object.entries(this.capacities).forEach(([key, val]) => {
       this.coefficients.node[key] = math.eval(1.0 / val);
       this.coefficients.network[key] = math.eval((1.0 * numNodes) / val);
       this.coefficients.service[key] = math.eval((1.0 * numNodes) / val);
     });
 
-    // Calculate the constant term
-    Object.entries(this.coefficients).forEach(([row, rowVals]) => {
-      let sum = 0.0;
-      this.coefficients[row]["constant"] = 0;
-      Object.entries(rowVals).forEach(([key, val]) => {
-        sum += val;
+    let apiConstantWeights = {}; 
+    Object.entries(constWeights).forEach(([service, apiWeights]) => {
+      Object.entries(apiWeights).forEach(([api, constWeight]) => {
+        apiConstantWeights[api] = constWeight;
       });
-      this.coefficients[row]["constant"] = math.eval(
-        sum / (1 / constantTermWeight - 1)
-      );
+    });
+
+    this.apiProviderConstants = { 
+      node: {},
+      network: {},
+      service: {}
+    };
+
+    // Calculate constant terms for each api by provider (node/network/service)
+    Object.entries(apiConstantWeights).forEach(([api, constWeight]) => {
+      Object.entries(this.coefficients).forEach(([provider, terms]) => {
+        let sum = 0.0;
+        this.coefficients[provider]["constant"] = 0;
+        Object.entries(terms).forEach(([term, value]) => {
+          sum += value;
+        });
+        this.apiProviderConstants[provider][api] = math.eval(
+          sum / (1 / apiConstantWeights[api] - 1)
+        );
+      });
     });
   }
 
-  getCoefficients() {
-    return this.coefficients;
+  getCoefficients(api) {
+    let apiCoefficients = {
+      node: {
+        ...this.coefficients["node"],
+        constant: this.apiProviderConstants["node"][api]
+      },
+      network: {
+        ...this.coefficients["network"],
+        constant: this.apiProviderConstants["network"][api]
+      },
+      service: {
+        ...this.coefficients["service"],
+        constant: this.apiProviderConstants["service"][api]
+      }
+    };
+    return apiCoefficients;
   }
 }
 

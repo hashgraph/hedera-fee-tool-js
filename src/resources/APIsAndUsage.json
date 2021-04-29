@@ -38,11 +38,11 @@
 			"usage": {
 				"numKeys": 1,
 				"expirationHours": 2160,
-				"txMemoSize": 0
+				"entityMemoSize": 0
 			},
 			"formulae": {
 				"service": {
-					"rbh": "(BASE_ACCOUNT_SIZE + txMemoSize + numKeys * KEY_SIZE) * expirationHours"
+					"rbh": "(BASE_ACCOUNT_SIZE + entityMemoSize + numKeys * KEY_SIZE) * expirationHours"
 				}
 			}
 		},
@@ -311,6 +311,23 @@
 				}
 			}
 		},
+		
+		"ConsensusTopicAutoRenew": {
+			"type": "transaction",
+			"info": "Virtual transaction to autorenew a topic. Please note that there is no HAPI call for this transaction.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numKeys": 1,
+				"expirationHours": 2160,
+				"entityMemoSize": 0
+			},
+			"formulae": {
+				"service": {
+					"rbh": "(BASE_TOPIC_SIZE + entityMemoSize + numKeys * KEY_SIZE) * expirationHours"
+				}
+			}
+		},		
 
 		"ConsensusUpdateTopic": {
 			"type": "transaction",
@@ -475,34 +492,24 @@
 			}
         },
 
-
-
-	       "TokenDelete": {
+		"TokenAutoRenew": {
 			"type": "transaction",
-			"info": "Deletes a token type. ",
+			"info": "Virtual transaction to autorenew a token. Please note that there is no HAPI call for this transaction.",
 			"status": "complete",
 			"isImportant": false,
 			"usage": {
-				"numSigsPayer": 1,
-				"numSigsTotal": 1,
-				"txMemoSize": 0
+				"numKeys": 1,
+				"expirationHours": 2160,
+				"entityMemoSize": 0
 			},
 			"formulae": {
-				"node": {
-					"bpt": "BASE_TX_SIZE + TOKEN_ID_SIZE + ACCOUNT_ID_SIZE + (numSigsTotal * SIG_SIZE) + txMemoSize",
-					"vpt": "numSigsPayer",
-					"bpr": "BASE_TXRESPONSE_SIZE"
-				},
-				"network": {
-					"bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE) + txMemoSize",
-					"vpt": "numSigsTotal",
-					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
-				},
 				"service": {
-					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
+					"rbh": "(BASE_TOKEN_SIZE + entityMemoSize + numKeys * KEY_SIZE) * expirationHours"
 				}
 			}
 		},
+
+
 		"TokenUpdate": {
 			"type": "transaction",
 			"info": "Updates an existing token type. ",
@@ -547,6 +554,33 @@
 				}
 			}
         },
+		     
+		"TokenDelete": {
+			"type": "transaction",
+			"info": "Deletes a token type. ",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numSigsPayer": 1,
+				"numSigsTotal": 1,
+				"txMemoSize": 0
+			},
+			"formulae": {
+				"node": {
+					"bpt": "BASE_TX_SIZE + TOKEN_ID_SIZE + ACCOUNT_ID_SIZE + (numSigsTotal * SIG_SIZE) + txMemoSize",
+					"vpt": "numSigsPayer",
+					"bpr": "BASE_TXRESPONSE_SIZE"
+				},
+				"network": {
+					"bpt": "BASE_TX_SIZE + ACCOUNT_ID_SIZE + TOKEN_ID_SIZE + (numSigsTotal * SIG_SIZE) + txMemoSize",
+					"vpt": "numSigsTotal",
+					"rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+				},
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1"
+				}
+			}
+		},	
 
        "TokenMint": {
 			"type": "transaction",
@@ -852,6 +886,25 @@
 				}
 			}
 		},
+		
+		"ContractAutoRenew": {
+			"type": "transaction",
+			"info": "Virtual transaction to autorenew a smart contract.  Please note that there is no HAPI call for this transaction.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numKeys": 1,
+				"expirationHours": 2160,
+				"fileSize": 20000,
+				"entityMemoSize": 0
+			},
+			"formulae": {
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE) * MINUTES_3 / HOURS_1",
+					"sbh": "((numKeys * KEY_SIZE + fileSize + entityMemoSize + BASE_CONTRACTINFO_SIZE) * expirationHours)"
+				}
+			}
+		},		
 
 		"ContractUpdate": {
 			"type": "transaction",
@@ -1036,24 +1089,8 @@
 					"bpr": "BASE_QUERYRESPONSE_SIZE + numRecordsReturned*(BASE_RECORD_SIZE + contractFunctionReturnSize) + (isStateProofRequested * STATE_PROOF_SIZE)"
 				}
 			}
-		},
-
-		"ContractAutoRenew": {
-			"type": "transaction",
-			"info": "Virtual transaction to autorenew a smart contract.  Please note that there is no HAPI call for this transaction.",
-			"status": "complete",
-			"isImportant": false,
-			"usage": {
-				"numKeys": 1,
-				"expirationHours": 2160,
-				"fileSize": 20000
-			},
-			"formulae": {
-				"service": {
-					"sbh": "((numKeys * KEY_SIZE + fileSize + BASE_CONTRACTINFO_SIZE) * expirationHours)"
-				}
-			}
 		}
+
 	},
 
 	"Files": {
@@ -1084,10 +1121,29 @@
 				},
 				"service": {
 					"rbh": "(BASE_RECORD_SIZE + txMemoSize) * MINUTES_3 / HOURS_1",
-					"sbh": "(entityMemoSize + numKeys * KEY_SIZE + fileSize + BASE_FILEINFO_SIZE) * expirationHours"
+					"sbh": "(numKeys * KEY_SIZE  + fileSize + entityMemoSize + BASE_FILEINFO_SIZE) * expirationHours"
 				}
 			}
 		},
+	
+		"FileAutoRenew": {
+			"type": "transaction",
+			"info": "Virtual transaction to autorenew a file. Please note that there is no HAPI call for this transaction.",
+			"status": "complete",
+			"isImportant": false,
+			"usage": {
+				"numKeys": 1,
+				"expirationHours": 2160,
+				"fileSize": 1000,
+				"entityMemoSize": 0
+			},
+			"formulae": {
+				"service": {
+					"rbh": "(BASE_RECORD_SIZE) * MINUTES_3 / HOURS_1",
+					"sbh": "((numKeys * KEY_SIZE + fileSize + entityMemoSize + BASE_FILEINFO_SIZE) * expirationHours)"
+				}
+			}
+		},	
 
 		"FileUpdate": {
 			"type": "transaction",
@@ -1234,7 +1290,7 @@
 				"numScheduledSigs": 1,
 				"expirationHours": 1,
 				"entityMemoSize": 0,
-                                "isScheduledPayerDifferent": false
+                "isScheduledPayerDifferent": false
 			},
 			"formulae": {
 				"node": {
