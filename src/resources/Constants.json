@@ -53,5 +53,7 @@
   "MINUTES_3": 180,
   "HOURS_1": 3600,
   "HOURS_24": 86400,
-  "HOURS_25": 90000
+  "HOURS_25": 90000,
+  
+  "AMOUNT_SIZE": 8
 }
