@@ -261,5 +261,25 @@
     "label":"expiration time?",
     "tip":"If expirationTime is specified?",
     "min": false, "max": true
+  },
+    "customFeeKey": {
+    "label":"Custom Token Fees",
+    "tip":"Custom fees for HTS tokens.",
+    "min": false, "max": true
+  },
+  "numHbarFees": {
+    "label":"# hbar fees",
+    "tip":"Number of hbar fees updated.",
+    "min": 0, "max": 10
+  },
+  "numHtsFees": {
+    "label":"# HTS fees",
+    "tip":"Number of HTS fees updated.",
+    "min": 0, "max": 10
+  },
+  "numFractionalFees": {
+    "label":"# fractional fees",
+    "tip":"Number of fractional fees updated.",
+    "min": 0, "max": 10
   }
 }
