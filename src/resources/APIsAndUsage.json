@@ -1352,11 +1352,7 @@
 			"status": "complete",
 			"isImportant": true,
 			"usage": {},
-			"formulae": {
-				"node": {
-					"bpt": "BASE_QUERYHEADER_SIZE + TRANSACTION_ID_SIZE",
-					"bpr": "BASE_QUERYRESPONSE_SIZE + BASE_RECEIPT_SIZE"
-				}
+			"formulae": {}
 			}
 		},
 
