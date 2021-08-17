@@ -165,35 +165,6 @@ class App extends Component {
       </Row>
     );
 
-<<<<<<< HEAD
-    // const usageBreakdownRow = (
-    //   <Row className="usageBreakdownRow">
-    //     <Col>
-    //       <>
-    //         <Button
-    //           onClick={() => {
-    //             this.state.usageBreakdownDivOpen = !this.state
-    //               .usageBreakdownDivOpen;
-    //             this.setState(this.state);
-    //           }}
-    //           aria-controls="detailedPriceDiv"
-    //           aria-expanded={usageBreakdownDivOpen}
-    //           variant="outline-secondary"
-    //         >
-    //           Usage Breakdown
-    //         </Button>
-    //         <Collapse in={this.state.usageBreakdownDivOpen}>
-    //           <div id="detailedPriceDiv">
-    //             <PriceDetails usage={this.state.totalUsage} />
-    //           </div>
-    //         </Collapse>
-    //       </>
-    //     </Col>
-    //   </Row>
-    // );
-
-=======
->>>>>>> 48010eb5c8457654adf4b571f671f8d122d79427
     let feeScheduleRow;
     if (process.env.REACT_APP_SHOW_FEE_SCHEDULE === "true") {
       feeScheduleRow = <FeeSchedules feeSchedules={this.price.feeSchedules} apis={this.state.apis}/>;
