@@ -1,6 +1,6 @@
 {
     "Crypto": {
-        "CryptoCreate": 0.01,
+        "CryptoCreate": 0.05,
         "CryptoAccountAutoRenew": 0.00022,
         "CryptoUpdate": 0.00022,
         "CryptoTransfer": 0.0001,
@@ -12,6 +12,29 @@
         "CryptoGetAccountBalance": 0,
         "CryptoGetInfo": 0.0001,
         "CryptoGetStakers": 0.0001
+    },
+    "Consensus": {
+        "ConsensusCreateTopic": 0.01,
+        "ConsensusUpdateTopic": 0.00022,
+        "ConsensusDeleteTopic": 0.005,
+        "ConsensusSubmitMessage": 0.0001,
+        "ConsensusGetTopicInfo": 0.0001
+    },	
+    "Tokens": {
+	    "Send tokens via CryptoTransfer": 0.001, 
+        "TokenCreate": 1.00,
+        "TokenDelete": 0.001,
+		"TokenUpdate": 0.001,
+		"TokenMint": 0.001,
+        "TokenBurn": 0.001,		
+        "TokenGetInfo": 0.0001,	
+        "TokenAssociateToAccount": 0.05,
+        "TokenDissociateFromAccount": 0.05,		
+	    "TokenGrantKycToAccount": 0.001,
+        "TokenRevokeKycFromAccount": 0.001,  		
+		"TokenFreezeAccount": 0.001,
+        "TokenUnfreezeAccount": 0.001,	
+		"TokenAccountWipe": 0.001
     },
     "Smart Contracts": {
         "ContractCreate": 1.0,
@@ -33,14 +56,11 @@
         "FileGetContents": 0.0001,
         "FileGetInfo": 0.0001
     },
-    "Consensus": {
-        "ConsensusCreateTopic": 0.01,
-        "ConsensusUpdateTopic": 0.00022,
-        "ConsensusDeleteTopic": 0.005,
-        "ConsensusSubmitMessage": 0.0001,
-        "ConsensusGetTopicInfo": 0.0001
-    },
     "Miscellaneous": {
+        "ScheduleCreate": 0.01,
+        "ScheduleSign": 0.001,
+        "ScheduleDelete": 0.001,
+        "ScheduleGetInfo": 0.0001,
         "GetVersionInfo": 0.001,
         "GetByKey": 0.0001,
         "TransactionGetReceipt": 0.0000,

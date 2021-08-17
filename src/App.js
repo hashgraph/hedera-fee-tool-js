@@ -53,8 +53,8 @@ class App extends Component {
     this.state = {
       nameFormState: "",
       exchangeRate: '',
-      usageBreakdownDivOpen: false,
-      isAuthenticated: false,
+      usageBreakdownDivOpen: true,
+      isAuthenticated: true,
       estimatorCart: new EstimatorCart(),
       selectedApi: null,
       services: hapiApis,
@@ -80,6 +80,20 @@ class App extends Component {
       selectedApi: selectedApi,
       usageParams: usageParams
     });
+
+
+    let usageAndPrice;
+    if (selectedApi !== null) {
+      let api = selectedApi;
+      let apiParams = this.state.apis[api];
+      usageAndPrice = this.price.calculatePrice(api, apiParams, usageParams);
+      this.setState({
+        totalUsage: usageAndPrice.usage,
+        totalPrice: usageAndPrice.price
+      });
+    } else {
+      console.log("Didnt find selectedApi!!!! State: ", this.state);
+    }
   }
 
   addToEstimatorButtonClickHandler() {
@@ -94,8 +108,11 @@ class App extends Component {
   }
 
   render() {
+<<<<<<< HEAD
 
     //const { usageBreakdownDivOpen } = this.state.usageBreakdownDivOpen;
+=======
+>>>>>>> 48010eb5c8457654adf4b571f671f8d122d79427
 
     const selectOpRow = (
       <div className="main-content">
@@ -153,6 +170,7 @@ class App extends Component {
       </Row>
     );
 
+<<<<<<< HEAD
     // const usageBreakdownRow = (
     //   <Row className="usageBreakdownRow">
     //     <Col>
@@ -179,6 +197,8 @@ class App extends Component {
     //   </Row>
     // );
 
+=======
+>>>>>>> 48010eb5c8457654adf4b571f671f8d122d79427
     let feeScheduleRow;
     if (process.env.REACT_APP_SHOW_FEE_SCHEDULE === "true") {
       feeScheduleRow = <FeeSchedules feeSchedules={this.price.feeSchedules} apis={this.state.apis}/>;

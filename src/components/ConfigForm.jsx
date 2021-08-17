@@ -89,6 +89,19 @@ class ConfigForm extends React.Component {
 
     this.props.context.setState({usageParams: usageParams});
 
+    let usageAndPrice;
+    if (this.props.context.state.selectedApi !== null) {
+      let api = this.props.context.state.selectedApi;
+      let apiParams = this.props.context.state.apis[api];
+      usageAndPrice = this.props.context.price.calculatePrice(api, apiParams, usageParams);
+      this.props.context.setState({
+        totalUsage: usageAndPrice.usage,
+        totalPrice: usageAndPrice.price
+      });
+    } else {
+      console.log("Didnt find selectedApi!!!! State: ", this.props.context.state);
+    }
+
     setTimeout(function(){
       var tInput = document.getElementById(tId);
       tInput.focus();
@@ -240,10 +253,10 @@ class ConfigForm extends React.Component {
         </div>
         <Form>
           {formElementsHighImpact}
-          <h3 className={'parameter-title parameter-title-2 ' + this.state.parametersToggleClass} onClick={this.handleParametersToggle.bind(this)}>Parameters with minimal influence on price<span className="title-down-arrow"></span></h3>
-          <span className={this.state.parametersToggleClass}>
+          <h3 className={'parameter-title parameter-title-2 '}>Parameters with minimal influence on price</h3>
+ 
           {formElementsLowImpact}
-          </span>
+  
         </Form>
       </div>
     );
