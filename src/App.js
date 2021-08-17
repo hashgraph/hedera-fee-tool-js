@@ -108,11 +108,6 @@ class App extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-
-    //const { usageBreakdownDivOpen } = this.state.usageBreakdownDivOpen;
-=======
->>>>>>> 48010eb5c8457654adf4b571f671f8d122d79427
 
     const selectOpRow = (
       <div className="main-content">
