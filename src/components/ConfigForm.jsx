@@ -131,6 +131,7 @@ class ConfigForm extends React.Component {
       );
     }
     let selectedApiParams = this.props.apis[this.props.selectedApi][this.props.selectedType];
+    console.log('*selectedApiParams',selectedApiParams);
     if (selectedApiParams === undefined || selectedApiParams.status === "incomplete") {
         return (
           <div className="dropdownSelectMessageOuter">
@@ -152,12 +153,13 @@ class ConfigForm extends React.Component {
 
     if(usageParams !== undefined && usageParams !== null) {
       Object.entries(usageParams).forEach(([key, value]) => {
-        console.log('selectedApiParams.usage[key]:',selectedApiParams.usage[key]);
-        console.log('key:',key);
+        // console.log('selectedApiParams:',selectedApiParams);
+        // console.log('selectedApiParams.relevantUsage:',selectedApiParams.relevantUsage);
+        // console.log('selectedApiParams.usage[key]:',selectedApiParams.usage[key]);
+        // console.log('key:',key);
 
-        //let isRelevant = selectedApiParams.relevantUsage[key]['isRelevant'];
-        let isRelevant = selectedApiParams.usage[key] !== undefined;
-        console.log('isRelevant',isRelevant);
+        let isRelevant = selectedApiParams.relevantUsage[key]['isRelevant'];
+        //console.log('isRelevant',isRelevant);
         let colsArr = (isRelevant) ? colsArrHighImpact : colsArrLowImpact;
         // console.log('value = ', value);
         let formControl;
@@ -252,18 +254,23 @@ class ConfigForm extends React.Component {
     }
     return (
       <div className="panel-body">
+        <Form>
+      <div className="title-row">
+        <h2 className="select-info"><span>Select an</span>API type</h2>
+        <div className="title-breadcrumb">
+          <span className="title-breadcrumb-label">({this.props.selectedType})</span>
+        </div>
+        
+      </div>
         <div className="title-row">
           <h2 className="select-info"><span>Enter the</span>API call parameters</h2>
           <div className="title-breadcrumb">
             <span className="title-breadcrumb-label">({this.props.selectedApi})</span>
           </div>
         </div>
-        <Form>
           {formElementsHighImpact}
           <h3 className={'parameter-title parameter-title-2 '}>Parameters with minimal influence on price</h3>
- 
           {formElementsLowImpact}
-  
         </Form>
       </div>
     );

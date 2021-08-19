@@ -156,14 +156,13 @@ class Price {
 
     analyzeVariables(apis, minLimit) {
         Object.entries(apis).forEach(([api, apiTypes]) => {
-            Object.entries(apiTypes).forEach(([apiType, apiParams]) => {  
-                if(apiType !== 'relevantUsage') {
-                    return;
-                }
+            Object.entries(apiTypes).forEach(([apiType, apiParams]) => {            
+
                 let relevantUsage = {};
                 const basePrice = this.calculatePrice(api, apiParams, null, apiType).price;
                 Object.entries(apiParams.usage).forEach(([apiUsageParam, paramValue]) => {
                     relevantUsage[apiUsageParam] = {};
+                    //console.log('relevantUsage['+apiUsageParam+']',relevantUsage[apiUsageParam]);
                     if(usageParamProperties[apiUsageParam] === undefined) {
                         return;
                     }
@@ -186,11 +185,11 @@ class Price {
                     calcUsage('base', apiParams.usage[apiUsageParam]);
                     calcUsage('min', usageParamProperties[apiUsageParam].min);
                     calcUsage('max', usageParamProperties[apiUsageParam].max);
-                    // console.log ("Price range: " + relevantUsage);
+                    //console.info("Price range: " + relevantUsage);
                     const priceRangePercentage = relevantUsage[apiUsageParam]['max'].diff - relevantUsage[apiUsageParam]['min'].diff;
                     relevantUsage[apiUsageParam]['isRelevant'] = priceRangePercentage >= minLimit;
                 });
-                apis[api]['relevantUsage'] = relevantUsage;
+                apis[api][apiType]['relevantUsage'] = relevantUsage;
 
             })
         });
