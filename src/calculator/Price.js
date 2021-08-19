@@ -28,7 +28,7 @@ const typedFeeSchedules = require('../resources/typedFeeSchedules.json');
 
 class Price {
     generatedPriceList = {};
-    desiredPriceList = {};
+    //desiredPriceList = {};
 
     constructor(numNodes, constantTermWeight, apis) {
         this.numNodes = numNodes;
@@ -149,7 +149,7 @@ class Price {
             });
         });
         this.generatedPriceList = priceList;
-        //console.log("PriceList generated: ", priceList);
+        console.log("PriceList generated: ", priceList);
     }
 
     analyzeVariables(apis, minLimit) {
@@ -241,6 +241,7 @@ class Price {
                 actualUsage.service.sbh = math.eval(actualUsage.service.sbh * ARTIFICIAL_HIGH_MULTIPLIER_SBH);
             }
         }
+        
         // console.log("CalculatePrice: actual usage:\n", actualUsage);
         //console.log('this.feeSchedules[api][apiType]',this.feeSchedules[api][apiType]);
         //console.log('actualusage',actualUsage);
@@ -249,9 +250,9 @@ class Price {
             (this.model.FEE_SCHEDULE_MULTIPLIER * this.model.USD_TO_TINYCENTS)
         );
         // For queries, add the price of cryptotransfer back to the normalized price
-        if (customApiParams.type === 'query' && api !== 'CryptoGetAccountBalance') {
-            this.normalizedPrice += this.desiredPriceList['CryptoTransfer'];
-        }
+        // if (customApiParams.type === 'query' && api !== 'CryptoGetAccountBalance') {
+        //     this.normalizedPrice += this.desiredPriceList['CryptoTransfer'];
+        // }
         // console.log("Query-adjusted Normalized Price: " + this.normalizedPrice);
         return ({
             usage: actualUsage,
@@ -260,7 +261,7 @@ class Price {
     }
 
     generateFeeSchedules(apis) {
-        //console.log("Generating fee schedules");
+        console.log("Generating fee schedules");
         this.feeSchedules = typedFeeSchedules;
 
         //console.log('typedFeeSchedules:',typedFeeSchedules);

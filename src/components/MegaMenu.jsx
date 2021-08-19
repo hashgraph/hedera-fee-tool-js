@@ -44,9 +44,11 @@ class MegaMenu extends React.Component {
       tabIndex: -1,
       hasSelectedService: false
     };
+    console.log('megamenu constructor');
   }
 
   createTabList() {
+    console.log('createTabList');
     let tabsArr = [];
     Object.keys(this.props.services).forEach((service) => {
       tabsArr.push(
@@ -61,39 +63,42 @@ class MegaMenu extends React.Component {
   }
 
   createTabPanels() {
+    console.log('createTabPanels');
     let arr = [];
     Object.entries(this.props.services).forEach(([service, apis]) => {
       let subArr = [];
-      Object.entries(apis).forEach(([api, apiParams]) => {
-        let apiLabel = api;
-        if(apiLabel === 'CryptoGetStakers' || apiLabel === 'CryptoAddLiveHash' || apiLabel === 'CryptoDeleteLiveHash' || apiLabel === 'CryptoGetLiveHash') {
-          apiLabel += ' (coming soon)';
-        }
-        let className = "panel-item";
-        if(this.props.selectedApi === api) {
-          className += " panel-item--selected";
-        }
-        subArr.push(
-          <div className={className} key={"div_megamenu_" + service + "_" + api}>
-            <div className="apiOperationButtonDiv">
-              <OverlayTrigger
-                trigger="hover"
-                key={"div_megamenu_tooltip_key_" + service + "_" + api}
-                placement="top"
-                delay={{ show: 500, hide: 150 }}
-                overlay={
-                  <Popover id={"div_megamenu_tooltip_id_" + service + "_" + api} title={api}>
-                    {apiParams.info.replace(". ", ".\n")}
-                  </Popover>
-                }
-              >
-                <button className="apiOperationButton" onClick={(e) => { this.props.apiSelectHandler(api); }}>
-                  {apiLabel}
-                </button>
-              </OverlayTrigger>
+      Object.entries(apis).forEach(([api, apiTypes]) => {
+        Object.entries(apiTypes).forEach(([apiType, apiParams]) => {
+          let apiLabel = api;
+          if(apiLabel === 'CryptoGetStakers' || apiLabel === 'CryptoAddLiveHash' || apiLabel === 'CryptoDeleteLiveHash' || apiLabel === 'CryptoGetLiveHash') {
+            apiLabel += ' (coming soon)';
+          }
+          let className = "panel-item";
+          if(this.props.selectedApi === api) {
+            className += " panel-item--selected";
+          }
+          subArr.push(
+            <div className={className} key={"div_megamenu_" + service + "_" + api}>
+              <div className="apiOperationButtonDiv">
+                <OverlayTrigger
+                  trigger="hover"
+                  key={"div_megamenu_tooltip_key_" + service + "_" + api}
+                  placement="top"
+                  delay={{ show: 500, hide: 150 }}
+                  overlay={
+                    <Popover id={"div_megamenu_tooltip_id_" + service + "_" + api} title={api}>
+                      {apiParams.info.replace(". ", ".\n")}
+                    </Popover>
+                  }
+                >
+                  <button className="apiOperationButton" onClick={(e) => { this.props.apiSelectHandler(api); }}>
+                    {apiLabel}
+                  </button>
+                </OverlayTrigger>
+              </div>
             </div>
-          </div>
-        );
+          );
+        });
       });
       arr.push(
         <TabPanel key={Math.random()}>
@@ -109,6 +114,7 @@ class MegaMenu extends React.Component {
   }
 
   selectService(tabIndex) {
+    console.log('selectService');
     if(this.refs.tabPanel) {
       if (!this.state.hasSelectedService) {
         this.refs.tabPanel.style.visibility = "visible";

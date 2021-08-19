@@ -45,17 +45,15 @@ class App extends Component {
   constructor(props) {
     super(props);
     let apis = {};
-    Object.entries(hapiApis).forEach(([service, serviceOps]) => { // service (Crypto, consensus, tokens...), serviceOps (CryptoCreate, CryptoAccountAutoRenew...)
-
+    Object.entries(hapiApis).forEach(([service, serviceOps]) => { 
+      // service (Crypto, consensus, tokens...)
+      // serviceOps (CryptoCreate, CryptoAccountAutoRenew...)
       //console.log('==service:',service,'====================');
-
-      Object.entries(serviceOps).forEach(([operation, opTypes]) => { // serviceOps (CryptoCreate, CryptoAccountAutoRenew...), opType (DEFAULT, TOKEN_FUNGIBLE_COMMON...)
-
-        //console.log('operation:',operation,', opType:',opType);
-
+      Object.entries(serviceOps).forEach(([operation, opTypes]) => { 
+        // serviceOps (CryptoCreate, CryptoAccountAutoRenew...)
+        // opType (DEFAULT, TOKEN_FUNGIBLE_COMMON...)
         // apis[cryptoCreate] = DEFAULT{type, status, usage...};
         apis[operation] = opTypes;
-
       })
     });
 
@@ -128,6 +126,7 @@ class App extends Component {
     if (this.state.selectedApi !== null && this.state.selectedType !== null) {
       this.state.estimatorCart.addEstimate(
         this.state.selectedApi,
+        this.state.selectedType,
         this.state.totalPrice,
         1
       );
