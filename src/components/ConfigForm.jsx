@@ -90,10 +90,10 @@ class ConfigForm extends React.Component {
     this.props.context.setState({usageParams: usageParams});
 
     let usageAndPrice;
-    if (this.props.context.state.selectedApi !== null) {
+    if (this.props.context.state.selectedApi !== null && this.props.context.state.selectedType !== null) {
       let api = this.props.context.state.selectedApi;
-      let apiParams = this.props.context.state.apis[api];
-      usageAndPrice = this.props.context.price.calculatePrice(api, apiParams, usageParams);
+      let apiParams = this.props.context.state.apis[api][this.props.context.state.selectedType];
+      usageAndPrice = this.props.context.price.calculatePrice(api, apiParams, usageParams, this.props.context.state.selectedType);
       this.props.context.setState({
         totalUsage: usageAndPrice.usage,
         totalPrice: usageAndPrice.price
@@ -130,7 +130,7 @@ class ConfigForm extends React.Component {
         <div className="dropdownSelectMessageOuter"/>
       );
     }
-    let selectedApiParams = this.props.apis[this.props.selectedApi];
+    let selectedApiParams = this.props.apis[this.props.selectedApi][this.props.selectedType];
     if (selectedApiParams.status === "incomplete") {
         return (
           <div className="dropdownSelectMessageOuter">

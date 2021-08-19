@@ -36,7 +36,7 @@ import EstimatorCartDisplay from "./components/EstimatorCartDisplay.jsx";
 import EstimatorCart from "./components/EstimatorCart.jsx";
 import MegaMenu from "./components/MegaMenu.jsx";
 import PriceDisplay from "./components/PriceDisplay.jsx";
-import hapiApis from './resources/APIsAndUsage.json';
+import hapiApis from './resources/typedUsageFormulas.json';
 import axios from "axios";
 
 require("dotenv").config();
@@ -45,11 +45,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     let apis = {};
-    Object.entries(hapiApis).forEach(([service, serviceOps]) => {
-      Object.entries(serviceOps).forEach(([operation, opParams]) => {
-        apis[operation] = opParams;
+    Object.entries(hapiApis).forEach(([service, serviceOps]) => { // service (Crypto, consensus, tokens...), serviceOps (CryptoCreate, CryptoAccountAutoRenew...)
+
+      //console.log('==service:',service,'====================');
+
+      Object.entries(serviceOps).forEach(([operation, opTypes]) => { // serviceOps (CryptoCreate, CryptoAccountAutoRenew...), opType (DEFAULT, TOKEN_FUNGIBLE_COMMON...)
+
+        //console.log('operation:',operation,', opType:',opType);
+
+        // apis[cryptoCreate] = DEFAULT{type, status, usage...};
+        apis[operation] = opTypes;
+
       })
     });
+
     this.state = {
       nameFormState: "",
       exchangeRate: '',
@@ -57,11 +66,13 @@ class App extends Component {
       isAuthenticated: true,
       estimatorCart: new EstimatorCart(),
       selectedApi: null,
+      selectedType: null,
       services: hapiApis,
       apis: apis,
       totalPrice: 0,
       totalUsage: null,
     };
+
     const NUM_NODES = 13;
     const CONSTANT_TERM_WEIGHT = 0.2;
     this.price = new Price(NUM_NODES, CONSTANT_TERM_WEIGHT, apis);
@@ -69,24 +80,41 @@ class App extends Component {
     this.addToEstimatorButtonClickHandler = this.addToEstimatorButtonClickHandler.bind(this);
   }
 
-  apiSelectHandler(selectedApi) {
+  apiSelectHandler(selectedApi, selectedType) {
     console.log("Selected api = ", selectedApi);
     let usageParams = null;
-    if (selectedApi !== null) {
-      // Create deep copy to not modify the instance in 'apis'.
-      usageParams = JSON.parse(JSON.stringify(this.state.apis[selectedApi].usage));
+
+    if(selectedType === null) {
+      selectedType = "DEFAULT";
     }
+
+    if (selectedApi !== null && selectedType !== null) {
+      // Create deep copy to not modify the instance in 'apis'.
+      usageParams = JSON.parse(JSON.stringify(this.state.apis[selectedApi][selectedType].usage));
+    }
+    // else if(selectedApi !== null && selectedType === null) {
+
+    //   var tUsage;
+    //   for(const prop in this.state.apis[selectedApi]) {
+    //     console.log(prop,': '+this.state.apis[selectedApi][prop]);
+    //     tUsage = this.state.apis[selectedApi][prop].usage;
+    //     this.state.selectedType = prop;
+    //     break;
+    //   }
+    //   usageParams = JSON.parse(JSON.stringify(tUsage));
+    // }
     this.setState({
       selectedApi: selectedApi,
+      selectedType: selectedType,
       usageParams: usageParams
     });
 
 
     let usageAndPrice;
-    if (selectedApi !== null) {
+    if (selectedApi !== null && selectedType !== null) {
       let api = selectedApi;
-      let apiParams = this.state.apis[api];
-      usageAndPrice = this.price.calculatePrice(api, apiParams, usageParams);
+      let apiParams = this.state.apis[api][selectedType];
+      usageAndPrice = this.price.calculatePrice(api, apiParams, usageParams, selectedType);
       this.setState({
         totalUsage: usageAndPrice.usage,
         totalPrice: usageAndPrice.price
@@ -97,7 +125,7 @@ class App extends Component {
   }
 
   addToEstimatorButtonClickHandler() {
-    if (this.state.selectedApi !== null) {
+    if (this.state.selectedApi !== null && this.state.selectedType !== null) {
       this.state.estimatorCart.addEstimate(
         this.state.selectedApi,
         this.state.totalPrice,
@@ -108,12 +136,27 @@ class App extends Component {
   }
 
   render() {
+    return (
+      <div className="site-wrapper">
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>Hedera Fee Tool</title>
+            <meta name="description" content="Hedera's fee schedule is set by the Hedera Governing Council and always based in USD — making it easy to estimate API call costs." />
+            <link rel="icon" type="image/png" href="https://hedera.com/assets/images/favicon.png" sizes="16x16" />
+            <meta property="og:image" content="https://s3.amazonaws.com/hedera-hashgraph/HH-Social-Fees-Icon.jpg" />
+        </Helmet>
+        <div className="App content"></div>
+      </div>
+    )
+  }
+  render1() {
 
     const selectOpRow = (
       <div className="main-content">
         <MegaMenu
           apiSelectHandler={this.apiSelectHandler}
           selectedApi={this.state.selectedApi}
+          selectedType={this.state.selectedType}
           services={this.state.services}
         />
       </div>
@@ -130,6 +173,7 @@ class App extends Component {
             context={this}
             apis={this.state.apis}
             selectedApi={this.state.selectedApi}
+            selectedType={this.state.selectedType}
             usageParams={this.state.usageParams}
           />
         </div>
@@ -235,10 +279,10 @@ class App extends Component {
       })
 
       let usageAndPrice;
-      if (this.state.selectedApi !== null) {
+      if (this.state.selectedApi !== null && this.state.selectedType !== null) {
         let api = this.state.selectedApi;
-        let apiParams = this.state.apis[api];
-        usageAndPrice = this.price.calculatePrice(api, apiParams, this.state.usageParams);
+        let apiParams = this.state.apis[api][this.state.selectedType];
+        usageAndPrice = this.price.calculatePrice(api, apiParams, this.state.usageParams, this.state.selectedType);
         this.setState({
           totalUsage: usageAndPrice.usage,
           totalPrice: usageAndPrice.price
