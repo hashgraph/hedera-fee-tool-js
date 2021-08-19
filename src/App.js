@@ -82,25 +82,21 @@ class App extends Component {
     console.log("Selected api = ", selectedApi);
     let usageParams = null;
 
-    if(selectedType === null) {
-      selectedType = "DEFAULT";
-    }
-
-    if (selectedApi !== null && selectedType !== null) {
+    if (selectedApi !== null && selectedType !== null && this.state.apis[selectedApi][selectedType] !== undefined) {
       // Create deep copy to not modify the instance in 'apis'.
       usageParams = JSON.parse(JSON.stringify(this.state.apis[selectedApi][selectedType].usage));
-    }
-    // else if(selectedApi !== null && selectedType === null) {
+    } else if(selectedApi !== null && selectedType === undefined) {
 
-    //   var tUsage;
-    //   for(const prop in this.state.apis[selectedApi]) {
-    //     console.log(prop,': '+this.state.apis[selectedApi][prop]);
-    //     tUsage = this.state.apis[selectedApi][prop].usage;
-    //     this.state.selectedType = prop;
-    //     break;
-    //   }
-    //   usageParams = JSON.parse(JSON.stringify(tUsage));
-    // }
+      var tUsage;
+      for(const prop in this.state.apis[selectedApi]) {
+        console.log(prop,': '+this.state.apis[selectedApi][prop]);
+        tUsage = this.state.apis[selectedApi][prop].usage;
+        selectedType = prop;
+        break;
+      }
+      usageParams = JSON.parse(JSON.stringify(tUsage));
+    }
+    console.log('Selected type = ',selectedType)
     this.setState({
       selectedApi: selectedApi,
       selectedType: selectedType,
@@ -135,20 +131,6 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="site-wrapper">
-        <Helmet>
-            <meta charSet="utf-8" />
-            <title>Hedera Fee Tool</title>
-            <meta name="description" content="Hedera's fee schedule is set by the Hedera Governing Council and always based in USD — making it easy to estimate API call costs." />
-            <link rel="icon" type="image/png" href="https://hedera.com/assets/images/favicon.png" sizes="16x16" />
-            <meta property="og:image" content="https://s3.amazonaws.com/hedera-hashgraph/HH-Social-Fees-Icon.jpg" />
-        </Helmet>
-        <div className="App content"></div>
-      </div>
-    )
-  }
-  render1() {
 
     const selectOpRow = (
       <div className="main-content">

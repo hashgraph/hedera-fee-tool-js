@@ -88,13 +88,15 @@ class Price {
 
     calculateUsage(apiParams) {
         let usage = this.newFeeData();
-        if (apiParams.status === "incomplete" || apiParams.formulae === null) {
-            return usage;
+        if(apiParams !== undefined) {
+            if (apiParams.status === "incomplete" || apiParams.formulae === null) {
+                return usage;
+            }
         }
         // Populate formulaVals with usage values
         let formulaVals = Object.assign({}, this.constantsMap);
 
-        if(apiParams === null || apiParams.usage === undefined) {
+        if(apiParams === null || apiParams === undefined) {
             return usage;
         }
         
@@ -154,19 +156,17 @@ class Price {
 
     analyzeVariables(apis, minLimit) {
         Object.entries(apis).forEach(([api, apiTypes]) => {
-
             Object.entries(apiTypes).forEach(([apiType, apiParams]) => {  
-                
-                if(apiParams === null || apiParams.usage === undefined) {
+                if(apiType !== 'relevantUsage') {
                     return;
                 }
                 let relevantUsage = {};
                 const basePrice = this.calculatePrice(api, apiParams, null, apiType).price;
                 Object.entries(apiParams.usage).forEach(([apiUsageParam, paramValue]) => {
+                    relevantUsage[apiUsageParam] = {};
                     if(usageParamProperties[apiUsageParam] === undefined) {
                         return;
                     }
-                    relevantUsage[apiUsageParam] = {};
                     // Deep copy to not modify the instance in 'apis'.
                     let customUsage = JSON.parse(JSON.stringify(apiParams.usage));
                     let calcUsage = (name, value) => {
@@ -228,7 +228,7 @@ class Price {
         //console.log('*customApiParams', customApiParams, 'apiParams',apiParams);
         
         // Skip incomplete APIs
-        if (customApiParams.status === "incomplete") {
+        if (customApiParams !== undefined && customApiParams.status !== undefined && customApiParams.status === "incomplete") {
             return 0;
         }
         let actualUsage = this.calculateUsage(customApiParams);

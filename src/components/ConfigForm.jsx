@@ -131,7 +131,7 @@ class ConfigForm extends React.Component {
       );
     }
     let selectedApiParams = this.props.apis[this.props.selectedApi][this.props.selectedType];
-    if (selectedApiParams.status === "incomplete") {
+    if (selectedApiParams === undefined || selectedApiParams.status === "incomplete") {
         return (
           <div className="dropdownSelectMessageOuter">
             <div className="dropdownSelectMessage">
@@ -150,64 +150,71 @@ class ConfigForm extends React.Component {
     const usageParams = this.props.usageParams;
     console.log("usageParams in config form: ", usageParams);
 
-    Object.entries(usageParams).forEach(([key, value]) => {
-      let isRelevant = selectedApiParams.relevantUsage[key]['isRelevant'];
-      let colsArr = (isRelevant) ? colsArrHighImpact : colsArrLowImpact;
-      // console.log('value = ', value);
-      let formControl;
-      let dropDownBg;
-      if (value === true || value === false) {
-        // Special treatment for true/false values - turn them into dropdown list
-        formControl = (
+    if(usageParams !== undefined && usageParams !== null) {
+      Object.entries(usageParams).forEach(([key, value]) => {
+        console.log('selectedApiParams.usage[key]:',selectedApiParams.usage[key]);
+        console.log('key:',key);
+
+        //let isRelevant = selectedApiParams.relevantUsage[key]['isRelevant'];
+        let isRelevant = selectedApiParams.usage[key] !== undefined;
+        console.log('isRelevant',isRelevant);
+        let colsArr = (isRelevant) ? colsArrHighImpact : colsArrLowImpact;
+        // console.log('value = ', value);
+        let formControl;
+        let dropDownBg;
+        if (value === true || value === false) {
+          // Special treatment for true/false values - turn them into dropdown list
+          formControl = (
+              <Form.Control
+                as="select"
+                value={value}
+                onChange={this.handleConfigUpdate}
+                key={"form_" + key}
+                id={"form_" + key}
+              >
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
+              </Form.Control>);
+          dropDownBg = <div className="select-bg"></div>;
+        } else {
+          let onChangeHandler = this.handleConfigUpdate;
+          if (value === 2160) {
+            onChangeHandler = () => {};
+          }
+          // normal values. just add them into simple textfields
+          formControl = (
             <Form.Control
-              as="select"
               value={value}
-              onChange={this.handleConfigUpdate}
+              onChange={onChangeHandler}
               key={"form_" + key}
               id={"form_" + key}
-            >
-              <option value={true}>Yes</option>
-              <option value={false}>No</option>
-            </Form.Control>);
-        dropDownBg = <div className="select-bg"></div>;
-      } else {
-        let onChangeHandler = this.handleConfigUpdate;
-        if (value === 2160) {
-          onChangeHandler = () => {};
+              type="text"
+            />);
         }
-        // normal values. just add them into simple textfields
-        formControl = (
-          <Form.Control
-            value={value}
-            onChange={onChangeHandler}
-            key={"form_" + key}
-            id={"form_" + key}
-            type="text"
-          />);
-      }
-      colsArr.push(
-        <Form.Group as={Col} className="configFormFormGroup">
-          <OverlayTrigger
-            trigger="hover"
-            key={"div_megamenu_tooltip_key_" + key}
-            placement="top"
-            delay={{ show: 500, hide: 150 }}
-            overlay={
-              <Popover id={"div_megamenu_tooltip_id_" + key}>
-                {usageParamProperties[key].tip}
-              </Popover>
-            }
-          >
-            <Form.Label style={{ textAlign: "left" }}>
-              {parse(this.formatParamLabel(usageParamProperties[key].label))}
-            </Form.Label>
-          </OverlayTrigger>
-          {dropDownBg}
-          {formControl}
-          <span className="label-caption">{usageParamProperties[key].caption}</span>
-        </Form.Group>
-      )
-    });
+        colsArr.push(
+          <Form.Group as={Col} className="configFormFormGroup">
+            <OverlayTrigger
+              trigger="hover"
+              key={"div_megamenu_tooltip_key_" + key}
+              placement="top"
+              delay={{ show: 500, hide: 150 }}
+              overlay={
+                <Popover id={"div_megamenu_tooltip_id_" + key}>
+                  {usageParamProperties[key].tip}
+                </Popover>
+              }
+            >
+              <Form.Label style={{ textAlign: "left" }}>
+                {parse(this.formatParamLabel(usageParamProperties[key].label))}
+              </Form.Label>
+            </OverlayTrigger>
+            {dropDownBg}
+            {formControl}
+            <span className="label-caption">{usageParamProperties[key].caption}</span>
+          </Form.Group>
+        )
+      });
+    }
 
     var formElementsHighImpact = [];
     var formElementsLowImpact = [];

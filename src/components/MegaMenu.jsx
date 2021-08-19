@@ -44,13 +44,14 @@ class MegaMenu extends React.Component {
       tabIndex: -1,
       hasSelectedService: false
     };
-    console.log('megamenu constructor');
   }
 
   createTabList() {
-    console.log('createTabList');
     let tabsArr = [];
     Object.keys(this.props.services).forEach((service) => {
+      if(this.serviceLabels[service] === undefined) {
+        return;
+      }
       tabsArr.push(
         <Tab key={service}>
           <div className="mm-column" key={"div_megamenu_service_" + service}>
@@ -63,12 +64,27 @@ class MegaMenu extends React.Component {
   }
 
   createTabPanels() {
-    console.log('createTabPanels');
     let arr = [];
     Object.entries(this.props.services).forEach(([service, apis]) => {
+      if(this.serviceLabels[service] === undefined) {
+        return;
+      }
       let subArr = [];
       Object.entries(apis).forEach(([api, apiTypes]) => {
-        Object.entries(apiTypes).forEach(([apiType, apiParams]) => {
+        let apiParams = undefined;
+
+        for(const prop in apis[api]) {
+          //console.log(prop,': '+apis[api][prop]);
+          apiParams = apis[api][prop];
+          break;
+        }
+        
+        //Object.entries(apiTypes).forEach(([apiType, apiParams]) => {
+          //console.log('apiType',apiType,', apiParams',apiParams,', api',api,', service',service);
+          if(apiParams === undefined) {
+            return;
+          }
+
           let apiLabel = api;
           if(apiLabel === 'CryptoGetStakers' || apiLabel === 'CryptoAddLiveHash' || apiLabel === 'CryptoDeleteLiveHash' || apiLabel === 'CryptoGetLiveHash') {
             apiLabel += ' (coming soon)';
@@ -98,7 +114,7 @@ class MegaMenu extends React.Component {
               </div>
             </div>
           );
-        });
+        //});
       });
       arr.push(
         <TabPanel key={Math.random()}>
@@ -114,7 +130,6 @@ class MegaMenu extends React.Component {
   }
 
   selectService(tabIndex) {
-    console.log('selectService');
     if(this.refs.tabPanel) {
       if (!this.state.hasSelectedService) {
         this.refs.tabPanel.style.visibility = "visible";
