@@ -84,9 +84,12 @@ class App extends Component {
 
   selectedTypeHandler(type) {
     console.log('selectedTypeHandler:',type);
-    this.setState({
-      selectedType: type
-    }, () => {console.log('selectedTypeHandler selectedType:',this.state.selectedType)});
+    // this.setState({
+    //   selectedType: type
+    // }, () => {
+    //   console.log('selectedTypeHandler selectedType:',this.state.selectedType);
+      this.apiSelectHandler(this.state.selectedApi, type);
+    //});
   }
 
   apiSelectHandler(selectedApi, selectedType) {
