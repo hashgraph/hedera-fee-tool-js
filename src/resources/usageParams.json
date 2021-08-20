@@ -287,6 +287,11 @@
     "tip": "How many custom fees are fixed HTS fungible token payments",
     "min": 0, "max": 10
   },
+  "numFractionalCustomFees": {
+    "label": "# of fractional custom fees",
+    "tip": "How many custom fees are fractional token payments",
+    "min": 0, "max": 10
+  },
   "numRoyaltyNoFallbackCustomFees": {
     "label": "# of royalty fees without fallback",
     "tip": "How many custom fees are royalty fees with no fallback payment",
@@ -320,6 +325,21 @@
   "numSerialNosWiped": {
     "label": "# of NFT serial numbers wiped",
     "tip": "How many NFT serial numbers are wiped",
+    "min": 0, "max": 10
+  },
+  "customFeeKey": {
+    "label":"Custom Token Fees",
+    "tip":"Custom fees for HTS tokens.",
+    "min": false, "max": true
+  },
+  "numHbarFees": {
+    "label":"# hbar fees",
+    "tip":"Number of hbar fees updated.",
+    "min": 0, "max": 10
+  },
+  "numHtsFees": {
+    "label":"# HTS fees",
+    "tip":"Number of HTS fees updated.",
     "min": 0, "max": 10
   }
 }

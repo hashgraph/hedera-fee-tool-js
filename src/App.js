@@ -45,6 +45,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     let apis = {};
+    this.apiServiceGuide = {};
     Object.entries(hapiApis).forEach(([service, serviceOps]) => { 
       // service (Crypto, consensus, tokens...)
       // serviceOps (CryptoCreate, CryptoAccountAutoRenew...)
@@ -54,6 +55,7 @@ class App extends Component {
         // opType (DEFAULT, TOKEN_FUNGIBLE_COMMON...)
         // apis[cryptoCreate] = DEFAULT{type, status, usage...};
         apis[operation] = opTypes;
+        this.apiServiceGuide[operation] = service;
       })
     });
 
@@ -63,6 +65,7 @@ class App extends Component {
       usageBreakdownDivOpen: true,
       isAuthenticated: true,
       estimatorCart: new EstimatorCart(),
+      selectedService: null,
       selectedApi: null,
       selectedType: null,
       services: hapiApis,
@@ -76,10 +79,18 @@ class App extends Component {
     this.price = new Price(NUM_NODES, CONSTANT_TERM_WEIGHT, apis);
     this.apiSelectHandler = this.apiSelectHandler.bind(this);
     this.addToEstimatorButtonClickHandler = this.addToEstimatorButtonClickHandler.bind(this);
+    this.selectedTypeHandler = this.selectedTypeHandler.bind(this)
+  }
+
+  selectedTypeHandler(type) {
+    console.log('selectedTypeHandler:',type);
+    this.setState({
+      selectedType: type
+    }, () => {console.log('selectedTypeHandler selectedType:',this.state.selectedType)});
   }
 
   apiSelectHandler(selectedApi, selectedType) {
-    console.log("Selected api = ", selectedApi);
+    console.log("apiSelectHandler Selected api = ", selectedApi);
     let usageParams = null;
 
     if (selectedApi !== null && selectedType !== null && this.state.apis[selectedApi][selectedType] !== undefined) {
@@ -96,8 +107,11 @@ class App extends Component {
       }
       usageParams = JSON.parse(JSON.stringify(tUsage));
     }
-    console.log('Selected type = ',selectedType)
+    console.log('apiSelectHandler Selected type = ',selectedType);
+    //console.log('this.apiServiceGuide[',selectedApi,'] = ',this.apiServiceGuide[selectedApi]);
+   // console.log('this.apiServiceGuide[selectedApi] = ',this.apiServiceGuide);
     this.setState({
+      selectedService: this.apiServiceGuide[selectedApi],
       selectedApi: selectedApi,
       selectedType: selectedType,
       usageParams: usageParams
@@ -153,9 +167,11 @@ class App extends Component {
             key={Math.random()}
             context={this}
             apis={this.state.apis}
+            selectedService={this.state.selectedService}
             selectedApi={this.state.selectedApi}
             selectedType={this.state.selectedType}
             usageParams={this.state.usageParams}
+            selectedTypeHandler={this.selectedTypeHandler}
           />
         </div>
         <PriceDisplay

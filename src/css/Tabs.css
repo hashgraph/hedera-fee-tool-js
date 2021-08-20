@@ -197,3 +197,32 @@ h2.select-info span {
 h2.select-info span:first-child {
   display: block;
 }
+
+.select-type {
+  display: block;
+  position: relative;
+}
+
+.api-type-menu.hide {
+  display: none;
+}
+
+.api-type-menu,
+.api-type-menu .select-type {
+  display: block;
+  position: relative;
+}
+.api-type-menu .select-bg {
+  position: absolute;
+  bottom: 3px;
+  width: 340px;
+}
+
+#apitype.form-control {
+  width: 340px;
+  height: 51px;
+  padding: 13px 0 10px 20px;
+  min-width: 0;
+  margin: 5px 0 26px;
+  line-height: 1.5;
+}

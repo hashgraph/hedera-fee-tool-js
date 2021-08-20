@@ -46,7 +46,6 @@ class Price {
             this.constantsMap[constVar] = constVal;
         });
 
-        //this.initializeDesiredPriceList(apis);
         this.generateFeeSchedules(apis);
         this.analyzeVariables(apis, 25);
         this.generatePriceList(apis);
@@ -56,26 +55,8 @@ class Price {
         return this.generatedPriceList;
     }
 
-    // initializeDesiredPriceList(apis) {
-    //     const INFINITESIMALLY_SMALL_PRICE = 0.00000001;
-    //     // Since the HAPI implementation charges a separate CyrptoTransfer fees (of 0.0001) to
-    //     // every query, subtract the crypto transfer fees from the query fees
-    //     let cryptoTransferDeltaForQueries = externalPrices['Crypto']['CryptoTransfer'];
-    //     Object.entries(externalPrices).forEach(([service, serviceApis]) => {
-    //         Object.entries(serviceApis).forEach(([api, desiredPrice]) => {
-    //             this.desiredPriceList[api] = externalPrices[service][api];
-    //             if (apis[api].type === "query") {
-    //                 this.desiredPriceList[api] -= cryptoTransferDeltaForQueries;
-    //                 if (this.desiredPriceList[api] <= 0) {
-    //                     this.desiredPriceList[api] = INFINITESIMALLY_SMALL_PRICE;
-    //                 }
-    //             }
-    //         });
-    //     });
-    // }
-
     newFeeComponents() {
-        return ({constant: 1, bpt: 0, vpt: 0, rbh: 0, sbh: 0, gas: 0, bpr: 0, sbpr: 0 });
+        return ({constant: 1, bpt: 0, vpt: 0, rbh: 0, sbh: 0, gas: 0, bpr: 0, sbpr: 0, min: 0, max: 0 });
     }
 
     newFeeData() {
@@ -88,18 +69,13 @@ class Price {
 
     calculateUsage(apiParams) {
         let usage = this.newFeeData();
-        if(apiParams !== undefined) {
-            if (apiParams.status === "incomplete" || apiParams.formulae === null) {
-                return usage;
-            }
-        }
-        // Populate formulaVals with usage values
-        let formulaVals = Object.assign({}, this.constantsMap);
-
-        if(apiParams === null || apiParams === undefined) {
+        if (apiParams.status === "incomplete" || apiParams.formulae === null) {
+            console.log('calculateusage incomplete');
             return usage;
         }
-        
+
+        // Populate formulaVals with usage values
+        let formulaVals = Object.assign({}, this.constantsMap);
         Object.entries(apiParams.usage).forEach(([feeVar, feeVal]) => {
             if ((feeVal === true) || (feeVal === false)) {
                 formulaVals[feeVar] = (feeVal) ? 1 : 0;
@@ -112,8 +88,11 @@ class Price {
         Object.entries(apiParams.formulae).forEach(([feeComponent, items]) => {
             Object.entries(items).forEach(([item, formula]) => {
                 let compiledFormula = math.parse(formula).compile();
+                if(usage[feeComponent][item] === undefined) {
+                    return;
+                }
                 usage[feeComponent][item] = compiledFormula.eval(formulaVals);
-                // console.log (item + " = " + usage[feeComponent][item]);
+                //console.log (item + " = " + usage[feeComponent][item]);
             });
         });
 
@@ -151,7 +130,7 @@ class Price {
             });
         });
         this.generatedPriceList = priceList;
-        console.log("PriceList generated: ", priceList);
+        //console.log("PriceList generated: ", priceList);
     }
 
     analyzeVariables(apis, minLimit) {
@@ -160,12 +139,10 @@ class Price {
 
                 let relevantUsage = {};
                 const basePrice = this.calculatePrice(api, apiParams, null, apiType).price;
+
                 Object.entries(apiParams.usage).forEach(([apiUsageParam, paramValue]) => {
                     relevantUsage[apiUsageParam] = {};
-                    //console.log('relevantUsage['+apiUsageParam+']',relevantUsage[apiUsageParam]);
-                    if(usageParamProperties[apiUsageParam] === undefined) {
-                        return;
-                    }
+
                     // Deep copy to not modify the instance in 'apis'.
                     let customUsage = JSON.parse(JSON.stringify(apiParams.usage));
                     let calcUsage = (name, value) => {
@@ -196,13 +173,8 @@ class Price {
     }
 
     sumProduct(a, b) {
-        //a = this.feeSchedules[api][type], b = actualUsage
-
         let sum = 0;
-        if(a === null || a === undefined || b === null || b === undefined) {
-            return sum;
-        }
-        Object.entries(a).forEach(([key, val]) => { // key (nodedata,networkdata,servicedata)
+        Object.entries(a).forEach(([key, val]) => { // key (node,network,service)
             Object.entries(val).forEach(([subKey, subVal]) => { //subkey (constant,bpt,vpt...)
                 sum = math.eval(sum + (a[key][subKey] * b[key][subKey]));
             });
@@ -212,25 +184,24 @@ class Price {
 
     // apiParams are not modified
     calculatePrice(api, apiParams, customUsage, apiType) {
-    
         // console.log("CalculatePrice: API: ", api);
 
         // DO WE NEED THESE ARTIFICIAL ADJUSTMENTS
         const ARTIFICIAL_HIGH_MULTIPLIER_RBH = 16910000;
         const ARTIFICIAL_HIGH_MULTIPLIER_SBH = 237258000;
         // Deep copy since we modify the instance below
-        let customApiParams = apiParams;
+        let customApiParams = JSON.parse(JSON.stringify(apiParams));
         if (customUsage !== undefined && customUsage !== null) {
-            customApiParams = JSON.parse(JSON.stringify(apiParams));
             customApiParams.usage = customUsage;
         }
-        //console.log('*customApiParams', customApiParams, 'apiParams',apiParams);
         
         // Skip incomplete APIs
         if (customApiParams !== undefined && customApiParams.status !== undefined && customApiParams.status === "incomplete") {
+            console.log('incomplete');
             return 0;
         }
         let actualUsage = this.calculateUsage(customApiParams);
+
         // Artificially increase the prices for crypto transfer records
         if (api === 'cryptoTransfer') {
             if (customApiParams.usage.requestedRecord) {
@@ -241,18 +212,11 @@ class Price {
             }
         }
         
-        // console.log("CalculatePrice: actual usage:\n", actualUsage);
-        //console.log('this.feeSchedules[api][apiType]',this.feeSchedules[api][apiType]);
-        //console.log('actualusage',actualUsage);
         this.normalizedPrice = math.eval(
             this.sumProduct(this.feeSchedules[api][apiType], actualUsage) /
             (this.model.FEE_SCHEDULE_MULTIPLIER * this.model.USD_TO_TINYCENTS)
         );
-        // For queries, add the price of cryptotransfer back to the normalized price
-        // if (customApiParams.type === 'query' && api !== 'CryptoGetAccountBalance') {
-        //     this.normalizedPrice += this.desiredPriceList['CryptoTransfer'];
-        // }
-        // console.log("Query-adjusted Normalized Price: " + this.normalizedPrice);
+
         return ({
             usage: actualUsage,
             price: this.normalizedPrice.toFixed(this.model.PRICE_PRECISION)
@@ -260,54 +224,8 @@ class Price {
     }
 
     generateFeeSchedules(apis) {
-        console.log("Generating fee schedules");
+        //console.log("Generating fee schedules");
         this.feeSchedules = typedFeeSchedules;
-
-        //console.log('typedFeeSchedules:',typedFeeSchedules);
-
-        // stop manual calculations and bring in typedFeeSchedules.json object and load it into this.feeSchedules cause all values are hard coded now
-
-        // Initialize the Unnormalized Coefficients
-        // let unnormalizedCoefficients = new Coefficients(
-        //     this.numNodes, this.constantTermWeight).getCoefficients();
-
-        // // Now calculate the fee schedules for each API
-        // Object.entries(apis).forEach(([api, apiParams]) => {
-        //     if (apiParams.status === "incomplete") {
-        //         return;
-        //     }
-        //     if (Object.keys(apiParams.usage).length === 0) {
-        //         console.log("Found Empty API: ", api, apiParams);
-        //         this.feeSchedules[api] = this.newFeeData();
-        //         return;
-        //     }
-        //     let expectedUsage = this.calculateUsage(apiParams);
-        //     console.log("Expected usage ", expectedUsage);
-        //     let unnormalizedPrice = this.sumProduct(unnormalizedCoefficients, expectedUsage);
-        //     //console.log("Unnormalized Price: " + unnormalizedPrice);
-        //     if (isNaN(unnormalizedPrice)) {
-        //         this.feeSchedules[api] = this.newFeeData();
-        //         return;
-        //     }
-
-        //     console.log(this.desiredPriceList[api]);
-        //     // Calculate the fee schedule (i.e. Normalized Coefficients)
-        //     this.feeSchedules[api] = {};
-        //     Object.entries(unnormalizedCoefficients).forEach(([key, val]) => {
-        //         this.feeSchedules[api][key] = {};
-        //         Object.entries(val).forEach(([subKey, subVal]) => {
-        //             this.feeSchedules[api][key][subKey] = Math.round(
-        //               math.eval(
-        //                 this.model.FEE_SCHEDULE_MULTIPLIER *
-        //                 (this.desiredPriceList[api]/ unnormalizedPrice) *
-        //                 this.model.USD_TO_TINYCENTS * subVal
-        //               )
-        //             );
-        //         });
-        //     });
-        // });
-        // console.log("Fee schedules generated");
-        // console.log(JSON.stringify(this.feeSchedules, null, '\t'));
     }
 }
 
