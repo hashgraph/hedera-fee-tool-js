@@ -83,17 +83,12 @@ class App extends Component {
   }
 
   selectedTypeHandler(type) {
-    console.log('selectedTypeHandler:',type);
-    // this.setState({
-    //   selectedType: type
-    // }, () => {
-    //   console.log('selectedTypeHandler selectedType:',this.state.selectedType);
-      this.apiSelectHandler(this.state.selectedApi, type);
-    //});
+    //console.log('selectedTypeHandler:',type);
+    this.apiSelectHandler(this.state.selectedApi, type);
   }
 
   apiSelectHandler(selectedApi, selectedType) {
-    console.log("apiSelectHandler Selected api = ", selectedApi);
+    //console.log("apiSelectHandler Selected api = ", selectedApi);
     let usageParams = null;
 
     if (selectedApi !== null && selectedType !== null && this.state.apis[selectedApi][selectedType] !== undefined) {
@@ -110,7 +105,7 @@ class App extends Component {
       }
       usageParams = JSON.parse(JSON.stringify(tUsage));
     }
-    console.log('apiSelectHandler Selected type = ',selectedType);
+    //console.log('apiSelectHandler Selected type = ',selectedType);
     //console.log('this.apiServiceGuide[',selectedApi,'] = ',this.apiServiceGuide[selectedApi]);
    // console.log('this.apiServiceGuide[selectedApi] = ',this.apiServiceGuide);
     this.setState({

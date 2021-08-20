@@ -190,12 +190,6 @@ class ConfigForm extends React.Component {
 
     if(usageParams !== undefined && usageParams !== null) {
       Object.entries(usageParams).forEach(([key, value]) => {
-
-        console.log('**** THE TEST STARTS HERE *** HAPPY FRIDAY!!! ***');
-        console.log('selectedApiParams:',selectedApiParams);
-        console.log('selectedApiParams.relevantUsage[key][isRelavant]:',selectedApiParams.relevantUsage[key]['isRelevant']);
-        console.log('key:',key);
-        console.log('===========================')
         let isRelevant = selectedApiParams.relevantUsage[key]['isRelevant'];
         //console.log('isRelevant',isRelevant);
         let colsArr = (isRelevant) ? colsArrHighImpact : colsArrLowImpact;
