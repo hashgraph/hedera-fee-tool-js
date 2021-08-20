@@ -780,6 +780,34 @@
         }
       }
     },
+    "TokenFeeScheduleUpdate": {
+      "DEFAULT": {
+			  "type": "transaction",
+			  "info": "Updates a token type's fee schedule to the given list of custom fees.",
+			  "status": "complete",
+			  "isImportant": false,
+			  "usage": {
+				  "numHbarFees": 1,
+				  "numHtsFees": 0,
+				  "numFractionalFees": 0
+			  },
+			  "formulae": {
+          "node": {
+            "bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + memoSize + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + memoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+            "vpt": "numSigsPayer",
+            "bpr": "BASE_TXRESPONSE_SIZE"
+          },
+          "network": {
+            "bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + memoSize + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + memoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+            "vpt": "numSigsTotal",
+            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+          },
+				  "service": {
+					  "rbh": "(numFixedHbarFees * (ACCOUNT_ID_SIZE + AMOUNT_SIZE) + numFixedHtsFees * (2 * ACCOUNT_ID_SIZE) + numFractionalFees * (4 * AMOUNT_SIZE)) * expirationHours"
+				  }
+        }
+			}
+    },
     "TokenMint": {
       "TOKEN_FUNGIBLE_COMMON": {
         "type": "transaction",
