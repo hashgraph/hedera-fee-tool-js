@@ -1,209 +1,209 @@
 {
   "numSigsPayer": {
     "label":"# payer sigs",
-    "tip":"Number of signatures authorizing the transfer of the payment",
+    "tip":"Number of signatures authorizing the transfer of the payment.",
     "min": 1, "max": 10
   },
   "numScheduledSigs": {
     "label":"# scheduled txn sigs",
-    "tip":"Number of signatures on the pending transaction being scheduled",
+    "tip":"Number of signatures on the pending transaction being scheduled.",
     "min": 1, "max": 10
   },
   "numSigsTotal": {
     "label":"# total sigs",
-    "tip":"Total number of signatures on transaction – includes payer signatures and others",
+    "tip":"Total number of signatures on transaction – includes payer signatures and others.",
     "min": 1, "max": 10
   },
   "numVerifiedSigningKeys": {
     "label":"# keys signed so far",
-    "tip":"Number of Ed25519 keys already verified to sign the pending transaction",
+    "tip":"Number of Ed25519 keys already verified to sign the pending transaction.",
     "min": 1, "max": 10
   },
   "numAdminKeys": {
     "label":"# admin keys",
-    "tip":"Number of Ed25519 keys used in an admin key",
+    "tip":"Number of Ed25519 keys used in an admin key.",
     "min": 1, "max": 10
   },
   "numKeys": {
     "label":"# keys",
-    "tip":"Number of public keys attached to created/updated object",
+    "tip":"Number of public keys attached to created/updated object.",
     "min": 1, "max": 10
   },
   "numAdminKeysIncrease": {
     "label":"# admin keys added (relative to existing # admin keys)",
-    "tip":"Number of public keys added to the admin Hedera key",
+    "tip":"Number of public keys added to the admin Hedera key.",
     "min": 1, "max": 10
   },
   "numKycKeysIncrease": {
     "label":"# KYC keys added (relative to existing # KYC keys)",
-    "tip":"Number of public keys added to the KYC Hedera key",
+    "tip":"Number of public keys added to the KYC Hedera key.",
     "min": 1, "max": 10
   },
   "numWipeKeysIncrease": {
     "label":"# wipe keys added (relative to existing # wipe keys)",
-    "tip":"Number of public keys added to the wipe Hedera key",
+    "tip":"Number of public keys added to the wipe Hedera key.",
     "min": 1, "max": 10
   },
   "numSupplyKeysIncrease": {
     "label":"# supply keys added (relative to existing # supply keys)",
-    "tip":"Number of public keys added to the supply Hedera key",
+    "tip":"Number of public keys added to the supply Hedera key.",
     "min": 1, "max": 10
   },
   "numFreezeKeysIncrease": {
     "label":"# freeze keys added (relative to existing # freeze keys)",
-    "tip":"Number of public keys added to the freeze Hedera key",
+    "tip":"Number of public keys added to the freeze Hedera key.",
     "min": 1, "max": 10
   },
   "numKycKeys": {
     "label":"# KYC keys",
-    "tip":"Number of public keys in the KYC Hedera key",
+    "tip":"Number of public keys in the KYC Hedera key.",
     "min": 1, "max": 10
   },
   "numWipeKeys": {
     "label":"# wipe keys",
-    "tip":"Number of public keys in the wipe Hedera key",
+    "tip":"Number of public keys in the wipe Hedera key.",
     "min": 1, "max": 10
   },
   "numSupplyKeys": {
     "label":"# supply keys",
-    "tip":"Number of public keys in the supply Hedera key",
+    "tip":"Number of public keys in the supply Hedera key.",
     "min": 1, "max": 10
   },
   "numFreezeKeys": {
     "label":"# freeze keys",
-    "tip":"Number of public keys in the freeze Hedera key",
+    "tip":"Number of public keys in the freeze Hedera key.",
     "min": 1, "max": 10
   },
   "expirationHours": {
     "label":"Expiration",
     "caption": "hours",
-    "tip":"Storage duration for objects created in state. This parameter is currently fixed to 2160 hours (3 months) while the network is in beta",
+    "tip":"Storage duration for objects created in state. This parameter is currently fixed to 2160 hours (3 months) while the network is in beta.",
     "min": 1, "max": 10000
   },
   "numTokensInvolved": {
     "label":"# tokens involved in the transaction",
-    "tip":"A single transaction can involve multiple tokens",
+    "tip":"A single transaction can involve multiple tokens.",
     "min": 1, "max": 10
   },
   "numTokenBalanceAdjustments": {
     "label":"# token balances adjusted",
-    "tip":"A single transaction can adjust the balances of multiple tokens, for multiple accounts",
+    "tip":"A single transaction can adjust the balances of multiple tokens, for multiple accounts.",
     "min": 1, "max": 10
   },
   "numAccountsOnTransfer": {
     "label":"# accounts on transfer",
-    "tip":"A single transfer can have multiple paying and/or recipient accounts",
+    "tip":"A single transfer can have multiple paying and/or recipient accounts.",
     "min": 1, "max": 10
   },
   "numLivehashes": {
     "label":"# livehashes on account",
-    "tip":"Hashes of identity claims can be attached to an account",
+    "tip":"Hashes of identity claims can be attached to an account.",
     "min": 1, "max": 30
   },
   "numProxyAccounts": {
     "label":"# proxy-staking accounts",
-    "tip":"How many accounts proxy stake to this node account",
+    "tip":"How many accounts proxy stake to this node account.",
     "min": 1, "max": 10000
   },
   "numTokensAssociated": {
     "label":"# tokens associated",
-    "tip":"How many tokens are being associated to the account",
+    "tip":"How many tokens are being associated to the account.",
     "min": 1, "max": 250
   },
   "numTokensDissociated": {
     "label":"# tokens dissociated",
-    "tip":"How many tokens are being dissociated from the account",
+    "tip":"How many tokens are being dissociated from the account.",
     "min": 1, "max": 250
   },
   "numThresholdsDefined": {
     "label":"# thresholds defined",
-    "tip":"How many thresholds for record generation does the account have",
+    "tip":"How many thresholds for record generation does the account have.",
     "min": 1, "max": 2
   },
   "scheduledTransactionBytesSize": {
     "label":"scheduled transaction byte size",
     "caption": "bytes",
-    "tip":"The number of bytes in the serialized form of the scheduled transaction",
+    "tip":"The number of bytes in the serialized form of the scheduled transaction.",
     "min": 100, "max": 6000
   },
   "memoSize": {
     "label":"memo size",
     "caption": "bytes",
-    "tip":"How large is any memo specified for a transaction or entity",
+    "tip":"How large is any memo specified for a transaction or entity.",
     "min": 1, "max": 100
   },
   "tokenNameSizeIncrease": {
     "label":"increase in token name size",
     "caption": "bytes",
-    "tip":"How much larger is the designated token name",
+    "tip":"How much larger is the designated token name.",
     "min": 1, "max": 100
   },
   "tokenSymbolSizeIncrease": {
     "label":"increase in token symbol size",
     "caption": "bytes",
-    "tip":"How much larger is the designated token symbol",
+    "tip":"How much larger is the designated token symbol.",
     "min": 1, "max": 100
   },
   "tokenNameSize": {
     "label":"token name size",
     "caption": "bytes",
-    "tip":"How large is the designated token name",
+    "tip":"How large is the designated token name.",
     "min": 1, "max": 100
   },
   "tokenSymbolSize": {
     "label":"token symbol size",
     "caption": "bytes",
-    "tip":"How large is the designated token symbol",
+    "tip":"How large is the designated token symbol.",
     "min": 1, "max": 100
   },
   "is25HourRecordCreated": {
     "label":"24 hour record created?",
-    "tip":"If a transfer exceeds a sending or receiving threshold, a record will be generated and stored for 24 hours",
+    "tip":"If a transfer exceeds a sending or receiving threshold, a record will be generated and stored for 24 hours.",
     "min": false, "max": true
   },
   "numEntitiesReturned": {
     "label":"# entities returned",
-    "tip":"How many entities are returned in the response",
+    "tip":"How many entities are returned in the response.",
     "min": 1, "max": 100
   },
   "numRecordsReturned": {
     "label":"# records returned",
-    "tip":"How many records are returned in the response",
+    "tip":"How many records are returned in the response.",
     "min": 1, "max": 1000
   },
   "isStateProofRequested": {
     "label":"State proof requested?",
     "caption": "coming soon",
-    "tip":"For any query, is a state proof requested for the response",
+    "tip":"For any query, is a state proof requested for the response.",
     "min": false, "max": true
   },
   "fileSize": {
     "label":"File size",
     "caption": "bytes",
-    "tip":"How large is the file",
+    "tip":"How large is the file.",
     "min": 48, "max": 40000
   },
   "contractConstructorCallParamsSize": {
     "label":"Contract constructor/call params",
     "caption": "bytes",
-    "tip":"Size of a smart contract constructor/call",
+    "tip":"Size of a smart contract constructor/call.",
     "min": 1, "max": 20000
   },
   "contractFunctionReturnSize": {
     "label":"Contract function return size",
     "caption": "bytes",
-    "tip":"Size of the results of a smart contract operation",
+    "tip":"Size of the results of a smart contract operation.",
     "min": 1, "max": 10000
   },
   "smartContractStateStorageDelta": {
     "label":"Contract storage increase",
     "caption": "bytes",
-    "tip":"Growth in smart contract state",
+    "tip":"Growth in smart contract state.",
     "min": 1, "max": 10000
   },
   "gas": {
     "label":"Gas",
-    "tip":"How much gas is consumed by the smart contract operation",
+    "tip":"How much gas is consumed by the smart contract operation.",
     "min": 1, "max": 5000000000
   },
   "requestedRecord": {
@@ -223,13 +223,13 @@
   },
   "topicMessageSize": {
     "label":"Size of message",
-    "tip":"Size of the message",
+    "tip":"Size of the message.",
     "min": 0, "max": 5000
   },
   "topicMemoSize": {
     "label":"topic memo size",
     "caption": "bytes",
-    "tip":"Size of created/updated topic's memo",
+    "tip":"Size of created/updated topic's memo.",
     "min": 0, "max": 100
   },
   "isScheduledPayerDifferent": {
@@ -264,67 +264,67 @@
   },
   "numCustomFeeHbarAdjustments": {
     "label": "# of hbar adjustments in custom fees",
-    "tip": "How many hbar balances change due to custom fee payments",
+    "tip": "How many hbar balances change due to custom fee payments.",
     "min": 0, "max": 20
   },
   "numCustomFeeTokensInvolved": {
     "label": "# of tokens involved in custom fees",
-    "tip": "How many tokens are involved in custom fee payments",
+    "tip": "How many tokens are involved in custom fee payments.",
     "min": 0, "max": 10
   },
   "numCustomFeeTokenAdjustments": {
     "label": "# of token adjustments in custom fees",
-    "tip": "How many token balances change due to custom fee payments",
+    "tip": "How many token balances change due to custom fee payments.",
     "min": 0, "max": 20
   },
   "numFixedHbarCustomFees": {
     "label": "# of fixed hbar custom fees",
-    "tip": "How many custom fees are fixed hbar payments",
+    "tip": "How many custom fees are fixed hbar payments.",
     "min": 0, "max": 10
   },
   "numFixedHtsCustomFees": {
     "label": "# of fixed HTS custom fees",
-    "tip": "How many custom fees are fixed HTS fungible token payments",
+    "tip": "How many custom fees are fixed HTS fungible token payments.",
     "min": 0, "max": 10
   },
   "numFractionalCustomFees": {
     "label": "# of fractional custom fees",
-    "tip": "How many custom fees are fractional token payments",
+    "tip": "How many custom fees are fractional token payments.",
     "min": 0, "max": 10
   },
   "numRoyaltyNoFallbackCustomFees": {
     "label": "# of royalty fees without fallback",
-    "tip": "How many custom fees are royalty fees with no fallback payment",
+    "tip": "How many custom fees are royalty fees with no fallback payment.",
     "min": 0, "max": 10
   },
   "numRoyaltyHbarFallbackCustomFees": {
     "label": "# of royalty fees with hbar fallback",
-    "tip": "How many custom fees are royalty fees with hbar fallback payment",
+    "tip": "How many custom fees are royalty fees with hbar fallback payment.",
     "min": 0, "max": 10
   },
   "numRoyaltyHtsFallbackCustomFees": {
     "label": "# of royalty fees with HTS fallback",
-    "tip": "How many custom fees are royalty fees with hbar fallback payment",
+    "tip": "How many custom fees are royalty fees with hbar fallback payment.",
     "min": 0, "max": 10
   },
   "numNftsMinted": {
     "label": "# of NFTs minted",
-    "tip": "How many new NFTs are created of the given unique token type",
+    "tip": "How many new NFTs are created of the given unique token type.",
     "min": 0, "max": 10
   },
   "numBytesMetadataPerNft": {
     "label": "Bytes of metadata per NFT",
-    "tip": "Average bytes of metadata used for a minted batch of NFTs",
+    "tip": "Average bytes of metadata used for a minted batch of NFTs.",
     "min": 0, "max": 100
   },
   "numSerialNosBurned": {
     "label": "# of NFT serial numbers burned",
-    "tip": "How many NFT serial numbers are burned",
+    "tip": "How many NFT serial numbers are burned.",
     "min": 0, "max": 10
   },
   "numSerialNosWiped": {
     "label": "# of NFT serial numbers wiped",
-    "tip": "How many NFT serial numbers are wiped",
+    "tip": "How many NFT serial numbers are wiped.",
     "min": 0, "max": 10
   },
   "customFeeKey": {
@@ -340,6 +340,11 @@
   "numHtsFees": {
     "label":"# HTS fees",
     "tip":"Number of HTS fees updated.",
+    "min": 0, "max": 10
+  },
+  "numFractionalFees": {
+    "label":"# fractional fees",
+    "tip":"Number of fractional fees updated.",
     "min": 0, "max": 10
   }
 }
