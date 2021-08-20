@@ -804,8 +804,8 @@
           },
 	  "service": {
 	    "rbh": "(numFixedHbarFees * (ACCOUNT_ID_SIZE + AMOUNT_SIZE) + numFixedHtsFees * (2 * ACCOUNT_ID_SIZE) + numFractionalFees * (4 * AMOUNT_SIZE)) * expirationHours"
-	  }
-	}
+          }
+        }
       }
     },
     "TokenMint": {
