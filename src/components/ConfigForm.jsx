@@ -28,6 +28,14 @@ import parse from 'html-react-parser';
 import "../css/ConfigForm.css";
 
 class ConfigForm extends React.Component {
+  apiTypeLabels = {
+    "DEFAULT": "Default",
+    "TOKEN_FUNGIBLE_COMMON": "Fungible Token",
+    "TOKEN_NON_FUNGIBLE_UNIQUE": "Non-Fungible Token",
+    "TOKEN_FUNGIBLE_COMMON_WITH_CUSTOM_FEES": "Custom Fungible Token",
+    "TOKEN_NON_FUNGIBLE_UNIQUE_WITH_CUSTOM_FEES": "Custom Non-Fungible Token"
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -36,8 +44,11 @@ class ConfigForm extends React.Component {
       parametersToggleClass: "hideParameters"
     };
 
+    //this.apiTypeLabels.DEFAULT = this.prop.service;
+
     this.handleConfigUpdate = this.handleConfigUpdate.bind(this);
     this.handleParametersToggle = this.handleParametersToggle.bind(this);
+    this.handleTypeUpdate = this.handleTypeUpdate.bind(this);
   }
 
   handleParametersToggle(e) {
@@ -49,9 +60,19 @@ class ConfigForm extends React.Component {
     }
   }
 
+  handleTypeUpdate(e) {
+    console.log('handleTypeUpdate');
+    var apiTypeSelect = document.querySelector("#apitype"),
+        apiTypeSelection = apiTypeSelect.value;
+
+        this.props.selectedTypeHandler(apiTypeSelection);
+        console.log('***** apiTypeSelect.value:',apiTypeSelection);
+  }
+
   handleConfigUpdate(e) {
     let usageParams = {};
     let tId = e.target.id;
+    this.props.context.setState({usageParams: usageParams});
     Object.keys(this.props.usageParams).forEach((key) => {
       var item = document.querySelector("#form_" + key);
       if (isNull(item)) {
@@ -87,13 +108,12 @@ class ConfigForm extends React.Component {
       usageParams[key] = val;
     });
 
-    this.props.context.setState({usageParams: usageParams});
-
+    console.log('selectedAPI:',this.props.context.state.selectedApi,', seletedType:',this.props.context.state.selectedType);
     let usageAndPrice;
-    if (this.props.context.state.selectedApi !== null) {
+    if (this.props.context.state.selectedApi !== null && this.props.context.state.selectedType !== null) {
       let api = this.props.context.state.selectedApi;
-      let apiParams = this.props.context.state.apis[api];
-      usageAndPrice = this.props.context.price.calculatePrice(api, apiParams, usageParams);
+      let apiParams = this.props.context.state.apis[api][this.props.context.state.selectedType];
+      usageAndPrice = this.props.context.price.calculatePrice(api, apiParams, usageParams, this.props.context.state.selectedType);
       this.props.context.setState({
         totalUsage: usageAndPrice.usage,
         totalPrice: usageAndPrice.price
@@ -124,14 +144,19 @@ class ConfigForm extends React.Component {
     return labelText + '<span class="last-word">'+labelTextLastWord+'</span>';
   }
 
+  getApiTypeLabel(type) {
+    return this.apiTypeLabels[type];
+  }
+
   render() {
     if (this.props.selectedApi == null) {
       return (
         <div className="dropdownSelectMessageOuter"/>
       );
     }
-    let selectedApiParams = this.props.apis[this.props.selectedApi];
-    if (selectedApiParams.status === "incomplete") {
+    let selectedApiParams = this.props.apis[this.props.selectedApi][this.props.selectedType];
+    //console.log('*selectedApiParams',selectedApiParams);
+    if (selectedApiParams === undefined || selectedApiParams.status === "incomplete") {
         return (
           <div className="dropdownSelectMessageOuter">
             <div className="dropdownSelectMessage">
@@ -144,70 +169,87 @@ class ConfigForm extends React.Component {
         );
     }
 
+    var apiTypesMenuOptions = [],
+        showTypeMenu = true;
+    for(const prop in this.props.apis[this.props.selectedApi]) {
+      //console.log('apiTypesMenuOptions = ',prop,': '+this.props.apis[this.props.selectedApi][prop]);
+      let typeLabel = this.getApiTypeLabel(prop);
+      apiTypesMenuOptions.push({type: prop, label: typeLabel});
+    }
+
+    if(apiTypesMenuOptions.length === 1) {
+      showTypeMenu = false;
+    }   
+    console.log('type menu length:',apiTypesMenuOptions.length,', showTypeMenu:',showTypeMenu);
+
     let colsArrHighImpact = [];
     let colsArrLowImpact = [];
 
     const usageParams = this.props.usageParams;
     console.log("usageParams in config form: ", usageParams);
 
-    Object.entries(usageParams).forEach(([key, value]) => {
-      let isRelevant = selectedApiParams.relevantUsage[key]['isRelevant'];
-      let colsArr = (isRelevant) ? colsArrHighImpact : colsArrLowImpact;
-      // console.log('value = ', value);
-      let formControl;
-      let dropDownBg;
-      if (value === true || value === false) {
-        // Special treatment for true/false values - turn them into dropdown list
-        formControl = (
+    if(usageParams !== undefined && usageParams !== null) {
+      Object.entries(usageParams).forEach(([key, value]) => {
+
+        let isRelevant = selectedApiParams.relevantUsage[key]['isRelevant'];
+        //console.log('isRelevant',isRelevant);
+        let colsArr = (isRelevant) ? colsArrHighImpact : colsArrLowImpact;
+        // console.log('value = ', value);
+        let formControl;
+        let dropDownBg;
+        if (value === true || value === false) {
+          // Special treatment for true/false values - turn them into dropdown list
+          formControl = (
+              <Form.Control
+                as="select"
+                value={value}
+                onChange={this.handleConfigUpdate}
+                key={"form_" + key}
+                id={"form_" + key}
+              >
+                <option value={true}>Yes</option>
+                <option value={false}>No</option>
+              </Form.Control>);
+          dropDownBg = <div className="select-bg"></div>;
+        } else {
+          let onChangeHandler = this.handleConfigUpdate;
+          if (value === 2160) {
+            onChangeHandler = () => {};
+          }
+          // normal values. just add them into simple textfields
+          formControl = (
             <Form.Control
-              as="select"
               value={value}
-              onChange={this.handleConfigUpdate}
+              onChange={onChangeHandler}
               key={"form_" + key}
               id={"form_" + key}
-            >
-              <option value={true}>Yes</option>
-              <option value={false}>No</option>
-            </Form.Control>);
-        dropDownBg = <div className="select-bg"></div>;
-      } else {
-        let onChangeHandler = this.handleConfigUpdate;
-        if (value === 2160) {
-          onChangeHandler = () => {};
+              type="text"
+            />);
         }
-        // normal values. just add them into simple textfields
-        formControl = (
-          <Form.Control
-            value={value}
-            onChange={onChangeHandler}
-            key={"form_" + key}
-            id={"form_" + key}
-            type="text"
-          />);
-      }
-      colsArr.push(
-        <Form.Group as={Col} className="configFormFormGroup">
-          <OverlayTrigger
-            trigger="hover"
-            key={"div_megamenu_tooltip_key_" + key}
-            placement="top"
-            delay={{ show: 500, hide: 150 }}
-            overlay={
-              <Popover id={"div_megamenu_tooltip_id_" + key}>
-                {usageParamProperties[key].tip}
-              </Popover>
-            }
-          >
-            <Form.Label style={{ textAlign: "left" }}>
-              {parse(this.formatParamLabel(usageParamProperties[key].label))}
-            </Form.Label>
-          </OverlayTrigger>
-          {dropDownBg}
-          {formControl}
-          <span className="label-caption">{usageParamProperties[key].caption}</span>
-        </Form.Group>
-      )
-    });
+        colsArr.push(
+          <Form.Group as={Col} className="configFormFormGroup">
+            <OverlayTrigger
+              trigger="hover"
+              key={"div_megamenu_tooltip_key_" + key}
+              placement="top"
+              delay={{ show: 500, hide: 150 }}
+              overlay={
+                <Popover id={"div_megamenu_tooltip_id_" + key}>
+                  {usageParamProperties[key].tip}
+                </Popover>
+              }
+            >
+              <Form.Label style={{ textAlign: "left" }}>
+                {parse(this.formatParamLabel(usageParamProperties[key].label))}
+              </Form.Label>
+            </OverlayTrigger>
+            {dropDownBg}
+            {formControl}
+            <span className="label-caption">{usageParamProperties[key].caption}</span>
+          </Form.Group>
+        )
+      });
+    }
 
     var formElementsHighImpact = [];
     var formElementsLowImpact = [];
@@ -245,18 +287,34 @@ class ConfigForm extends React.Component {
     }
     return (
       <div className="panel-body">
-        <div className="title-row">
-          <h2 className="select-info"><span>Enter the</span>API call parameters</h2>
-          <div className="title-breadcrumb">
-            <span className="title-breadcrumb-label">({this.props.selectedApi})</span>
-          </div>
-        </div>
         <Form>
+          <div className={showTypeMenu===true?'api-type-menu show':'api-type-menu hide'}>
+            <h2 className="select-info"><span>Select a</span>Token type</h2>
+            <div className="select-type"> 
+              <div className="select-bg"></div>
+              <Form.Control
+                as="select"
+                value={this.props.selectedType}
+                onChange={this.handleTypeUpdate}
+                key="apitype"
+                id="apitype"
+              >
+                {apiTypesMenuOptions.map((typeData) =>
+                  <option key={typeData.type} value={typeData.type}>{typeData.label==='Default'?this.props.selectedService:typeData.label}</option>
+                )}
+              </Form.Control>
+            </div>     
+          </div>
+
+          <div className="title-row">
+            <h2 className="select-info"><span>Enter the</span>API call parameters</h2>
+            <div className="title-breadcrumb">
+              <span className="title-breadcrumb-label">({this.props.selectedApi})</span>
+            </div>
+          </div>
           {formElementsHighImpact}
           <h3 className={'parameter-title parameter-title-2 '}>Parameters with minimal influence on price</h3>
- 
           {formElementsLowImpact}
-  
         </Form>
       </div>
     );

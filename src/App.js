@@ -36,7 +36,7 @@ import EstimatorCartDisplay from "./components/EstimatorCartDisplay.jsx";
 import EstimatorCart from "./components/EstimatorCart.jsx";
 import MegaMenu from "./components/MegaMenu.jsx";
 import PriceDisplay from "./components/PriceDisplay.jsx";
-import hapiApis from './resources/APIsAndUsage.json';
+import hapiApis from './resources/typedUsageFormulas.json';
 import axios from "axios";
 
 require("dotenv").config();
@@ -45,48 +45,84 @@ class App extends Component {
   constructor(props) {
     super(props);
     let apis = {};
-    Object.entries(hapiApis).forEach(([service, serviceOps]) => {
-      Object.entries(serviceOps).forEach(([operation, opParams]) => {
-        apis[operation] = opParams;
+    this.apiServiceGuide = {};
+    Object.entries(hapiApis).forEach(([service, serviceOps]) => { 
+      // service (Crypto, consensus, tokens...)
+      // serviceOps (CryptoCreate, CryptoAccountAutoRenew...)
+      //console.log('==service:',service,'====================');
+      Object.entries(serviceOps).forEach(([operation, opTypes]) => { 
+        // serviceOps (CryptoCreate, CryptoAccountAutoRenew...)
+        // opType (DEFAULT, TOKEN_FUNGIBLE_COMMON...)
+        // apis[cryptoCreate] = DEFAULT{type, status, usage...};
+        apis[operation] = opTypes;
+        this.apiServiceGuide[operation] = service;
       })
     });
+
     this.state = {
       nameFormState: "",
       exchangeRate: '',
       usageBreakdownDivOpen: true,
       isAuthenticated: true,
       estimatorCart: new EstimatorCart(),
+      selectedService: null,
       selectedApi: null,
+      selectedType: null,
       services: hapiApis,
       apis: apis,
       totalPrice: 0,
       totalUsage: null,
     };
+
     const NUM_NODES = 13;
     const CONSTANT_TERM_WEIGHT = 0.2;
     this.price = new Price(NUM_NODES, CONSTANT_TERM_WEIGHT, apis);
     this.apiSelectHandler = this.apiSelectHandler.bind(this);
     this.addToEstimatorButtonClickHandler = this.addToEstimatorButtonClickHandler.bind(this);
+    this.selectedTypeHandler = this.selectedTypeHandler.bind(this)
   }
 
-  apiSelectHandler(selectedApi) {
-    console.log("Selected api = ", selectedApi);
-    let usageParams = null;
-    if (selectedApi !== null) {
-      // Create deep copy to not modify the instance in 'apis'.
-      usageParams = JSON.parse(JSON.stringify(this.state.apis[selectedApi].usage));
-    }
+  selectedTypeHandler(type) {
+    console.log('selectedTypeHandler:',type);
     this.setState({
+      selectedType: type
+    }, () => {console.log('selectedTypeHandler selectedType:',this.state.selectedType)});
+  }
+
+  apiSelectHandler(selectedApi, selectedType) {
+    console.log("apiSelectHandler Selected api = ", selectedApi);
+    let usageParams = null;
+
+    if (selectedApi !== null && selectedType !== null && this.state.apis[selectedApi][selectedType] !== undefined) {
+      // Create deep copy to not modify the instance in 'apis'.
+      usageParams = JSON.parse(JSON.stringify(this.state.apis[selectedApi][selectedType].usage));
+    } else if(selectedApi !== null && selectedType === undefined) {
+
+      var tUsage;
+      for(const prop in this.state.apis[selectedApi]) {
+        console.log(prop,': '+this.state.apis[selectedApi][prop]);
+        tUsage = this.state.apis[selectedApi][prop].usage;
+        selectedType = prop;
+        break;
+      }
+      usageParams = JSON.parse(JSON.stringify(tUsage));
+    }
+    console.log('apiSelectHandler Selected type = ',selectedType);
+    //console.log('this.apiServiceGuide[',selectedApi,'] = ',this.apiServiceGuide[selectedApi]);
+   // console.log('this.apiServiceGuide[selectedApi] = ',this.apiServiceGuide);
+    this.setState({
+      selectedService: this.apiServiceGuide[selectedApi],
       selectedApi: selectedApi,
+      selectedType: selectedType,
       usageParams: usageParams
     });
 
 
     let usageAndPrice;
-    if (selectedApi !== null) {
+    if (selectedApi !== null && selectedType !== null) {
       let api = selectedApi;
-      let apiParams = this.state.apis[api];
-      usageAndPrice = this.price.calculatePrice(api, apiParams, usageParams);
+      let apiParams = this.state.apis[api][selectedType];
+      usageAndPrice = this.price.calculatePrice(api, apiParams, usageParams, selectedType);
       this.setState({
         totalUsage: usageAndPrice.usage,
         totalPrice: usageAndPrice.price
@@ -97,9 +133,10 @@ class App extends Component {
   }
 
   addToEstimatorButtonClickHandler() {
-    if (this.state.selectedApi !== null) {
+    if (this.state.selectedApi !== null && this.state.selectedType !== null) {
       this.state.estimatorCart.addEstimate(
         this.state.selectedApi,
+        this.state.selectedType,
         this.state.totalPrice,
         1
       );
@@ -114,6 +151,7 @@ class App extends Component {
         <MegaMenu
           apiSelectHandler={this.apiSelectHandler}
           selectedApi={this.state.selectedApi}
+          selectedType={this.state.selectedType}
           services={this.state.services}
         />
       </div>
@@ -129,8 +167,11 @@ class App extends Component {
             key={Math.random()}
             context={this}
             apis={this.state.apis}
+            selectedService={this.state.selectedService}
             selectedApi={this.state.selectedApi}
+            selectedType={this.state.selectedType}
             usageParams={this.state.usageParams}
+            selectedTypeHandler={this.selectedTypeHandler}
           />
         </div>
         <PriceDisplay
@@ -235,10 +276,10 @@ class App extends Component {
       })
 
       let usageAndPrice;
-      if (this.state.selectedApi !== null) {
+      if (this.state.selectedApi !== null && this.state.selectedType !== null) {
         let api = this.state.selectedApi;
-        let apiParams = this.state.apis[api];
-        usageAndPrice = this.price.calculatePrice(api, apiParams, this.state.usageParams);
+        let apiParams = this.state.apis[api][this.state.selectedType];
+        usageAndPrice = this.price.calculatePrice(api, apiParams, this.state.usageParams, this.state.selectedType);
         this.setState({
           totalUsage: usageAndPrice.usage,
           totalPrice: usageAndPrice.price

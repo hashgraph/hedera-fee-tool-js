@@ -25,7 +25,15 @@ class Relevancy extends React.Component {
 
   render() {
     let children = [];
-    Object.entries(this.props.apis).forEach(([api, apiParams]) => {
+    Object.entries(this.props.apis).forEach(([api, apiTypes]) => {
+
+      let apiParams = undefined;
+      for(const prop in this.props.apis[api]) {
+        //console.log(prop,': '+apis[api][prop]);
+        apiParams = this.props.apis[api][prop];
+        break;
+      }
+
       Object.entries(apiParams.relevantUsage).forEach(([usageParam, paramValue]) => {
         children.push(
           <tr key={api + "_" + usageParam}>
