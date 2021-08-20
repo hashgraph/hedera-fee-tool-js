@@ -312,6 +312,11 @@
     "tip": "How many new NFTs are created of the given unique token type",
     "min": 0, "max": 10
   },
+  "numBytesMetadata": {
+    "label": "# bytes of NFT metadata",
+    "tip": "How many bytes of metadata are used by a given NFT",
+    "min": 0, "max": 100
+  },
   "numBytesMetadataPerNft": {
     "label": "Bytes of metadata per NFT",
     "tip": "Average bytes of metadata used for a minted batch of NFTs",

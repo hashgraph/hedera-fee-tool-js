@@ -1182,6 +1182,23 @@
           }
         }
       }
+    },
+    "TokenGetNftInfo": {
+      "DEFAULT": {
+        "type": "query",
+        "info": "Retrieves information about a given NFT. ",
+        "status": "complete",
+        "isImportant": false,
+        "usage": {
+          "numBytesMetadata": 100
+        },
+        "formulae": {
+          "node": {
+            "bpt": "BASE_QUERYHEADER_SIZE + TOKEN_ID_SIZE + SERIAL_NO_SIZE",
+            "bpr": "BASE_QUERYRESPONSE_SIZE + BASE_NFT_REPR_SIZE + numBytesMetadata"
+          }
+        }
+      }
     }
   },
   "Smart Contracts": {
