@@ -780,6 +780,46 @@
         }
       }
     },
+    "TokenFeeScheduleUpdate": {
+      "DEFAULT": {
+	"type": "transaction",
+	"info": "Updates a token type's fee schedule to the given list of custom fees.",
+	"status": "complete",
+	"isImportant": false,
+	"usage": {
+	  "numSigsPayer": 1,
+          "numSigsTotal": 1,
+          "expirationHours": 2160,
+          "newNumFixedHbarCustomFees": 1,
+          "newNumFixedHtsCustomFees": 0,
+          "newNumFractionalCustomFees": 0,
+          "newNumRoyaltyNoFallbackCustomFees": 0,
+          "newNumRoyaltyHbarFallbackCustomFees": 0,
+          "newNumRoyaltyHtsFallbackCustomFees": 0,
+          "increaseInNumFixedHbarCustomFees": 1,
+          "increaseInNumFixedHtsCustomFees": 0,
+          "increaseInNumFractionalCustomFees": 0,
+          "increaseInNumRoyaltyNoFallbackCustomFees": 0,
+          "increaseInNumRoyaltyHbarFallbackCustomFees": 0,
+          "increaseInNumRoyaltyHtsFallbackCustomFees": 0
+	},
+	"formulae": {
+          "node": {
+            "bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + memoSize + newNumFixedHbarCustomFees * FIXED_HBAR_FEE_SIZE + newNumFixedHtsCustomFees * FIXED_HTS_FEE_SIZE + newNumFractionalCustomFees * FRACTIONAL_FEE_SIZE + newNumRoyaltyNoFallbackCustomFees * ROYALTY_FEE_NO_FALLBACK_SIZE + newNumFixedHbarCustomFees * ROYALTY_FEE_HBAR_FALLBACK_SIZE + newNumRoyaltyHtsFallbackCustomFees * ROYALTY_FEE_HTS_FALLBACK_SIZE",
+            "vpt": "numSigsPayer",
+            "bpr": "BASE_TXRESPONSE_SIZE"
+          },
+          "network": {
+            "bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + memoSize + newNumFixedHbarCustomFees * FIXED_HBAR_FEE_SIZE + newNumFixedHtsCustomFees * FIXED_HTS_FEE_SIZE + newNumFractionalCustomFees * FRACTIONAL_FEE_SIZE + newNumRoyaltyNoFallbackCustomFees * ROYALTY_FEE_NO_FALLBACK_SIZE + newNumFixedHbarCustomFees * ROYALTY_FEE_HBAR_FALLBACK_SIZE + newNumRoyaltyHtsFallbackCustomFees * ROYALTY_FEE_HTS_FALLBACK_SIZE",
+            "vpt": "numSigsTotal",
+            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+          },
+	  "service": {
+	    "rbh": "(increaseInNumFixedHbarCustomFees * FIXED_HBAR_FEE_SIZE + increaseInNumFixedHtsCustomFees * FIXED_HTS_FEE_SIZE + increaseInNumFractionalCustomFees * FRACTIONAL_FEE_SIZE + increaseInNumRoyaltyNoFallbackCustomFees * ROYALTY_FEE_NO_FALLBACK_SIZE + increaseInNumFixedHbarCustomFees * ROYALTY_FEE_HBAR_FALLBACK_SIZE + increaseInNumRoyaltyHtsFallbackCustomFees * ROYALTY_FEE_HTS_FALLBACK_SIZE) * expirationHours"
+          }
+        }
+      }
+    },
     "TokenMint": {
       "TOKEN_FUNGIBLE_COMMON": {
         "type": "transaction",
@@ -1139,6 +1179,23 @@
           "node": {
             "bpt": "BASE_QUERYHEADER_SIZE + TOKEN_ID_SIZE",
             "bpr": "BASE_QUERYRESPONSE_SIZE + BASE_TOKEN_SIZE + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE)  + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)"
+          }
+        }
+      }
+    },
+    "TokenGetNftInfo": {
+      "DEFAULT": {
+        "type": "query",
+        "info": "Retrieves information about a given NFT. ",
+        "status": "complete",
+        "isImportant": false,
+        "usage": {
+          "numBytesMetadata": 100
+        },
+        "formulae": {
+          "node": {
+            "bpt": "BASE_QUERYHEADER_SIZE + TOKEN_ID_SIZE + SERIAL_NO_SIZE",
+            "bpr": "BASE_QUERYRESPONSE_SIZE + BASE_NFT_REPR_SIZE + numBytesMetadata"
           }
         }
       }
