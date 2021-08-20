@@ -332,14 +332,64 @@
     "tip":"Custom fees for HTS tokens.",
     "min": false, "max": true
   },
-  "numHbarFees": {
-    "label":"# hbar fees",
-    "tip":"Number of hbar fees updated.",
+  "newNumFixedHbarCustomFees": {
+    "label": "new # of fixed hbar custom fees",
+    "tip": "How many new custom fees are fixed hbar payments",
     "min": 0, "max": 10
   },
-  "numHtsFees": {
-    "label":"# HTS fees",
-    "tip":"Number of HTS fees updated.",
+  "newNumFixedHtsCustomFees": {
+    "label": "new # of fixed HTS custom fees",
+    "tip": "How many new custom fees are fixed HTS fungible token payments",
+    "min": 0, "max": 10
+  },
+  "newNumFractionalCustomFees": {
+    "label": "new # of fractional custom fees",
+    "tip": "How many new custom fees are fractional token payments",
+    "min": 0, "max": 10
+  },
+  "newNumRoyaltyNoFallbackCustomFees": {
+    "label": "new # of royalty fees without fallback",
+    "tip": "How many new custom fees are royalty fees with no fallback payment",
+    "min": 0, "max": 10
+  },
+  "newNumRoyaltyHbarFallbackCustomFees": {
+    "label": "new # of royalty fees with hbar fallback",
+    "tip": "How many new custom fees are royalty fees with hbar fallback payment",
+    "min": 0, "max": 10
+  },
+  "newNumRoyaltyHtsFallbackCustomFees": {
+    "label": "new # of royalty fees with HTS fallback",
+    "tip": "How many new custom fees are royalty fees with hbar fallback payment",
+    "min": 0, "max": 10
+  },
+  "increaseInNumFixedHbarCustomFees": {
+    "label": "increased # of fixed hbar custom fees",
+    "tip": "Net increase in how many custom fees are fixed hbar payments",
+    "min": 0, "max": 10
+  },
+  "increaseInNumFixedHtsCustomFees": {
+    "label": "increased # of fixed HTS custom fees",
+    "tip": "Net increase in how many custom fees are fixed HTS fungible token payments",
+    "min": 0, "max": 10
+  },
+  "increaseInNumFractionalCustomFees": {
+    "label": "increased # of fractional custom fees",
+    "tip": "Net increase in how many custom fees are fractional token payments",
+    "min": 0, "max": 10
+  },
+  "increaseInNumRoyaltyNoFallbackCustomFees": {
+    "label": "increased # of royalty fees without fallback",
+    "tip": "Net increase in how many custom fees are royalty fees with no fallback payment",
+    "min": 0, "max": 10
+  },
+  "increaseInNumRoyaltyHbarFallbackCustomFees": {
+    "label": "increased # of royalty fees with hbar fallback",
+    "tip": "Net increase in how many custom fees are royalty fees with hbar fallback payment",
+    "min": 0, "max": 10
+  },
+  "increaseInNumRoyaltyHtsFallbackCustomFees": {
+    "label": "increased # of royalty fees with HTS fallback",
+    "tip": "Net increase in how many custom fees are royalty fees with hbar fallback payment",
     "min": 0, "max": 10
   }
 }
