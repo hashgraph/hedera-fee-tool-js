@@ -219,6 +219,12 @@ class Price {
             this.sumProduct(this.feeSchedules[api][apiType], actualUsage) /
             (this.model.FEE_SCHEDULE_MULTIPLIER * this.model.USD_TO_TINYCENTS)
         );
+        if (customApiParams.type === 'query') {
+            if (api !== 'CryptoGetAccountBalance' && api !== 'TransactionGetReceipt') {
+                // Incorporate price of CryptoTransfer used to pay node
+                this.normalizedPrice += 0.0001;
+            }
+        }
 
         return ({
             usage: actualUsage,

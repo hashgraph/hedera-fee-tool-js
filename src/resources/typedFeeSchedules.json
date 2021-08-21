@@ -834,7 +834,7 @@
   "TokenCreate": {
     "TOKEN_FUNGIBLE_COMMON_WITH_CUSTOM_FEES": {
       "node": {
-        "constant": 393746195920,
+        "constant": 452746195920,
         "bpt": 17485616,
         "vpt": 43714039850,
         "rbh": 11657,
@@ -872,7 +872,7 @@
     },
     "TOKEN_FUNGIBLE_COMMON": {
       "node": {
-        "constant": 197306974233,
+        "constant": 213306974233,
         "bpt": 8762076,
         "vpt": 21905189240,
         "rbh": 5841,
@@ -910,7 +910,7 @@
     },
     "TOKEN_NON_FUNGIBLE_UNIQUE": {
       "node": {
-        "constant": 197031853851,
+        "constant": 213031853851,
         "bpt": 8749858,
         "vpt": 21874645140,
         "rbh": 5833,
@@ -948,7 +948,7 @@
     },
     "TOKEN_NON_FUNGIBLE_UNIQUE_WITH_CUSTOM_FEES": {
       "node": {
-        "constant": 393198370765,
+        "constant": 452198370765,
         "bpt": 17461288,
         "vpt": 43653219832,
         "rbh": 11641,
