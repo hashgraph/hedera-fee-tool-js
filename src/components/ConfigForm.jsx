@@ -66,7 +66,7 @@ class ConfigForm extends React.Component {
         apiTypeSelection = apiTypeSelect.value;
 
         this.props.selectedTypeHandler(apiTypeSelection);
-        console.log('***** apiTypeSelect.value:',apiTypeSelection);
+        //console.log('***** apiTypeSelect.value:',apiTypeSelection);
   }
 
   handleConfigUpdate(e) {
@@ -190,7 +190,6 @@ class ConfigForm extends React.Component {
 
     if(usageParams !== undefined && usageParams !== null) {
       Object.entries(usageParams).forEach(([key, value]) => {
-
         let isRelevant = selectedApiParams.relevantUsage[key]['isRelevant'];
         //console.log('isRelevant',isRelevant);
         let colsArr = (isRelevant) ? colsArrHighImpact : colsArrLowImpact;

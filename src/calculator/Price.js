@@ -138,6 +138,7 @@ class Price {
             Object.entries(apiTypes).forEach(([apiType, apiParams]) => {            
 
                 let relevantUsage = {};
+                //console.log('api:',api,', apiType:',apiType);
                 const basePrice = this.calculatePrice(api, apiParams, null, apiType).price;
 
                 Object.entries(apiParams.usage).forEach(([apiUsageParam, paramValue]) => {
@@ -184,7 +185,7 @@ class Price {
 
     // apiParams are not modified
     calculatePrice(api, apiParams, customUsage, apiType) {
-        // console.log("CalculatePrice: API: ", api);
+        //console.log("CalculatePrice: API: ", api);
 
         // DO WE NEED THESE ARTIFICIAL ADJUSTMENTS
         const ARTIFICIAL_HIGH_MULTIPLIER_RBH = 16910000;
@@ -211,7 +212,9 @@ class Price {
                 actualUsage.service.sbh = math.eval(actualUsage.service.sbh * ARTIFICIAL_HIGH_MULTIPLIER_SBH);
             }
         }
-        
+        // console.log('this.feeSchedules',this.feeSchedules);
+        // console.log('this.feeSchedules[api]',this.feeSchedules[api]);
+        // console.log('this.feeSchedules[api][apiType]',this.feeSchedules[api][apiType]);
         this.normalizedPrice = math.eval(
             this.sumProduct(this.feeSchedules[api][apiType], actualUsage) /
             (this.model.FEE_SCHEDULE_MULTIPLIER * this.model.USD_TO_TINYCENTS)

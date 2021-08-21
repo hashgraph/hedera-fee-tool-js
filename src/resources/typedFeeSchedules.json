@@ -2772,5 +2772,21 @@
         "max": 1000000000000000
       }
     }
+  },
+  "TokenGetNftInfo": {
+    "DEFAULT": {
+      "node": {
+        "constant": 54605,
+        "bpt": 87,
+        "vpt": 218244,
+        "rbh": 0,
+        "sbh": 0,
+        "gas": 1,
+        "bpr": 87,
+        "sbpr": 2,
+        "min": 0,
+        "max": 1000000000000000
+      }
+    }
   }
 }
