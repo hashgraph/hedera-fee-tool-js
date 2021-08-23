@@ -54,11 +54,6 @@
     "tip":"Number of public keys added to the freeze Hedera key",
     "min": 1, "max": 10
   },
-  "numAdminKeys": {
-    "label":"# admin keys",
-    "tip":"Number of public keys in the admin Hedera key",
-    "min": 1, "max": 10
-  },
   "numKycKeys": {
     "label":"# KYC keys",
     "tip":"Number of public keys in the KYC Hedera key",
@@ -131,34 +126,10 @@
     "tip":"The number of bytes in the serialized form of the scheduled transaction",
     "min": 100, "max": 6000
   },
-  "txMemoSize": {
-    "label":"transaction memo size",
+  "memoSize": {
+    "label":"memo size",
     "caption": "bytes",
-    "tip":"The size of the memo on the transaction",
-    "min": 1, "max": 100
-  },
-  "tokenNameSizeIncrease": {
-    "label":"increase in token name size",
-    "caption": "bytes",
-    "tip":"How much larger is the designated token name",
-    "min": 1, "max": 100
-  },
-  "tokenSymbolSizeIncrease": {
-    "label":"increase in token symbol size",
-    "caption": "bytes",
-    "tip":"How much larger is the designated token symbol",
-    "min": 1, "max": 100
-  },
-  "tokenNameSize": {
-    "label":"token name size",
-    "caption": "bytes",
-    "tip":"How large is the designated token name",
-    "min": 1, "max": 100
-  },
-  "tokenSymbolSize": {
-    "label":"token symbol size",
-    "caption": "bytes",
-    "tip":"How large is the designated token symbol",
+    "tip":"How large is any memo specified for a transaction or entity",
     "min": 1, "max": 100
   },
   "tokenNameSizeIncrease": {
@@ -255,10 +226,10 @@
     "tip":"Size of the message",
     "min": 0, "max": 5000
   },
-  "entityMemoSize": {
-    "label":"entity memo size",
+  "topicMemoSize": {
+    "label":"topic memo size",
     "caption": "bytes",
-    "tip":"Size of created/updated entity's memo",
+    "tip":"Size of created/updated topic's memo",
     "min": 0, "max": 100
   },
   "isScheduledPayerDifferent": {
@@ -285,5 +256,145 @@
     "label":"expiration time?",
     "tip":"If expirationTime is specified?",
     "min": false, "max": true
+  },
+  "numNftTransfers": {
+    "label": "# of NFTs transferred",
+    "tip":"How many NFTs change owners in the transfer",
+    "min": 0, "max": 10
+  },
+  "numCustomFeeHbarAdjustments": {
+    "label": "# of hbar adjustments in custom fees",
+    "tip": "How many hbar balances change due to custom fee payments",
+    "min": 0, "max": 20
+  },
+  "numCustomFeeTokensInvolved": {
+    "label": "# of tokens involved in custom fees",
+    "tip": "How many tokens are involved in custom fee payments",
+    "min": 0, "max": 10
+  },
+  "numCustomFeeTokenAdjustments": {
+    "label": "# of token adjustments in custom fees",
+    "tip": "How many token balances change due to custom fee payments",
+    "min": 0, "max": 20
+  },
+  "numFixedHbarCustomFees": {
+    "label": "# of fixed hbar custom fees",
+    "tip": "How many custom fees are fixed hbar payments",
+    "min": 0, "max": 10
+  },
+  "numFixedHtsCustomFees": {
+    "label": "# of fixed HTS custom fees",
+    "tip": "How many custom fees are fixed HTS fungible token payments",
+    "min": 0, "max": 10
+  },
+  "numFractionalCustomFees": {
+    "label": "# of fractional custom fees",
+    "tip": "How many custom fees are fractional token payments",
+    "min": 0, "max": 10
+  },
+  "numRoyaltyNoFallbackCustomFees": {
+    "label": "# of royalty fees without fallback",
+    "tip": "How many custom fees are royalty fees with no fallback payment",
+    "min": 0, "max": 10
+  },
+  "numRoyaltyHbarFallbackCustomFees": {
+    "label": "# of royalty fees with hbar fallback",
+    "tip": "How many custom fees are royalty fees with hbar fallback payment",
+    "min": 0, "max": 10
+  },
+  "numRoyaltyHtsFallbackCustomFees": {
+    "label": "# of royalty fees with HTS fallback",
+    "tip": "How many custom fees are royalty fees with hbar fallback payment",
+    "min": 0, "max": 10
+  },
+  "numNftsMinted": {
+    "label": "# of NFTs minted",
+    "tip": "How many new NFTs are created of the given unique token type",
+    "min": 0, "max": 10
+  },
+  "numBytesMetadata": {
+    "label": "# bytes of NFT metadata",
+    "tip": "How many bytes of metadata are used by a given NFT",
+    "min": 0, "max": 100
+  },
+  "numBytesMetadataPerNft": {
+    "label": "Bytes of metadata per NFT",
+    "tip": "Average bytes of metadata used for a minted batch of NFTs",
+    "min": 0, "max": 100
+  },
+  "numSerialNosBurned": {
+    "label": "# of NFT serial numbers burned",
+    "tip": "How many NFT serial numbers are burned",
+    "min": 0, "max": 10
+  },
+  "numSerialNosWiped": {
+    "label": "# of NFT serial numbers wiped",
+    "tip": "How many NFT serial numbers are wiped",
+    "min": 0, "max": 10
+  },
+  "customFeeKey": {
+    "label":"Custom Token Fees",
+    "tip":"Custom fees for HTS tokens.",
+    "min": false, "max": true
+  },
+  "newNumFixedHbarCustomFees": {
+    "label": "new # of fixed hbar custom fees",
+    "tip": "How many new custom fees are fixed hbar payments",
+    "min": 0, "max": 10
+  },
+  "newNumFixedHtsCustomFees": {
+    "label": "new # of fixed HTS custom fees",
+    "tip": "How many new custom fees are fixed HTS fungible token payments",
+    "min": 0, "max": 10
+  },
+  "newNumFractionalCustomFees": {
+    "label": "new # of fractional custom fees",
+    "tip": "How many new custom fees are fractional token payments",
+    "min": 0, "max": 10
+  },
+  "newNumRoyaltyNoFallbackCustomFees": {
+    "label": "new # of royalty fees without fallback",
+    "tip": "How many new custom fees are royalty fees with no fallback payment",
+    "min": 0, "max": 10
+  },
+  "newNumRoyaltyHbarFallbackCustomFees": {
+    "label": "new # of royalty fees with hbar fallback",
+    "tip": "How many new custom fees are royalty fees with hbar fallback payment",
+    "min": 0, "max": 10
+  },
+  "newNumRoyaltyHtsFallbackCustomFees": {
+    "label": "new # of royalty fees with HTS fallback",
+    "tip": "How many new custom fees are royalty fees with hbar fallback payment",
+    "min": 0, "max": 10
+  },
+  "increaseInNumFixedHbarCustomFees": {
+    "label": "increased # of fixed hbar custom fees",
+    "tip": "Net increase in how many custom fees are fixed hbar payments",
+    "min": 0, "max": 10
+  },
+  "increaseInNumFixedHtsCustomFees": {
+    "label": "increased # of fixed HTS custom fees",
+    "tip": "Net increase in how many custom fees are fixed HTS fungible token payments",
+    "min": 0, "max": 10
+  },
+  "increaseInNumFractionalCustomFees": {
+    "label": "increased # of fractional custom fees",
+    "tip": "Net increase in how many custom fees are fractional token payments",
+    "min": 0, "max": 10
+  },
+  "increaseInNumRoyaltyNoFallbackCustomFees": {
+    "label": "increased # of royalty fees without fallback",
+    "tip": "Net increase in how many custom fees are royalty fees with no fallback payment",
+    "min": 0, "max": 10
+  },
+  "increaseInNumRoyaltyHbarFallbackCustomFees": {
+    "label": "increased # of royalty fees with hbar fallback",
+    "tip": "Net increase in how many custom fees are royalty fees with hbar fallback payment",
+    "min": 0, "max": 10
+  },
+  "increaseInNumRoyaltyHtsFallbackCustomFees": {
+    "label": "increased # of royalty fees with HTS fallback",
+    "tip": "Net increase in how many custom fees are royalty fees with hbar fallback payment",
+    "min": 0, "max": 10
   }
 }
