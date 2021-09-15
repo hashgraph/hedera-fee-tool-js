@@ -396,5 +396,15 @@
     "label": "increased # of royalty fees with HTS fallback",
     "tip": "Net increase in how many custom fees are royalty fees with hbar fallback payment",
     "min": 0, "max": 10
+  },
+  "autoAssociationSlots": {
+    "label": "# of pre-paid token auto-associations",
+    "tip": "Number of token auto-associations being prepaid",
+    "min": 0, "max": 1000
+  },
+  "extraAutoAssociationSlots": {
+    "label": "# of additional pre-paid token auto-associations",
+    "tip": "Number of additional pre-paid token auto-associations",
+    "min": 0, "max": 1000
   }
 }

@@ -11,7 +11,8 @@
           "numSigsTotal": 1,
           "numKeys": 1,
           "expirationHours": 2160,
-          "memoSize": 0
+          "memoSize": 0,
+          "autoAssociationSlots": 0
         },
         "formulae": {
           "node": {
@@ -25,7 +26,7 @@
             "rbh": "(BASE_RECEIPT_SIZE + ACCOUNT_ID_SIZE) * MINUTES_3 / HOURS_1"
           },
           "service": {
-            "rbh": "(BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE) * expirationHours"
+            "rbh": "(BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE + autoAssociationSlots * AUTO_ASSOCIATION_CREATE_MULTIPLIER) * expirationHours"
           }
         }
       }
@@ -60,7 +61,8 @@
           "numKeys": 1,
           "numLivehashes": 1,
           "expirationHours": 2160,
-          "memoSize": 0
+          "memoSize": 0,
+          "extraAutoAssociationSlots": 0
         },
         "formulae": {
           "node": {
@@ -74,7 +76,7 @@
             "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
           },
           "service": {
-            "rbh": "(BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE + numLivehashes * LIVEHASH_SIZE) * expirationHours"
+            "rbh": "(BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE + numLivehashes * LIVEHASH_SIZE + extraAutoAssociationSlots * AUTO_ASSOCIATION_UPDATE_MULTIPLIER) * expirationHours"
           }
         }
       }
