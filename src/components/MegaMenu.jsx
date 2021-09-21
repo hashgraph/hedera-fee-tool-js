@@ -49,6 +49,9 @@ class MegaMenu extends React.Component {
   createTabList() {
     let tabsArr = [];
     Object.keys(this.props.services).forEach((service) => {
+      if(this.serviceLabels[service] === undefined) {
+        return;
+      }
       tabsArr.push(
         <Tab key={service}>
           <div className="mm-column" key={"div_megamenu_service_" + service}>
@@ -63,8 +66,23 @@ class MegaMenu extends React.Component {
   createTabPanels() {
     let arr = [];
     Object.entries(this.props.services).forEach(([service, apis]) => {
+      if(this.serviceLabels[service] === undefined) {
+        return;
+      }
       let subArr = [];
-      Object.entries(apis).forEach(([api, apiParams]) => {
+      Object.entries(apis).forEach(([api, apiTypes]) => {
+        let apiParams = undefined;
+
+        // Select first available api type
+        for(const prop in apis[api]) {
+          apiParams = apis[api][prop];
+          break;
+        }
+        
+        if(apiParams === undefined) {
+          return;
+        }
+
         let apiLabel = api;
         if(apiLabel === 'CryptoGetStakers' || apiLabel === 'CryptoAddLiveHash' || apiLabel === 'CryptoDeleteLiveHash' || apiLabel === 'CryptoGetLiveHash') {
           apiLabel += ' (coming soon)';

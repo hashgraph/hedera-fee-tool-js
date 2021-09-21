@@ -47,10 +47,11 @@ class EstimatorCart {
     this.totalPrice = sum;
   }
 
-  addEstimate(api, price, quantity) {
+  addEstimate(api, apiType, price, quantity) {
     this.lineItems[this.index] = {
       index: this.index,
       api: api,
+      apiType: apiType,
       unitPrice: Number(price),
       quantity: quantity,
       linePrice: math.eval(Number(price) * quantity)
