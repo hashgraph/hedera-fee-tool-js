@@ -1056,7 +1056,7 @@
     "TokenPause": {
       "DEFAULT": {
         "type": "transaction",
-        "info": "Pauses a token's usability, e.g. for compliance reasons",
+        "info": "Pauses a token's usability, e.g. for compliance reasons.",
         "status": "complete",
         "isImportant": true,
         "usage": {
@@ -1084,7 +1084,7 @@
     "TokenUnpause": {
       "DEFAULT": {
         "type": "transaction",
-        "info": "Restores a token's usability after a pause transaction",
+        "info": "Restores a token's usability after a pause transaction.",
         "status": "complete",
         "isImportant": true,
         "usage": {
@@ -1386,6 +1386,7 @@
           "numAdminKeys": 1,
           "numKycKeys": 0,
           "numWipeKeys": 0,
+          "numPauseKeys": 0,
           "numSupplyKeys": 0,
           "numFreezeKeys": 0,
           "tokenNameSize": 12,
