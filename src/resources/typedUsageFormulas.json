@@ -725,12 +725,14 @@
           "numAdminKeys": 0,
           "numKycKeys": 0,
           "numWipeKeys": 0,
+          "numPauseKeys": 0,
           "numSupplyKeys": 0,
           "numFreezeKeys": 0,
           "numAdminKeysIncrease": 0,
           "numKycKeysIncrease": 0,
           "numWipeKeysIncrease": 0,
           "numSupplyKeysIncrease": 0,
+          "numPauseKeysIncrease": 0,
           "numFreezeKeysIncrease": 0,
           "expirationHours": 2160,
           "tokenNameSize": 0,
@@ -743,17 +745,17 @@
         },
         "formulae": {
           "node": {
-            "bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + memoSize + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + memoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+            "bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + memoSize + (numFreezeKeys * KEY_SIZE) + (numPauseKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + memoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
             "vpt": "numSigsPayer",
             "bpr": "BASE_TXRESPONSE_SIZE"
           },
           "network": {
-            "bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + memoSize + (numFreezeKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + memoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
+            "bpt": "BASE_TX_SIZE + BASE_TOKEN_SIZE + memoSize + (numFreezeKeys * KEY_SIZE) + (numPauseKeys * KEY_SIZE) + (numSupplyKeys * KEY_SIZE) + (numWipeKeys * KEY_SIZE) + (numKycKeys * KEY_SIZE) + (numAdminKeys * KEY_SIZE) + (numSigsTotal * SIG_SIZE) + memoSize + tokenNameSize + tokenSymbolSize + (isAutoRenewAccountSet * ACCOUNT_ID_SIZE)",
             "vpt": "numSigsTotal",
             "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
           },
           "service": {
-            "rbh": "(tokenNameSizeIncrease + tokenSymbolSizeIncrease + (numAdminKeysIncrease * KEY_SIZE) + (numKycKeysIncrease * KEY_SIZE) + (numWipeKeysIncrease * KEY_SIZE) + (numSupplyKeysIncrease * KEY_SIZE) + (numFreezeKeysIncrease * KEY_SIZE) + (isAutoRenewAccountNewlyAdded * ACCOUNT_ID_SIZE)) * expirationHours"
+            "rbh": "(tokenNameSizeIncrease + tokenSymbolSizeIncrease + (numAdminKeysIncrease * KEY_SIZE) + (numKycKeysIncrease * KEY_SIZE) + (numWipeKeysIncrease * KEY_SIZE) + (numPauseKeysIncrease * KEY_SIZE) + (numSupplyKeysIncrease * KEY_SIZE) + (numFreezeKeysIncrease * KEY_SIZE) + (isAutoRenewAccountNewlyAdded * ACCOUNT_ID_SIZE)) * expirationHours"
           }
         }
       }
