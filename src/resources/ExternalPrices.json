@@ -21,21 +21,23 @@
         "ConsensusGetTopicInfo": 0.0001
     },	
     "Tokens": {
-	    "Send tokens via CryptoTransfer": 0.001, 
+	"Send tokens via CryptoTransfer": 0.001, 
         "TokenCreate": 1.00,
-		"TokenUpdate": 0.001,
+	"TokenUpdate": 0.001,
         "TokenTransfer": 0.0001,
         "TokenDelete": 0.001,
-		"TokenMint": 0.001,
-        "TokenBurn": 0.001,		
+	"TokenMint": 0.001,
+        "TokenBurn": 0.001,
+        "TokenPause": 0.001,
+        "TokenUnpause": 0.001,		
         "TokenGetInfo": 0.0001,	
         "TokenAssociateToAccount": 0.05,
         "TokenDissociateFromAccount": 0.05,		
-	    "TokenGrantKycToAccount": 0.001,
+	"TokenGrantKycToAccount": 0.001,
         "TokenRevokeKycFromAccount": 0.001,  		
-		"TokenFreezeAccount": 0.001,
+	"TokenFreezeAccount": 0.001,
         "TokenUnfreezeAccount": 0.001,	
-		"TokenAccountWipe": 0.001
+        "TokenAccountWipe": 0.001
     },
     "Smart Contracts": {
         "ContractCreate": 1.0,

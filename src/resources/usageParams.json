@@ -74,6 +74,11 @@
     "tip":"Number of public keys in the freeze Hedera key",
     "min": 1, "max": 10
   },
+  "numPauseKeys": {
+    "label":"# pause keys",
+    "tip":"Number of public keys in the pause Hedera key",
+    "min": 1, "max": 10
+  },
   "expirationHours": {
     "label":"Expiration",
     "caption": "hours",
