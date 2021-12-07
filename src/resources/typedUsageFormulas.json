@@ -916,7 +916,6 @@
         }
       }
     },
-<<<<<<< HEAD
     "TokenTransfer": {
       "DEFAULT": {
         "type": "transaction",
@@ -1073,11 +1072,6 @@
     "TokenDelete": {
       "DEFAULT": {
         "type": "transaction",
-=======
-    "TokenDelete": {
-      "DEFAULT": {
-        "type": "transaction",
->>>>>>> cf73d4f997fb4ec0c0f943f23a36a887afd903dc
         "info": "Deletes a token type. ",
         "status": "complete",
         "isImportant": false,
