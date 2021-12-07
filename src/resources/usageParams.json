@@ -34,6 +34,11 @@
     "tip":"Number of public keys added to the admin Hedera key",
     "min": 1, "max": 10
   },
+  "numPauseKeysIncrease": {
+    "label":"# pause keys added (relative to existing # pause keys)",
+    "tip":"Number of public keys added to the pause Hedera key",
+    "min": 1, "max": 10
+  },
   "numKycKeysIncrease": {
     "label":"# KYC keys added (relative to existing # KYC keys)",
     "tip":"Number of public keys added to the KYC Hedera key",
@@ -72,6 +77,11 @@
   "numFreezeKeys": {
     "label":"# freeze keys",
     "tip":"Number of public keys in the freeze Hedera key",
+    "min": 1, "max": 10
+  },
+  "numPauseKeys": {
+    "label":"# pause keys",
+    "tip":"Number of public keys in the pause Hedera key",
     "min": 1, "max": 10
   },
   "expirationHours": {
