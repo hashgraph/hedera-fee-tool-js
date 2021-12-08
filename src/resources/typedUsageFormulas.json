@@ -714,8 +714,6 @@
       }
     },
     "TokenUpdate": {
-<<<<<<< HEAD
-=======
       "DEFAULT": {
         "type": "transaction",
         "info": "Updates an existing token type. ",
@@ -758,160 +756,6 @@
           },
           "service": {
             "rbh": "(tokenNameSizeIncrease + tokenSymbolSizeIncrease + (numAdminKeysIncrease * KEY_SIZE) + (numKycKeysIncrease * KEY_SIZE) + (numWipeKeysIncrease * KEY_SIZE) + (numPauseKeysIncrease * KEY_SIZE) + (numSupplyKeysIncrease * KEY_SIZE) + (numFreezeKeysIncrease * KEY_SIZE) + (isAutoRenewAccountNewlyAdded * ACCOUNT_ID_SIZE)) * expirationHours"
-          }
-        }
-      }
-    },
-    "TokenTransfer": {
->>>>>>> cf73d4f997fb4ec0c0f943f23a36a887afd903dc
-      "DEFAULT": {
-        "type": "transaction",
-        "info": "Initiates a transfer of hbars among two or more accounts. ",
-        "status": "complete",
-        "isImportant": true,
-        "usage": {
-          "numSigsPayer": 1,
-          "numSigsTotal": 1,
-          "numAccountsOnTransfer": 2,
-          "memoSize": 0
-        },
-        "formulae": {
-          "node": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + memoSize",
-            "vpt": "numSigsPayer",
-            "bpr": "BASE_TXRESPONSE_SIZE"
-          },
-          "network": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + memoSize",
-            "vpt": "numSigsTotal",
-            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
-          },
-          "service": {
-            "rbh": "(BASE_RECORD_SIZE + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + memoSize) * MINUTES_3 / HOURS_1"
-          }
-        }
-      },
-      "TOKEN_FUNGIBLE_COMMON": {
-        "type": "transaction",
-        "info": "Initiates a transfer of fungible token units and possibly hbar among two or more accounts. ",
-        "status": "complete",
-        "isImportant": true,
-        "usage": {
-          "numSigsPayer": 1,
-          "numSigsTotal": 1,
-          "numAccountsOnTransfer": 0,
-          "numTokensInvolved": 1,
-          "numTokenBalanceAdjustments": 2,
-          "memoSize": 0
-        },
-        "formulae": {
-          "node": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize",
-            "vpt": "numSigsPayer",
-            "bpr": "BASE_TXRESPONSE_SIZE"
-          },
-          "network": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize",
-            "vpt": "numSigsTotal",
-            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
-          },
-          "service": {
-            "rbh": "(BASE_RECORD_SIZE + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER *(numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize) * MINUTES_3 / HOURS_1"
-          }
-        }
-      },
-      "TOKEN_NON_FUNGIBLE_UNIQUE": {
-        "type": "transaction",
-        "info": "Initiates a transfer of NFTs, possibly along with fungible token units and/or hbar, among two or more accounts. ",
-        "status": "complete",
-        "isImportant": true,
-        "usage": {
-          "numSigsPayer": 1,
-          "numSigsTotal": 1,
-          "numAccountsOnTransfer": 0,
-          "numTokensInvolved": 1,
-          "numTokenBalanceAdjustments": 0,
-          "numNftTransfers": 1,
-          "memoSize": 0
-        },
-        "formulae": {
-          "node": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize + (numNftTransfers * NFT_TRANSFER_SIZE)",
-            "vpt": "numSigsPayer",
-            "bpr": "BASE_TXRESPONSE_SIZE"
-          },
-          "network": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize + (numNftTransfers * NFT_TRANSFER_SIZE)",
-            "vpt": "numSigsTotal",
-            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
-          },
-          "service": {
-            "rbh": "(BASE_RECORD_SIZE + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize + (numNftTransfers * NFT_TRANSFER_SIZE)) * MINUTES_3 / HOURS_1"
-          }
-        }
-      },
-      "TOKEN_FUNGIBLE_COMMON_WITH_CUSTOM_FEES": {
-        "type": "transaction",
-        "info": "Initiates a transfer of token(s) among two or more accounts, triggering one or more custom fee payments. ",
-        "status": "complete",
-        "isImportant": true,
-        "usage": {
-          "numSigsPayer": 1,
-          "numSigsTotal": 1,
-          "numAccountsOnTransfer": 0,
-          "numTokensInvolved": 1,
-          "numTokenBalanceAdjustments": 2,
-          "memoSize": 0,
-          "numCustomFeeHbarAdjustments": 2,
-          "numCustomFeeTokensInvolved": 0,
-          "numCustomFeeTokenAdjustments": 0
-        },
-        "formulae": {
-          "node": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize",
-            "vpt": "numSigsPayer",
-            "bpr": "BASE_TXRESPONSE_SIZE"
-          },
-          "network": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize",
-            "vpt": "numSigsTotal",
-            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
-          },
-          "service": {
-            "rbh": "(BASE_RECORD_SIZE + ((numAccountsOnTransfer + numCustomFeeHbarAdjustments) * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * ((numTokensInvolved + numCustomFeeTokensInvolved) * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * ((numTokenBalanceAdjustments + numCustomFeeTokenAdjustments) * TRANSFER_LIST_SIZE) + memoSize) * MINUTES_3 / HOURS_1"
-          }
-        }
-      },
-      "TOKEN_NON_FUNGIBLE_UNIQUE_WITH_CUSTOM_FEES": {
-        "type": "transaction",
-        "info": "Initiates a transfer of NFTs, possibly along with fungible token units and/or hbar, among two or more accounts, triggering one or more custom fee payments. ",
-        "status": "complete",
-        "isImportant": true,
-        "usage": {
-          "numSigsPayer": 1,
-          "numSigsTotal": 1,
-          "numAccountsOnTransfer": 0,
-          "numTokensInvolved": 1,
-          "numTokenBalanceAdjustments": 0,
-          "numNftTransfers": 1,
-          "memoSize": 0,
-          "numCustomFeeHbarAdjustments": 2,
-          "numCustomFeeTokensInvolved": 0,
-          "numCustomFeeTokenAdjustments": 0
-        },
-        "formulae": {
-          "node": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize + (numNftTransfers * NFT_TRANSFER_SIZE)",
-            "vpt": "numSigsPayer",
-            "bpr": "BASE_TXRESPONSE_SIZE"
-          },
-          "network": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + (numAccountsOnTransfer * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * (numTokensInvolved * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * (numTokenBalanceAdjustments * TRANSFER_LIST_SIZE) + memoSize + (numNftTransfers * NFT_TRANSFER_SIZE)",
-            "vpt": "numSigsTotal",
-            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
-          },
-          "service": {
-            "rbh": "(BASE_RECORD_SIZE + ((numAccountsOnTransfer + numCustomFeeHbarAdjustments) * TRANSFER_LIST_SIZE) + TOKEN_MULTIPLIER * ((numTokensInvolved + numCustomFeeTokensInvolved) * TOKEN_ID_SIZE) + TOKEN_MULTIPLIER * ((numTokenBalanceAdjustments + numCustomFeeTokenAdjustments) * TRANSFER_LIST_SIZE) + memoSize + (numNftTransfers * NFT_TRANSFER_SIZE)) * MINUTES_3 / HOURS_1"
           }
         }
       }
@@ -1209,8 +1053,6 @@
         }
       }
     },
-<<<<<<< HEAD
-=======
     "TokenPause": {
       "DEFAULT": {
         "type": "transaction",
@@ -1267,7 +1109,6 @@
         }
       }
     },
->>>>>>> cf73d4f997fb4ec0c0f943f23a36a887afd903dc
     "TokenFeeScheduleUpdate": {
       "DEFAULT": {
         "type": "transaction",

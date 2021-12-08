@@ -7,6 +7,11 @@
         min-height: 940px;
     }
 }
+@media (min-width: 1401px) {
+    #configDiv {
+        min-height: 884px;
+    }
+}
 
 #configDiv .panel-body {
     margin-bottom: 0;
