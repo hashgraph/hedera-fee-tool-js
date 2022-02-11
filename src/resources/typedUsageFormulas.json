@@ -92,19 +92,20 @@
           "numSigsTotal": 1,
           "expirationHours": 2160,
           "memoSize": 0,
-          "numCryptoAllowances": 0,
+          "numCryptoAllowances": 1,
           "numFungibleTokenAllowances": 0,
           "numNFTAllowances": 0,
-          "numSerials" : 0
+          "numSerials" : 0,
+          "approvedForAll": 0
         },
         "formulae": {
           "node": {
-            "bpt": "(numCryptoAllowances * CRYPTO_ALLOWANCE_SIZE) + (numFungibleTokenAllowances * TOKEN_ALLOWANCE_SIZE) + (numNFTAllowances * NFT_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE)",
+            "bpt": "BASE_TX_SIZE +  memoSize + (numCryptoAllowances * CRYPTO_ALLOWANCE_SIZE) + (numFungibleTokenAllowances * TOKEN_ALLOWANCE_SIZE) + (numNFTAllowances * NFT_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE) + (numSigsTotal * (SIG_SIZE + 7))",
             "vpt": "numSigsPayer",
             "bpr": "BASE_TXRESPONSE_SIZE"
           },
           "network": {
-            "bpt": "(numCryptoAllowances * CRYPTO_ALLOWANCE_SIZE) + (numFungibleTokenAllowances * TOKEN_ALLOWANCE_SIZE) + (numNFTAllowances * NFT_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE)",
+            "bpt": "BASE_TX_SIZE +  memoSize + (numCryptoAllowances * CRYPTO_ALLOWANCE_SIZE) + (numFungibleTokenAllowances * TOKEN_ALLOWANCE_SIZE) + (numNFTAllowances * NFT_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE) + (numSigsTotal * (SIG_SIZE + 7))",
             "vpt": "numSigsTotal",
             "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
           },
@@ -125,23 +126,25 @@
           "numSigsTotal": 1,
           "expirationHours": 2160,
           "memoSize": 0,
+          "numKeys": 1,
           "numCryptoAllowances": 0,
           "numFungibleTokenAllowances": 0,
-          "numNFTAllowances": 0,
+          "numNFTAllowances": 1,
           "numSerials" : 0,
           "numNewCryptoEntries": 0,
           "numNewFungibleTokenEntries": 0,
           "numNewNFTEntries": 0,
-          "numNewSerials": 0
+          "numNewSerials": 0,
+          "approvedForAll": 1
         },
         "formulae": {
           "node": {
-            "bpt": "(numCryptoAllowances * CRYPTO_ALLOWANCE_SIZE) + (numFungibleTokenAllowances * TOKEN_ALLOWANCE_SIZE) + (numNFTAllowances * NFT_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE)",
+            "bpt": "BASE_TX_SIZE +  memoSize + (numCryptoAllowances * CRYPTO_ALLOWANCE_SIZE) + (numFungibleTokenAllowances * TOKEN_ALLOWANCE_SIZE) + (numNFTAllowances * NFT_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE) + (numSigsTotal * (SIG_SIZE + 7))",
             "vpt": "numSigsPayer",
             "bpr": "BASE_TXRESPONSE_SIZE"
           },
           "network": {
-            "bpt": "(numCryptoAllowances * CRYPTO_ALLOWANCE_SIZE) + (numFungibleTokenAllowances * TOKEN_ALLOWANCE_SIZE) + (numNFTAllowances * NFT_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE)",
+            "bpt": "BASE_TX_SIZE +  memoSize + (numCryptoAllowances * CRYPTO_ALLOWANCE_SIZE) + (numFungibleTokenAllowances * TOKEN_ALLOWANCE_SIZE) + (numNFTAllowances * NFT_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE) + (numSigsTotal * (SIG_SIZE + 7))",
             "vpt": "numSigsTotal",
             "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
           },
