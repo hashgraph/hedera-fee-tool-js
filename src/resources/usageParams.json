@@ -416,5 +416,45 @@
     "label": "# of additional pre-paid token auto-associations",
     "tip": "Number of additional pre-paid token auto-associations",
     "min": 0, "max": 1000
+  },
+  "numCryptoAllowances": {
+    "label": "total # of crypto allowances",
+    "tip": "Total number of crypto allowances",
+    "min": 0, "max": 100
+  },
+  "numFungibleTokenAllowances": {
+    "label": "total # of fungible token allowances",
+    "tip": "Total number of fungible token allowances",
+    "min": 0, "max": 100
+  },
+  "numNFTAllowances": {
+    "label": "total # of nft allowances",
+    "tip": "Total number of nft allowances",
+    "min": 0, "max": 100
+  },
+  "numSerials": {
+    "label": "total # of serial numbers in nft allowances",
+    "tip": "Total number of serial numbers in nft allowances",
+    "min": 0, "max": 100
+  },
+  "numNewCryptoEntries": {
+    "label": "new # of crypto allowances",
+    "tip": "Number of newly added crypto allowances",
+    "min": 0, "max": 100
+  },
+  "numNewFungibleTokenEntries": {
+    "label": "new # of fungible token allowances",
+    "tip": "Number of newly added fungible token allowances",
+    "min": 0, "max": 100
+  },
+  "numNewNFTEntries": {
+    "label": "new # of NFT allowances",
+    "tip": "Number of newly added NFT allowances",
+    "min": 0, "max": 100
+  },
+  "numNewSerials": {
+    "label": "new # of serial numbers",
+    "tip": "Number of newly added serial numbers",
+    "min": 0, "max": 100
   }
 }
