@@ -225,7 +225,7 @@ class Price {
                 this.normalizedPrice += 0.0001;
             }
         }
-        console.log("actual usage"+ JSON.stringify(actualUsage))
+
         return ({
             usage: actualUsage,
             price: this.normalizedPrice.toFixed(this.model.PRICE_PRECISION)
