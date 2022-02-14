@@ -319,7 +319,7 @@
   },
   "numNftsMinted": {
     "label": "# of NFTs minted",
-    "tip": "How many new NFTs are created of the given unique token type",
+    "tip": "How many new NFTs are created of the given unique token type (the maximum total supply is 2^63-1, but has been limited to 999,999 in this tool)",
     "min": 0, "max": 10
   },
   "numBytesMetadata": {
