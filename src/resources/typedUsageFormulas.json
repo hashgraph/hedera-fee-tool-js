@@ -95,8 +95,7 @@
           "numCryptoAllowances": 1,
           "numFungibleTokenAllowances": 0,
           "numNFTAllowances": 0,
-          "numSerials" : 0,
-          "approvedForAll": 0
+          "numSerials" : 0
         },
         "formulae": {
           "node": {
@@ -127,15 +126,14 @@
           "expirationHours": 2160,
           "memoSize": 0,
           "numKeys": 1,
-          "numCryptoAllowances": 0,
+          "numCryptoAllowances": 1,
           "numFungibleTokenAllowances": 0,
-          "numNFTAllowances": 1,
+          "numNFTAllowances": 0,
           "numSerials" : 0,
           "numNewCryptoEntries": 0,
           "numNewFungibleTokenEntries": 0,
           "numNewNFTEntries": 0,
-          "numNewSerials": 0,
-          "approvedForAll": 1
+          "numNewSerials": 0
         },
         "formulae": {
           "node": {

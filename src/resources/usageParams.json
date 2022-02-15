@@ -456,10 +456,5 @@
     "label": "new # of serial numbers",
     "tip": "Number of newly added serial numbers",
     "min": 0, "max": 100
-  },
-  "approvedForAll": {
-    "label": "# of nft allowances with approvedForAll is true",
-    "tip": "Number of nft allowances with approvedForAll is true",
-    "min": 0, "max": 100
   }
 }
