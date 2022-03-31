@@ -167,11 +167,7 @@
           "numCryptoAllowances": 1,
           "numFungibleTokenAllowances": 0,
           "numNFTAllowances": 0,
-          "numSerials" : 0,
-          "numNewCryptoEntries": 0,
-          "numNewFungibleTokenEntries": 0,
-          "numNewNFTEntries": 0,
-          "numNewSerials": 0
+          "numSerials" : 0
         },
         "formulae": {
           "node": {
