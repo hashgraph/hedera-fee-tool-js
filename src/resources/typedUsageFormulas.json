@@ -152,6 +152,37 @@
         }
       }
     },
+    "CryptoDeleteAllowance": {
+      "DEFAULT": {
+        "type": "transaction",
+        "info": "Deletes allowances for an account. ",
+        "status": "complete",
+        "isImportant": false,
+        "usage": {
+          "numSigsPayer": 1,
+          "numSigsTotal": 1,
+          "expirationHours": 2160,
+          "memoSize": 0,
+          "numKeys": 1,
+          "numCryptoAllowances": 1,
+          "numFungibleTokenAllowances": 0,
+          "numNFTAllowances": 0,
+          "numSerials" : 0
+        },
+        "formulae": {
+          "node": {
+            "bpt": "BASE_TX_SIZE +  memoSize + (numCryptoAllowances * CRYPTO_DELETE_ALLOWANCE_SIZE) + (numFungibleTokenAllowances * TOKEN_DELETE_ALLOWANCE_SIZE) + (numNFTAllowances * NFT_DELETE_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE) + (numSigsTotal * (SIG_SIZE + 7))",
+            "vpt": "numSigsPayer",
+            "bpr": "BASE_TXRESPONSE_SIZE"
+          },
+          "network": {
+            "bpt": "BASE_TX_SIZE +  memoSize + (numCryptoAllowances * CRYPTO_DELETE_ALLOWANCE_SIZE) + (numFungibleTokenAllowances * TOKEN_DELETE_ALLOWANCE_SIZE) + (numNFTAllowances * NFT_DELETE_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE) + (numSigsTotal * (SIG_SIZE + 7))",
+            "vpt": "numSigsTotal",
+            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+          }
+        }
+      }
+    },
     "CryptoTransfer": {
       "DEFAULT": {
         "type": "transaction",

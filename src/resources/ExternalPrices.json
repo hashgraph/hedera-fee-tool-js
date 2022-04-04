@@ -7,6 +7,7 @@
         "CryptoDelete": 0.005,
         "CryptoApproveAllowance": 0.05,
         "CryptoAdjustAllowance": 0.05,
+        "CryptoDeleteAllowance": 0.05,
         "CryptoAddLiveHash": 0.1,
         "CryptoDeleteLiveHash": 0.005,
         "CryptoGetLiveHash": 0.0001,
