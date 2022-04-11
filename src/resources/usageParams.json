@@ -451,10 +451,5 @@
     "label": "new # of NFT allowances",
     "tip": "Number of newly added NFT allowances",
     "min": 0, "max": 100
-  },
-  "numNewSerials": {
-    "label": "new # of serial numbers",
-    "tip": "Number of newly added serial numbers",
-    "min": 0, "max": 100
   }
 }
