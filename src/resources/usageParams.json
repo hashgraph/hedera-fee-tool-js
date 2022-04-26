@@ -451,5 +451,25 @@
     "label": "new # of NFT allowances",
     "tip": "Number of newly added NFT allowances",
     "min": 0, "max": 100
+  },
+  "numMaxAutoAssociations": {
+    "label": "# of maximum auto-association slots available",
+    "tip": "Number of maximum auto-association slots available",
+    "min": 0, "max": 1000
+  },
+  "numKvPairs": {
+    "label": "new # of key-value pairs",
+    "tip": "Number of of key-value pairs",
+    "min": 0, "max": 1000
+  },
+  "byteCodeSize": {
+    "label": "contract bytecode size",
+    "tip": "Size of contract bytecode",
+    "min": 1, "max": 5000000
+  },
+  "numTokenRels": {
+    "label": "# of token relations",
+    "tip": "Number of token relations",
+    "min": 1, "max": 1000
   }
 }

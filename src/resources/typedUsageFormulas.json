@@ -40,11 +40,13 @@
         "usage": {
           "numKeys": 1,
           "expirationHours": 2160,
-          "memoSize": 0
+          "memoSize": 0,
+          "numMaxAutoAssociations" : 0,
+          "numTokenRels": 0
         },
         "formulae": {
           "service": {
-            "rbh": "(BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE) * expirationHours"
+            "rbh": "(BASE_ACCOUNT_SIZE + memoSize + (numKeys * KEY_SIZE) + (numMaxAutoAssociations * AUTO_ASSOCIATION_SIZE) + (numTokenRels * TOKEN_ASSOCIATION_REPR)) * expirationHours"
           }
         }
       }
@@ -1719,11 +1721,15 @@
         "usage": {
           "numKeys": 1,
           "expirationHours": 2160,
-          "fileSize": 20000
+          "memoSize": 0,
+          "numMaxAutoAssociations": 0,
+          "numKvPairs": 64,
+          "byteCodeSize": 4096
         },
         "formulae": {
           "service": {
-            "sbh": "((numKeys * KEY_SIZE + fileSize + BASE_CONTRACTINFO_SIZE) * expirationHours)"
+            "rbh": "(BASE_CONTRACT_SIZE + memoSize + (numKeys * KEY_SIZE) + (numMaxAutoAssociations * AUTO_ASSOCIATION_SIZE)) * expirationHours",
+            "sbh": "((KV_PAIR_SIZE * numKvPairs) + byteCodeSize) * expirationHours"
           }
         }
       }
