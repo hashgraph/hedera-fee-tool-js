@@ -94,12 +94,12 @@ class ConfigForm extends React.Component {
           val = item.value;
         }
       } else if(isNaN(Number(val)) === false) {
-        if (val.length >= 6) {
-          val = val.slice(0, 6);
+        if (val.length >= 7) {
+          val = val.slice(0, 7);
         }
         val = parseFloat(val);
-        if(val > 999999) {
-          val = 999999;
+        if(val > 5000000) {
+          val = 5000000;
         }
         if(val < 0) {
           val *= -1;
