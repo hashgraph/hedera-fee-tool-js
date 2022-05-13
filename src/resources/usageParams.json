@@ -214,7 +214,7 @@
   "gas": {
     "label":"Gas",
     "tip":"How much gas is consumed by the smart contract operation",
-    "min": 1, "max": 5000000000
+    "min": 1, "max": 5000000
   },
   "requestedRecord": {
     "label":"Record requested?",
