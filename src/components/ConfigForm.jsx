@@ -98,8 +98,8 @@ class ConfigForm extends React.Component {
           val = val.slice(0, 7);
         }
         val = parseFloat(val);
-        if(val > 8000000) {
-          val = 8000000;
+        if(val > 5000000) {
+          val = 5000000;
         }
         if(val < 0) {
           val *= -1;
