@@ -1609,8 +1609,41 @@
             "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
           },
           "service": {
-            "rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + memoSize) * ( MINUTES_3 ) / HOURS_1",
+            "rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + memoSize) * (MINUTES_3 ) / HOURS_1",
             "gas": "gas"
+          }
+        }
+      }
+    },
+    "EthereumTransaction": {
+      "DEFAULT": {
+        "type": "transaction",
+        "info": "Relays an Ethereum-style transaction that calls and/or creates Hedera contracts. ",
+        "status": "complete",
+        "isImportant": true,
+        "usage": {
+          "numSigsPayer": 1,
+          "numSigsTotal": 1,
+          "expirationHours": 2160,
+          "ethTxnSize": 350,
+          "contractFunctionReturnSize": 400,
+          "relayerGasSubsidy": 0,
+          "memoSize": 0
+        },
+        "formulae": {
+          "node": {
+            "bpt": "BASE_TX_SIZE + ethTxnSize + (numSigsTotal * SIG_SIZE) + memoSize",
+            "vpt": "numSigsPayer",
+            "bpr": "BASE_TXRESPONSE_SIZE"
+          },
+          "network": {
+            "bpt": "BASE_TX_SIZE + ethTxnSize + (numSigsTotal * SIG_SIZE) + memoSize",
+            "vpt": "numSigsTotal + NUM_IMPLICIT_ETH_SIGS",
+            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+          },
+          "service": {
+            "rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + memoSize) * (MINUTES_3 ) / HOURS_1",
+            "gas": "relayerGasSubsidy"
           }
         }
       }
