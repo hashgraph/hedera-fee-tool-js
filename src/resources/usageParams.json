@@ -471,5 +471,15 @@
     "label": "# of token relations",
     "tip": "Number of token relations",
     "min": 1, "max": 1000
+  },
+  "ethTxnSize": {
+    "label": "Ethereum transaction size",
+    "tip": "Size in bytes of the relayed Ethereum transaction",
+    "min": 1, "max": 6000
+  },
+  "relayerGasSubsidy": {
+    "label": "Relayer gas subsidy",
+    "tip": "Amount of gas subsidized by the relayer",
+    "min": 0, "max": 15000000
   }
 }
