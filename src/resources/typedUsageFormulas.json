@@ -2152,6 +2152,35 @@
           }
         }
       }
+    },
+    "RandomGenerate": {
+      "DEFAULT": {
+        "type": "transaction",
+        "info": "Generate pseudorandom numbers",
+        "status": "complete",
+        "isImportant": false,
+        "usage": {
+          "numSigsPayer": 1,
+          "numSigsTotal": 1,
+          "memoSize": 0,
+          "isRangeProvided": false
+        },
+        "formulae": {
+          "node": {
+            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (isRangeProvided * RANDOM_GENERATE_RANGE_SIZE)",
+            "vpt": "numSigsPayer",
+            "bpr": "BASE_TXRESPONSE_SIZE"
+          },
+          "network": {
+            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (isRangeProvided * RANDOM_GENERATE_RANGE_SIZE)",
+            "vpt": "numSigsTotal",
+            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+          },
+          "service": {
+            "rbh": "(BASE_RECORD_SIZE + memoSize) * MINUTES_3 / HOURS_1"
+          }
+        }
+      }
     }
   }
 }

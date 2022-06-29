@@ -481,5 +481,10 @@
     "label": "Relayer gas subsidy",
     "tip": "Amount of gas subsidized by the relayer",
     "min": 0, "max": 15000000
+  },
+  "isRangeProvided": {
+    "label": "Range provided?",
+    "tip": "If Range is provided",
+    "min": false, "max": true
   }
 }
