@@ -2170,7 +2170,7 @@
         },
         "formulae": {
           "node": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (numKeys * KEY_SIZE) +(isRangeProvided * RANDOM_GENERATE_RANGE_SIZE)",
+            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (numKeys * KEY_SIZE) + (isRangeProvided * RANDOM_GENERATE_RANGE_SIZE)",
             "vpt": "numSigsPayer",
             "bpr": "BASE_TXRESPONSE_SIZE"
           },
@@ -2180,7 +2180,7 @@
             "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
           },
           "service": {
-            "rbh": "(BASE_RECORD_SIZE + memoSize + (isRangeProvided ? 4 : 48)) * MINUTES_3 / HOURS_1"
+            "rbh": "(BASE_RECORD_SIZE + memoSize + (isRangeProvided ? RANDOM_NUMBER_SIZE : RANDOM_BYTES_SIZE)) * MINUTES_3 / HOURS_1"
           }
         }
       }
