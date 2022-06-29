@@ -36,6 +36,7 @@ class MegaMenu extends React.Component {
     "Files": ["File", "service"],
     "Consensus": ["Consensus", "service"],
     "Miscellaneous": ["Miscellaneous", ""],
+    "Utility": ["Utility", ""],
   };
 
   constructor(props) {

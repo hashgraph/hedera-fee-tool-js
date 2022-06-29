@@ -69,7 +69,9 @@
         "TransactionGetReceipt": 0.0000,
         "TransactionGetRecord": 0.0001,
         "SystemDelete": 0,
-        "SystemUndelete": 0,
+        "SystemUndelete": 0
+    },
+    "Utility": {
         "RandomGenerate": 0.001
     }
 }
