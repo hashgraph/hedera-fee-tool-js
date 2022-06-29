@@ -2169,12 +2169,12 @@
         },
         "formulae": {
           "node": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (numKeys * KEY_SIZE) + (isRangeProvided * RANDOM_GENERATE_RANGE_SIZE)",
+            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (isRangeProvided * RANDOM_GENERATE_RANGE_SIZE)",
             "vpt": "numSigsPayer",
             "bpr": "BASE_TXRESPONSE_SIZE"
           },
           "network": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (numKeys * KEY_SIZE) + (isRangeProvided * RANDOM_GENERATE_RANGE_SIZE)",
+            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (isRangeProvided * RANDOM_GENERATE_RANGE_SIZE)",
             "vpt": "numSigsTotal",
             "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
           },
