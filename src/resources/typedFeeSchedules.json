@@ -3091,7 +3091,7 @@
       }
     }
   },
-  "RandomGenerate": {
+  "PRNG": {
     "DEFAULT": {
       "node": {
         "constant" : 76998002,

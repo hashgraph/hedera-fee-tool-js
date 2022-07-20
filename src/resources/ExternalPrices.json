@@ -72,6 +72,6 @@
         "SystemUndelete": 0
     },
     "Util": {
-        "RandomGenerate": 0.001
+        "PRNG": 0.001
     }
 }

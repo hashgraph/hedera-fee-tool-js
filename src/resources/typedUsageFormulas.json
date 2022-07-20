@@ -2155,7 +2155,7 @@
     }
   },
   "Util": {
-    "RandomGenerate": {
+    "PRNG": {
       "DEFAULT": {
         "type": "transaction",
         "info": "Generate pseudorandom numbers",
@@ -2169,17 +2169,17 @@
         },
         "formulae": {
           "node": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (isRangeProvided * RANDOM_GENERATE_RANGE_SIZE)",
+            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (isRangeProvided * PRNG_RANGE_SIZE)",
             "vpt": "numSigsPayer",
             "bpr": "BASE_TXRESPONSE_SIZE"
           },
           "network": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (isRangeProvided * RANDOM_GENERATE_RANGE_SIZE)",
+            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (isRangeProvided * PRNG_RANGE_SIZE)",
             "vpt": "numSigsTotal",
             "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
           },
           "service": {
-            "rbh": "(BASE_RECORD_SIZE + memoSize + (isRangeProvided ? RANDOM_NUMBER_SIZE : RANDOM_BYTES_SIZE)) * MINUTES_3 / HOURS_1"
+            "rbh": "(BASE_RECORD_SIZE + memoSize + (isRangeProvided ? PSEUDORANDOM_NUMBER_SIZE : PSEUDORANDOM_BYTES_SIZE)) * MINUTES_3 / HOURS_1"
           }
         }
       }
