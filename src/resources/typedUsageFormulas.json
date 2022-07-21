@@ -2155,7 +2155,7 @@
     }
   },
   "Util": {
-    "PRNG": {
+    "UtilPrng": {
       "DEFAULT": {
         "type": "transaction",
         "info": "Generate pseudorandom numbers",

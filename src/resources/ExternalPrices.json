@@ -72,6 +72,6 @@
         "SystemUndelete": 0
     },
     "Util": {
-        "PRNG": 0.001
+        "UtilPrng": 0.001
     }
 }
