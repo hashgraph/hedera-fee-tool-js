@@ -70,5 +70,8 @@
         "TransactionGetRecord": 0.0001,
         "SystemDelete": 0,
         "SystemUndelete": 0
+    },
+    "Util": {
+        "UtilPrng": 0.001
     }
 }
