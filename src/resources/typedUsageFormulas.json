@@ -40,11 +40,13 @@
         "usage": {
           "numKeys": 1,
           "expirationHours": 2160,
-          "memoSize": 0
+          "memoSize": 0,
+          "numMaxAutoAssociations" : 0,
+          "numTokenRels": 0
         },
         "formulae": {
           "service": {
-            "rbh": "(BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE) * expirationHours"
+            "rbh": "(BASE_ACCOUNT_SIZE + memoSize + (numKeys * KEY_SIZE) + (numMaxAutoAssociations * AUTO_ASSOCIATION_SIZE) + (numTokenRels * TOKEN_ASSOCIATION_REPR)) * expirationHours"
           }
         }
       }
@@ -77,6 +79,70 @@
           },
           "service": {
             "rbh": "(BASE_ACCOUNT_SIZE + memoSize + numKeys * KEY_SIZE + numLivehashes * LIVEHASH_SIZE + extraAutoAssociationSlots * AUTO_ASSOCIATION_UPDATE_MULTIPLIER) * expirationHours"
+          }
+        }
+      }
+    },
+    "CryptoApproveAllowance": {
+      "DEFAULT": {
+        "type": "transaction",
+        "info": "Approves hbar or token allowances for an account. ",
+        "status": "complete",
+        "isImportant": false,
+        "usage": {
+          "numSigsPayer": 1,
+          "numSigsTotal": 1,
+          "expirationHours": 2160,
+          "memoSize": 0,
+          "numCryptoAllowances": 1,
+          "numFungibleTokenAllowances": 0,
+          "numNFTAllowances": 0,
+          "numSerials" : 0,
+          "numNewCryptoEntries": 1,
+          "numNewFungibleTokenEntries": 0,
+          "numNewNFTEntries": 0
+        },
+        "formulae": {
+          "node": {
+            "bpt": "BASE_TX_SIZE +  memoSize + (numCryptoAllowances * CRYPTO_ALLOWANCE_SIZE) + (numFungibleTokenAllowances * TOKEN_ALLOWANCE_SIZE) + (numNFTAllowances * NFT_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE) + (numSigsTotal * (SIG_SIZE + 7))",
+            "vpt": "numSigsPayer",
+            "bpr": "BASE_TXRESPONSE_SIZE"
+          },
+          "network": {
+            "bpt": "BASE_TX_SIZE +  memoSize + (numCryptoAllowances * CRYPTO_ALLOWANCE_SIZE) + (numFungibleTokenAllowances * TOKEN_ALLOWANCE_SIZE) + (numNFTAllowances * NFT_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE) + (numSigsTotal * (SIG_SIZE + 7))",
+            "vpt": "numSigsTotal",
+            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+          },
+          "service": {
+            "rbh": "((numNewCryptoEntries * CRYPTO_ALLOWANCE_SIZE) + (numNewFungibleTokenEntries * TOKEN_ALLOWANCE_SIZE) + (numNewNFTEntries * NFT_ALLOWANCE_SIZE)) * expirationHours"
+          }
+        }
+      }
+    },
+    "CryptoDeleteAllowance": {
+      "DEFAULT": {
+        "type": "transaction",
+        "info": "Deletes nft allowances for an account. ",
+        "status": "complete",
+        "isImportant": false,
+        "usage": {
+          "numSigsPayer": 1,
+          "numSigsTotal": 1,
+          "expirationHours": 2160,
+          "memoSize": 0,
+          "numNFTAllowances": 1,
+          "numSerials" : 1
+        },
+        "formulae": {
+          "node": {
+            "bpt": "BASE_TX_SIZE +  memoSize + (numNFTAllowances * NFT_DELETE_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE) + (numSigsTotal * (SIG_SIZE + 7))",
+            "vpt": "numSigsPayer",
+            "bpr": "BASE_TXRESPONSE_SIZE"
+          },
+          "network": {
+            "bpt": "BASE_TX_SIZE +  memoSize + (numNFTAllowances * NFT_DELETE_ALLOWANCE_SIZE) + (numSerials * SERIAL_NUM_SIZE) + (numSigsTotal * (SIG_SIZE + 7))",
+            "vpt": "numSigsTotal",
+            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
           }
         }
       }
@@ -1543,8 +1609,41 @@
             "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
           },
           "service": {
-            "rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + memoSize) * ( MINUTES_3 ) / HOURS_1",
+            "rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + memoSize) * (MINUTES_3 ) / HOURS_1",
             "gas": "gas"
+          }
+        }
+      }
+    },
+    "EthereumTransaction": {
+      "DEFAULT": {
+        "type": "transaction",
+        "info": "Relays an Ethereum-style transaction that calls and/or creates Hedera contracts. ",
+        "status": "complete",
+        "isImportant": true,
+        "usage": {
+          "numSigsPayer": 1,
+          "numSigsTotal": 1,
+          "expirationHours": 2160,
+          "ethTxnSize": 350,
+          "contractFunctionReturnSize": 400,
+          "relayerGasSubsidy": 0,
+          "memoSize": 0
+        },
+        "formulae": {
+          "node": {
+            "bpt": "BASE_TX_SIZE + ethTxnSize + (numSigsTotal * SIG_SIZE) + memoSize",
+            "vpt": "numSigsPayer",
+            "bpr": "BASE_TXRESPONSE_SIZE"
+          },
+          "network": {
+            "bpt": "BASE_TX_SIZE + ethTxnSize + (numSigsTotal * SIG_SIZE) + memoSize",
+            "vpt": "numSigsTotal + NUM_IMPLICIT_ETH_SIGS",
+            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+          },
+          "service": {
+            "rbh": "(BASE_RECORD_SIZE + contractFunctionReturnSize + memoSize) * (MINUTES_3 ) / HOURS_1",
+            "gas": "relayerGasSubsidy"
           }
         }
       }
@@ -1655,11 +1754,15 @@
         "usage": {
           "numKeys": 1,
           "expirationHours": 2160,
-          "fileSize": 20000
+          "memoSize": 0,
+          "numMaxAutoAssociations": 0,
+          "numKvPairs": 64,
+          "byteCodeSize": 4096
         },
         "formulae": {
           "service": {
-            "sbh": "((numKeys * KEY_SIZE + fileSize + BASE_CONTRACTINFO_SIZE) * expirationHours)"
+            "rbh": "(BASE_CONTRACT_SIZE + memoSize + (numKeys * KEY_SIZE) + (numMaxAutoAssociations * AUTO_ASSOCIATION_SIZE)) * expirationHours",
+            "sbh": "((KV_PAIR_SIZE * numKvPairs) + byteCodeSize) * expirationHours"
           }
         }
       }
@@ -2046,6 +2149,37 @@
           "node": {
             "bpt": "BASE_QUERYHEADER_SIZE + TRANSACTION_ID_SIZE",
             "bpr": "BASE_QUERYRESPONSE_SIZE  + 2 * BASE_RECORD_SIZE + (isStateProofRequested * STATE_PROOF_SIZE)"
+          }
+        }
+      }
+    }
+  },
+  "Util": {
+    "UtilPrng": {
+      "DEFAULT": {
+        "type": "transaction",
+        "info": "Generate pseudorandom numbers",
+        "status": "complete",
+        "isImportant": true,
+        "usage": {
+          "numSigsPayer": 1,
+          "numSigsTotal": 1,
+          "memoSize": 0,
+          "isRangeProvided": false
+        },
+        "formulae": {
+          "node": {
+            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (isRangeProvided * PRNG_RANGE_SIZE)",
+            "vpt": "numSigsPayer",
+            "bpr": "BASE_TXRESPONSE_SIZE"
+          },
+          "network": {
+            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + memoSize + (isRangeProvided * PRNG_RANGE_SIZE)",
+            "vpt": "numSigsTotal",
+            "rbh": "BASE_RECEIPT_SIZE * MINUTES_3 / HOURS_1"
+          },
+          "service": {
+            "rbh": "(BASE_RECORD_SIZE + memoSize + (isRangeProvided ? PSEUDORANDOM_NUMBER_SIZE : PSEUDORANDOM_BYTES_SIZE)) * MINUTES_3 / HOURS_1"
           }
         }
       }

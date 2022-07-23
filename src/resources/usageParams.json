@@ -214,7 +214,7 @@
   "gas": {
     "label":"Gas",
     "tip":"How much gas is consumed by the smart contract operation",
-    "min": 1, "max": 5000000000
+    "min": 1, "max": 5000000
   },
   "requestedRecord": {
     "label":"Record requested?",
@@ -319,7 +319,7 @@
   },
   "numNftsMinted": {
     "label": "# of NFTs minted",
-    "tip": "How many new NFTs are created of the given unique token type",
+    "tip": "How many new NFTs are created of the given unique token type (the maximum total supply is 2^63-1, but has been limited to 999,999 in this tool)",
     "min": 0, "max": 10
   },
   "numBytesMetadata": {
@@ -416,5 +416,75 @@
     "label": "# of additional pre-paid token auto-associations",
     "tip": "Number of additional pre-paid token auto-associations",
     "min": 0, "max": 1000
+  },
+  "numCryptoAllowances": {
+    "label": "total # of crypto allowances",
+    "tip": "Total number of crypto allowances",
+    "min": 0, "max": 100
+  },
+  "numFungibleTokenAllowances": {
+    "label": "total # of fungible token allowances",
+    "tip": "Total number of fungible token allowances",
+    "min": 0, "max": 100
+  },
+  "numNFTAllowances": {
+    "label": "total # of nft allowances",
+    "tip": "Total number of nft allowances",
+    "min": 0, "max": 100
+  },
+  "numSerials": {
+    "label": "total # of serial numbers in nft allowances",
+    "tip": "Total number of serial numbers in nft allowances",
+    "min": 0, "max": 100
+  },
+  "numNewCryptoEntries": {
+    "label": "new # of crypto allowances",
+    "tip": "Number of newly added crypto allowances",
+    "min": 0, "max": 100
+  },
+  "numNewFungibleTokenEntries": {
+    "label": "new # of fungible token allowances",
+    "tip": "Number of newly added fungible token allowances",
+    "min": 0, "max": 100
+  },
+  "numNewNFTEntries": {
+    "label": "new # of NFT allowances",
+    "tip": "Number of newly added NFT allowances",
+    "min": 0, "max": 100
+  },
+  "numMaxAutoAssociations": {
+    "label": "# of maximum auto-association slots available",
+    "tip": "Number of maximum auto-association slots available",
+    "min": 0, "max": 1000
+  },
+  "numKvPairs": {
+    "label": "new # of key-value pairs",
+    "tip": "Number of of key-value pairs",
+    "min": 0, "max": 1000
+  },
+  "byteCodeSize": {
+    "label": "contract bytecode size",
+    "tip": "Size of contract bytecode",
+    "min": 1, "max": 5000000
+  },
+  "numTokenRels": {
+    "label": "# of token relations",
+    "tip": "Number of token relations",
+    "min": 1, "max": 1000
+  },
+  "ethTxnSize": {
+    "label": "Ethereum transaction size",
+    "tip": "Size in bytes of the relayed Ethereum transaction",
+    "min": 1, "max": 6000
+  },
+  "relayerGasSubsidy": {
+    "label": "Relayer gas subsidy",
+    "tip": "Amount of gas subsidized by the relayer",
+    "min": 0, "max": 15000000
+  },
+  "isRangeProvided": {
+    "label": "Range provided?",
+    "tip": "If Range is provided",
+    "min": false, "max": true
   }
 }
