@@ -104,6 +104,12 @@ class ConfigForm extends React.Component {
         if(val < 0) {
           val *= -1;
         }
+        if(key === 'numNftsMinted') {
+          let max = usageParamProperties[key].max;
+          if(Number(val) > Number(max)) {
+            val = max;
+          }
+        }
       }
       usageParams[key] = val;
     });
