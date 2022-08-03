@@ -22,6 +22,16 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script type="application/javascript">
+      document.addEventListener('DOMContentLoaded', function(event) {
+        //the event occurred
+        if ( window.location !== window.parent.location ) {
+          // The page is in an iframe
+          document.body.style.overflow = 'hidden';
+        } else {
+          // The page is NOT in an iframe
+        }
+      })
+
       window.onload = function() {
         var tRootHeight = 0,
          elRoot = document.getElementById('root');
