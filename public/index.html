@@ -28,7 +28,7 @@
 
         setInterval(function() {
             //if(tRootHeight !== elRoot.offsetHeight) {
-              tRootHeight = elRoot.offsetHeight;
+              tRootHeight = elRoot.offsetHeight + 1;
               window.parent.postMessage(tRootHeight, '*');
             //}
         },150);
