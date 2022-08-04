@@ -33,7 +33,8 @@ class ConfigForm extends React.Component {
     "TOKEN_FUNGIBLE_COMMON": "Fungible Token",
     "TOKEN_NON_FUNGIBLE_UNIQUE": "Non-Fungible Token",
     "TOKEN_FUNGIBLE_COMMON_WITH_CUSTOM_FEES": "Custom Fungible Token",
-    "TOKEN_NON_FUNGIBLE_UNIQUE_WITH_CUSTOM_FEES": "Custom Non-Fungible Token"
+    "TOKEN_NON_FUNGIBLE_UNIQUE_WITH_CUSTOM_FEES": "Custom Non-Fungible Token",
+    "DEFAULT": "HBAR"
   }
 
   constructor(props) {
