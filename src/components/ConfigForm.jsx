@@ -29,7 +29,6 @@ import "../css/ConfigForm.css";
 
 class ConfigForm extends React.Component {
   apiTypeLabels = {
-    "DEFAULT": "Default",
     "TOKEN_FUNGIBLE_COMMON": "Fungible Token",
     "TOKEN_NON_FUNGIBLE_UNIQUE": "Non-Fungible Token",
     "TOKEN_FUNGIBLE_COMMON_WITH_CUSTOM_FEES": "Custom Fungible Token",
