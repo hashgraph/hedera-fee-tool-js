@@ -1762,7 +1762,7 @@
         "formulae": {
           "service": {
             "rbh": "(BASE_CONTRACT_SIZE + memoSize + (numKeys * KEY_SIZE) + (numMaxAutoAssociations * AUTO_ASSOCIATION_SIZE)) * expirationHours",
-            "sbh": "((KV_PAIR_SIZE * numKvPairs) + byteCodeSize) * expirationHours"
+            "sbh": "numKvPairs <= FREE_TIER_LIMIT ? 0 : ((numKvPairs > FREE_TIER_LIMIT && numKvPairs <= FIRST_TIER_LIMIT) ? (FIRST_TIER_PRICE * numKvPairs) : (SECOND_TIER_PRICE * numKvPairs)) * expirationHours)"
           }
         }
       }
