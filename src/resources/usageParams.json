@@ -459,12 +459,12 @@
   },
   "numKvPairs": {
     "label": "new # of key-value pairs in the contract",
-    "tip": "Number of of key-value pairs in the contract",
+    "tip": "New number of of key-value pairs in the contract",
     "min": 0, "max": 450000000
   },
   "totalKvPairs": {
-    "label": "new # of key-value pairs in the state",
-    "tip": "Number of of key-value pairs in the state",
+    "label": "total # of key-value pairs in the state",
+    "tip": "Total number of of key-value pairs in the state",
     "min": 0, "max": 450000000
   },
   "rentEnabled": {
