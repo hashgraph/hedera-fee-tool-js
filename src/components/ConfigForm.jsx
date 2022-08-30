@@ -110,6 +110,14 @@ class ConfigForm extends React.Component {
             val = max;
           }
         }
+        if(key === 'totalKvPairs' || key === 'numKvPairs') {
+          let max = usageParamProperties[key].max;
+          if(Number(val) > Number(max)) {
+            val = max;
+          } else {
+            val = item.value;
+          }
+        }
       }
       usageParams[key] = val;
     });
