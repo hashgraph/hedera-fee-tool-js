@@ -462,11 +462,6 @@
     "tip": "New number of of key-value pairs in the contract",
     "min": 0, "max": 450000000
   },
-  "totalKvPairs": {
-    "label": "total # of key-value pairs in the state",
-    "tip": "Total number of of key-value pairs in the state",
-    "min": 0, "max": 450000000
-  },
   "rentEnabled": {
     "label": "If storage rent is enabled?",
     "tip": "If storage rent is enabled once KV pairs exceed 100M in state",

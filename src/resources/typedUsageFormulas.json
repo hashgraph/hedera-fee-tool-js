@@ -1757,13 +1757,12 @@
           "memoSize": 0,
           "numMaxAutoAssociations": 0,
           "numKvPairs": 64,
-          "totalKvPairs": 64,
           "rentEnabled": false
         },
         "formulae": {
           "service": {
             "rbh": "(BASE_CONTRACT_SIZE + memoSize + (numKeys * KEY_SIZE) + (numMaxAutoAssociations * AUTO_ASSOCIATION_SIZE)) * expirationHours",
-            "sbh":  "rentEnabled ? (totalKvPairs < FREE_TIER_LIMIT ? 0 : (totalKvPairs < FIRST_TIER_LIMIT ? (FIRST_TIER_PRICE * numKvPairs) : (SECOND_TIER_PRICE * numKvPairs))): 0"
+            "sbh":  "rentEnabled ? FIRST_TIER_PRICE * numKvPairs * (expirationHours/REFERENCE_SLOT_LIFETIME) : 0"
           }
         }
       }
