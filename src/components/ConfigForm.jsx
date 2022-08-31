@@ -93,26 +93,26 @@ class ConfigForm extends React.Component {
         } else {
           val = item.value;
         }
-      } else if(isNaN(Number(val)) === false) {
+      } else if (isNaN(Number(val)) === false) {
         if (val.length >= 7) {
           val = val.slice(0, 7);
         }
         val = parseFloat(val);
-        if(val > 5000000) {
+        if (val > 5000000) {
           val = 5000000;
         }
-        if(val < 0) {
+        if (val < 0) {
           val *= -1;
         }
-        if(key === 'numNftsMinted') {
+        if (key === 'numNftsMinted') {
           let max = usageParamProperties[key].max;
-          if(Number(val) > Number(max)) {
+          if (Number(val) > Number(max)) {
             val = max;
           }
         }
-        if(key === 'totalKvPairs' || key === 'numKvPairs') {
+        if (key === 'numKvPairs') {
           let max = usageParamProperties[key].max;
-          if(Number(val) > Number(max)) {
+          if (Number(val) > Number(max)) {
             val = max;
           } else {
             val = item.value;
