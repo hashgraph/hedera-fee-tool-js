@@ -1762,7 +1762,7 @@
         "formulae": {
           "service": {
             "rbh": "(BASE_CONTRACT_SIZE + memoSize + (numKeys * KEY_SIZE) + (numMaxAutoAssociations * AUTO_ASSOCIATION_SIZE)) * expirationHours",
-            "sbh":  "rentEnabled ? (((FIRST_TIER_PRICE * (expirationHours / REFERENCE_SLOT_LIFETIME)) + (((expirationHours % REFERENCE_SLOT_LIFETIME) * FIRST_TIER_PRICE)/REFERENCE_SLOT_LIFETIME)) * numKvPairs) : 0"
+            "sbh":  "rentEnabled ? (((FIRST_TIER_PRICE * expirationHours) / REFERENCE_SLOT_LIFETIME) + (((expirationHours % REFERENCE_SLOT_LIFETIME) * FIRST_TIER_PRICE)/REFERENCE_SLOT_LIFETIME)) * numKvPairs : 0"
           }
         }
       }
