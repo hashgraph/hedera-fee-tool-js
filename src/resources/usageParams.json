@@ -458,14 +458,14 @@
     "min": 0, "max": 1000
   },
   "numKvPairs": {
-    "label": "new # of key-value pairs",
-    "tip": "Number of of key-value pairs",
-    "min": 0, "max": 1000
+    "label": "new # of key-value pairs in the contract",
+    "tip": "New number of of key-value pairs in the contract",
+    "min": 0, "max": 450000000
   },
-  "byteCodeSize": {
-    "label": "contract bytecode size",
-    "tip": "Size of contract bytecode",
-    "min": 1, "max": 5000000
+  "rentEnabled": {
+    "label": "If storage rent is enabled?",
+    "tip": "If storage rent is enabled once KV pairs exceed 100M in state",
+    "min": false, "max": true
   },
   "numTokenRels": {
     "label": "# of token relations",
