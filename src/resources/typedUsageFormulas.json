@@ -1040,26 +1040,16 @@
         "status": "complete",
         "isImportant": true,
         "usage": {
-          "numSigsPayer": 1,
-          "numSigsTotal": 1,
-          "memoSize": 0,
-          "numNftsMinted": 1,
-          "numBytesMetadataPerNft": 100,
-          "expirationHours": 2160
+          "numNftsMinted": 1
         },
         "formulae": {
           "node": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE + memoSize + (numNftsMinted * numBytesMetadataPerNft)",
-            "vpt": "numSigsPayer",
-            "bpr": "BASE_TXRESPONSE_SIZE"
+            "bpt": "numNftsMinted"
           },
           "network": {
-            "bpt": "BASE_TX_SIZE + (numSigsTotal * SIG_SIZE) + TOKEN_ID_SIZE + TRANSFER_LIST_SIZE  + memoSize + (numNftsMinted * numBytesMetadataPerNft)",
-            "vpt": "numSigsTotal",
-            "rbh": "(BASE_RECEIPT_SIZE + numNftsMinted * NFT_TRANSFER_SIZE) * MINUTES_3 / HOURS_1"
+            "bpt": "numNftsMinted"
           },
           "service": {
-            "rbh": "(BASE_RECORD_SIZE + TOKEN_ID_SIZE + numNftsMinted * NFT_TRANSFER_SIZE + memoSize) * MINUTES_3 / HOURS_1 + (numNftsMinted * numBytesMetadataPerNft * expirationHours)"
           }
         }
       }
