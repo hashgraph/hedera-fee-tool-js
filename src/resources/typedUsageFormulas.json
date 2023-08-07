@@ -1040,14 +1040,18 @@
         "status": "complete",
         "isImportant": true,
         "usage": {
-          "numNftsMinted": 1
+          "numNftsMinted": 1,
+          "numSigsPayer": 1,
+          "numSigsTotal": 1
         },
         "formulae": {
           "node": {
-            "bpt": "numNftsMinted"
+            "bpt": "numNftsMinted",
+            "vpt": "numSigsTotal - 1"
           },
           "network": {
-            "bpt": "numNftsMinted"
+            "bpt": "numNftsMinted",
+            "vpt": "numSigsTotal - 1"
           },
           "service": {
           }
