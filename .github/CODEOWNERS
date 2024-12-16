@@ -1,5 +1,5 @@
 # Default code owners for entire repository
-*                                               @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/platform-base @hashgraph/hedera-services
+*                                               @hashgraph/transaction-tool @hashgraph/hedera-services @hashgraph/marketing
 #########################
 #####  Core Files  ######
 #########################
@@ -10,20 +10,20 @@
 /.github/                                       @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/platform-base @hashgraph/hedera-services
 
 # Codacy Tool Configurations
-/config/                                        @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services
-.remarkrc                                       @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services
+/config/                                        @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services  @hashgraph/transaction-tool
+.remarkrc                                       @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services  @hashgraph/transaction-tool
 
 # Self-protection for root CODEOWNERS files (this file should not exist and should definitely require approval)
 /CODEOWNERS                                     @hashgraph/release-engineering-managers
 
 # Protect the repository root files
-/README.md                                      @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services
+/README.md                                      @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services  @hashgraph/transaction-tool
 **/LICENSE                                      @hashgraph/release-engineering-managers
 
 # CodeCov configuration
-**/codecov.yml                                  @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/platform-base @hashgraph/hedera-services
+**/codecov.yml                                  @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/platform-base @hashgraph/hedera-services @hashgraph/transaction-tool
 
 # Git Ignore definitions
-**/.gitignore                                   @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services
-**/.gitignore.*                                 @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services
+**/.gitignore                                   @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services @hashgraph/transaction-tool
+**/.gitignore.*                                 @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services @hashgraph/transaction-tool
 
