@@ -7,23 +7,23 @@
 # NOTE: Must be placed last to ensure enforcement over all other rules
 
 # Protection Rules for Github Configuration Files and Actions Workflows
-/.github/                                       @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/platform-base @hashgraph/hedera-services
+/.github/                                       @hashgraph/platform-ci @hashgraph/release-engineering-managers @hashgraph/platform-base @hashgraph/hedera-services
 
 # Codacy Tool Configurations
-/config/                                        @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services  @hashgraph/transaction-tool
-.remarkrc                                       @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services  @hashgraph/transaction-tool
+/config/                                        @hashgraph/platform-ci @hashgraph/release-engineering-managers @hashgraph/platform-ci-committers @hashgraph/platform-base @hashgraph/hedera-services  @hashgraph/transaction-tool
+.remarkrc                                       @hashgraph/platform-ci @hashgraph/release-engineering-managers @hashgraph/platform-ci-committers @hashgraph/platform-base @hashgraph/hedera-services  @hashgraph/transaction-tool
 
 # Self-protection for root CODEOWNERS files (this file should not exist and should definitely require approval)
 /CODEOWNERS                                     @hashgraph/release-engineering-managers
 
 # Protect the repository root files
-/README.md                                      @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services  @hashgraph/transaction-tool
+/README.md                                      @hashgraph/platform-ci @hashgraph/release-engineering-managers @hashgraph/platform-ci-committers @hashgraph/platform-base @hashgraph/hedera-services  @hashgraph/transaction-tool
 **/LICENSE                                      @hashgraph/release-engineering-managers
 
 # CodeCov configuration
-**/codecov.yml                                  @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/platform-base @hashgraph/hedera-services @hashgraph/transaction-tool
+**/codecov.yml                                  @hashgraph/platform-ci @hashgraph/release-engineering-managers @hashgraph/platform-base @hashgraph/hedera-services @hashgraph/transaction-tool
 
 # Git Ignore definitions
-**/.gitignore                                   @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services @hashgraph/transaction-tool
-**/.gitignore.*                                 @hashgraph/devops-ci @hashgraph/release-engineering-managers @hashgraph/devops-ci-committers @hashgraph/platform-base @hashgraph/hedera-services @hashgraph/transaction-tool
+**/.gitignore                                   @hashgraph/platform-ci @hashgraph/release-engineering-managers @hashgraph/platform-ci-committers @hashgraph/platform-base @hashgraph/hedera-services @hashgraph/transaction-tool
+**/.gitignore.*                                 @hashgraph/platform-ci @hashgraph/release-engineering-managers @hashgraph/platform-ci-committers @hashgraph/platform-base @hashgraph/hedera-services @hashgraph/transaction-tool
 
